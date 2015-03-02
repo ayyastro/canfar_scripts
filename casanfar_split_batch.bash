@@ -1,7 +1,7 @@
 #!/bin/bash
 echo 'Making dirs'
 mkdir -p /staging/tmp/{vos,vos_cache,proc}
-echo Mount VOS in readonly mode
+echo 'Mount VOS in readonly mode'
 
 # Clone CANFAR repo
 git clone https://github.com/e-koch/canfar_scripts.git
