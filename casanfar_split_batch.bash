@@ -6,6 +6,9 @@ echo 'Mount VOS in readonly mode'
 # Source bash profile
 source /home/ekoch/.bash_profile
 
+# Set username. Otherwise CASA crashes.
+USER='ekoch'
+
 # Clone CANFAR repo
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
@@ -18,6 +21,6 @@ sudo fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
 sudo mountvofs --vospace vos:vos:MWSynthesis/VLA/14B-088_20141211_1418355329562/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
-sudo cp -rf ${TMPDIR}/proc/* ${TMPDIR}/vos/
+sudo cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
 echo 'Unmount VOS'
 sudo fusermount -u ${TMPDIR}/vos
