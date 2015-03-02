@@ -7,7 +7,7 @@ echo 'Mount VOS in readonly mode'
 source /home/ekoch/.bash_profile
 
 # Set username. Otherwise CASA crashes.
-USER='ekoch'
+export USER='ekoch'
 
 # Clone CANFAR repo
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
