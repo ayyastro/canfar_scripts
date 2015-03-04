@@ -1,0 +1,16 @@
+Universe   = vanilla
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT_OR_EVICT
+environment = "HOME=/home/ekoch"
+RunAsOwner = True
+notify_user = koch.eric.w@gmail.com
+notification = Always
+
+transfer_output_files = /dev/null
+
+Executable = code_repos/canfar_scripts/casanfar_concat_batch.bash
+
+Log = output_files/logs/casanfar_concat.log
+Output = output_files/output/casanfar_concat.out
+Error = output_files/error/casanfar_concat.err
+Queue
