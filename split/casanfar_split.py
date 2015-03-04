@@ -1,25 +1,20 @@
 import os
 import numpy as np
-from scipy.optimize import curve_fit
+import sys
 
-
-def gauss(x, A, mu, sigma):
-    return A*np.exp(-(x-mu)**2/(2.*sigma**2))
-
-
-
-scriptmode = True
-
-SDM_name = '14B-088.sb30023144.eb30070731.57002.919034293984' # The prefix to use for all output files
+try:
+    SDM_name = str(sys.argv[5])
+except IndexError:
+    # The prefix to use for all output files
+    SDM_name = '14B-088.sb30023144.eb30070731.57002.919034293984'
 
 # Set up some useful variables (these will be altered later on)
 msfile = SDM_name + '.ms'
 hisplitms = SDM_name + '.hi.ms'
 splitms = SDM_name + '.hi.src.split.ms'
 
-pathname=os.environ.get('CASAPATH').split()[0]
+pathname = os.environ.get('CASAPATH').split()[0]
 pipepath = '/home/ekoch/pipe_scripts/'
-#pipepath = '/home/dario/pipe_scripts/'
 
 source = 'M33'
 
@@ -27,10 +22,10 @@ source = 'M33'
 vos_dir = '../vos/'
 vos_proc = './'
 
-#%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%%&%&%&%&%&%&%%&%
+# %&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%%&%&%&%&%&%&%%&%
 # Find the 21cm spw and check if the obs
 # is single pointing or mosaic
-#%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%%&%&%&%&%&%&%%&%
+# %&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%%&%&%&%&%&%&%%&%
 
 print "Find HI spw..."
 
@@ -50,7 +45,7 @@ hispw = str(spws[sel[0][0]])
 freq = freqs[sel[0][0]]
 nchan = nchans[sel[0][0]]
 
-print "Selected spw ", hispw, "with frequency ", freq, "and ", nchan, " channels"
+print "Selected spw "+hispw+"with frequency "+freq+"and "+nchan+" channels"
 print "Starting split the HI line"
 
 # Mosaic or single pointing?
@@ -73,9 +68,9 @@ else:
     imagermode = "csclean"
 
 
-#%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%
+# %&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%
 # Split the corrected source data from the rest
-#%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%
+# %&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%
 
 
 print "Starting source split..."
