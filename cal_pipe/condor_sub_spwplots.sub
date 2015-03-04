@@ -1,0 +1,15 @@
+Universe   = vanilla
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT_OR_EVICT
+environment = "HOME=/home/cloud-user"
+RunAsOwner = True
+
+transfer_output_files = /dev/null
+
+Executable = casanfar_batch_extra_calplots.bash
+
+Arguments = casanfar_batch_extra_calplots
+Log = casanfar_batch_extra_calplots.log
+Output = casanfar_batch_extra_calplots.out
+Error = casanfar_batch_extra_calplots.err
+Queue
