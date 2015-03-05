@@ -8,7 +8,7 @@ notification = Always
 
 transfer_output_files = /dev/null
 
-Executable = code_repos/canfar_scripts/casanfar_split_batch.bash
+Executable = code_repos/canfar_scripts/split/casanfar_split_batch.bash
 
 Log = output_files/logs/casanfar_split.log
 Output = output_files/output/casanfar_split.out
