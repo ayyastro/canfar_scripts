@@ -7,7 +7,8 @@ source /home/ekoch/.bash_profile
 export USER='ekoch'
 
 echo 'Making dirs'
-mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
+mkdir -p -m 777 ${TMPDIR}/{vos,vos_cache,proc,vos_link}
+chown -R ${USER} ${TMPDIR}/{vos,vos_cache,proc,vos_link}
 echo 'Mount VOS in readonly mode'
 
 # Clone CANFAR repo
