@@ -19,6 +19,14 @@ echo 'Mount VOS in readonly mode'
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
 sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088_20141211_1418355329562/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache --readonly
+
+pwd
+
+ls -al ${TMPDIR}/vos
+ls -al ${TMPDIR}/vos_cache
+ls -al ${TMPDIR}/proc
+ls -al ${TMPDIR}/vos_link
+
 echo 'Run casapy'
 cd ${TMPDIR}/proc
 sudo /home/ekoch/casa-stable-4.4.95/casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py
