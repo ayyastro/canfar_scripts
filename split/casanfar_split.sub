@@ -5,7 +5,6 @@ environment = "HOME=/home/ekoch"
 RunAsOwner = True
 notify_user = koch.eric.w@gmail.com
 notification = Always
-run_as_owner = True
 
 transfer_output_files = /dev/null
 
