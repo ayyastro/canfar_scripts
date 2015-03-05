@@ -45,7 +45,9 @@ hispw = str(spws[sel[0][0]])
 freq = freqs[sel[0][0]]
 nchan = nchans[sel[0][0]]
 
-print "Selected spw "+hispw+"with frequency "+freq+"and "+nchan+" channels"
+print "Selected spw "+str(hispw)
+print "with frequency "+str(freq)
+print "and "+str(nchan)+" channels"
 print "Starting split the HI line"
 
 # Mosaic or single pointing?

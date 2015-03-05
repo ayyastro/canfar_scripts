@@ -20,12 +20,7 @@ git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_script
 
 sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/14B-088_20141211_1418355329562/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache --readonly
 
-pwd
-
-ls -al ${TMPDIR}/vos
-ls -al ${TMPDIR}/vos_cache
-ls -al ${TMPDIR}/proc
-ls -al ${TMPDIR}/vos_link
+sudo ls -al ${TMPDIR}/vos
 
 echo 'Run casapy'
 cd ${TMPDIR}/proc
@@ -35,6 +30,6 @@ sudo fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
 sudo mountvofs --vospace vos:vos:MWSynthesis/VLA/14B-088/14B-088_20141211_1418355329562/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
-cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
+sudo cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
 echo 'Unmount VOS'
 sudo fusermount -u ${TMPDIR}/vos
