@@ -25,6 +25,10 @@ sudo ls -al ${TMPDIR}/vos
 echo 'Run casapy'
 cd ${TMPDIR}/proc
 sudo /home/ekoch/casa-stable-4.4.95/casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py
+
+ls ${TMPDIR}/proc/
+sudo ls -al ${TMPDIR}/vos
+
 echo 'Unmount VOS'
 sudo fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'

@@ -88,6 +88,12 @@ field = source
 spw = hispw
 datacolumn = 'corrected'
 keepflags = False
+
+print vis
+print outputvis
+print field
+print spw
+
 split()
 
 print "Created splitted-source .ms "+splitms
