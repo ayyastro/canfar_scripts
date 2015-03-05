@@ -6,6 +6,9 @@ source /home/ekoch/.bash_profile
 # Set username. Otherwise CASA crashes.
 export USER='ekoch'
 
+# Get certificate
+getCert
+
 echo 'Making dirs'
 chmod 777 ${TMPDIR}
 mkdir -p -m 777 ${TMPDIR}/{vos,vos_cache,proc,vos_link}
