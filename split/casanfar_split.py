@@ -79,7 +79,7 @@ print "Starting source split..."
 
 #os.system('md5sum $(find '+vos_dir+hisplitms+') > '+vos_proc+hisplitms+'.md5')
 
-os.system('rm -rf '+vos_proc+splitms)
+# os.system('rm -rf '+vos_proc+splitms)
 
 default('split')
 vis = vos_dir+hisplitms
