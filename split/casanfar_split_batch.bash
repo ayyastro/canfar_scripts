@@ -2,6 +2,7 @@
 
 # Source bash profile
 source /home/ekoch/.bash_profile
+source /home/ekoch/.bashrc
 
 # Set username. Otherwise CASA crashes.
 export USER='ekoch'
