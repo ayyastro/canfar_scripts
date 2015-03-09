@@ -8,9 +8,8 @@ Requires that the pipeline namespace be populated.
 
 import os
 
-
 # Repopulate namespace
-execfile("EVLA_pipeline1.3.0/EVLA_pipe_restore.py")
+execfile("/home/ekoch/pipe_scripts/EVLA_pipe_restore.py")
 
 # UV plots per SPW
 for ii in field_ids:
