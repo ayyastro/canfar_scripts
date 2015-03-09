@@ -6,10 +6,9 @@ RunAsOwner = True
 
 transfer_output_files = /dev/null
 
-Executable = casanfar_batch_extra_calplots.bash
+Executable = code_repos/canfar_scripts/cal_pipe/casanfar_batch_extra_calplots.bash
 
-Arguments = casanfar_batch_extra_calplots
-Log = casanfar_batch_extra_calplots.log
-Output = casanfar_batch_extra_calplots.out
-Error = casanfar_batch_extra_calplots.err
+Log = output_files/logs/casanfar_batch_extra_calplots.log
+Output = output_files/output/casanfar_batch_extra_calplots.out
+Error = output_files/error/casanfar_batch_extra_calplots.err
 Queue
