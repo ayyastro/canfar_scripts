@@ -37,6 +37,9 @@ ms_file='14B-088.sb29701604.eb29882607.56952.08797296297.ms'
 
 full_path=$ms_folder'products/'$ms_file
 
+# Start up the fake display for CASA
+Xvfb :1 & export DISPLAY=:1
+
 # Run the code
 echo Run casapy and spw_plots.py
 suod casapy --nogui --nologger -c /home/ekoch/canfar_scripts/spw_plots.py full_path
