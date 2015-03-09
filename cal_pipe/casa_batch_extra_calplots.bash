@@ -1,30 +1,35 @@
 #!/bin/bash
 
-# Grab the certificate
-echo Get certificate
+# Source bash profile
+source /home/ekoch/.bash_profile
+source /home/ekoch/.bashrc
+
+# Set username. Otherwise CASA crashes.
+export USER='ekoch'
+
+# Get certificate
 getCert
 
-# Make some temporary directories
-echo "Making dirs"
-mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
+echo 'Making dirs'
+chmod 777 ${TMPDIR}
+mkdir -p -m 777 ${TMPDIR}/{vos,vos_cache,proc,vos_link}
+chown -R ${USER} ${TMPDIR}/{vos,vos_cache,proc,vos_link}
+echo 'Mount VOS in readonly mode'
 
-# Mount VOSpace
-echo "Mount VOS in readonly mode"
-mountvofs --vospace vos:MWSynthesis/VLA/14B-088/ --mountpoint ${TMPDIR}/vos #--ca$
+# Clone CANFAR repo
+git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
-# Load in casa pointer
-echo Sourcing
-source /home/cloud-user/.bashrc
+sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/14B-088_20141021_1413960928386/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache --readonly
 
-# Copy the necessary code
+# Move to processing directory
 cd ${TMPDIR}/proc
 
-git clone https://github.com/e-koch/hi_reduction_scripts.git
-git checkout EVLA_pipeline
+# Copy the pipeline restore file here
+sudo cp ${TMPDIR}/vos/pipeline_shelf.restore .
 
-mkdir EVLA_pipeline1.3.0
-cp hi_reduction_scripts/m33_evla/EVLA_pipeline1.3.0/* EVLA_pipeline1.3.0/
-cp hi_reduction_scripts/m33_evla/spw_plots.py .
+# Update the necessary paths, then copy back over
+sudo python update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos /home/ekoch/pipe_scripts
+sudo cp pipeline_shelf.restore ${TMPDIR}/vos/
 
 # Specify MSfile
 ms_folder='14B-088_20141021_1413960928386/'
@@ -34,14 +39,17 @@ full_path=$ms_folder'products/'$ms_file
 
 # Run the code
 echo Run casapy and spw_plots.py
-casapy --nogui --nologger -c spw_plots.py full_path
+suod casapy --nogui --nologger -c /home/ekoch/canfar_scripts/spw_plots.py full_path
+
+mkdir 'spw_plots'
+mv *.png spw_plots
 
 # Unmount VOSpace and copy output back over.
 echo 'Unmount VOS'
-fusermount -zu ${TMPDIR}/vos
+sudo fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
-mountvofs --vospace vos:MWSynthesis/VLA/14B-088/$ms_folder --mountpoint ${TMPDIR}/vos #--ca$
+sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/14B-088_20141021_1413960928386/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
-cp -rf ${TMPDIR}/proc/* ${TMPDIR}/vos/
+sudo cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
 echo 'Unmount VOS'
-fusermount -zu ${TMPDIR}/vos
+sudo fusermount -u ${TMPDIR}/vos
