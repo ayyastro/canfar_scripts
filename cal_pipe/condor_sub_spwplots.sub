@@ -6,7 +6,7 @@ RunAsOwner = True
 
 transfer_output_files = /dev/null
 
-Executable = code_repos/canfar_scripts/cal_pipe/casanfar_batch_extra_calplots.bash
+Executable = code_repos/canfar_scripts/cal_pipe/casa_batch_extra_calplots.bash
 
 Log = output_files/logs/casanfar_batch_extra_calplots.log
 Output = output_files/output/casanfar_batch_extra_calplots.out
