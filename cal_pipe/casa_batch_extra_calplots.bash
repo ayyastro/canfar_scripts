@@ -17,9 +17,12 @@ chown -R ${USER} ${TMPDIR}/{vos,vos_cache,proc,vos_link}
 echo 'Mount VOS in readonly mode'
 
 # Clone CANFAR repo
+rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
 sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/14B-088_20141021_1413960928386/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache --readonly
+
+sudo ls -la ${TMPDIR}/vos
 
 # Move to processing directory
 cd ${TMPDIR}/proc
