@@ -25,7 +25,7 @@ sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/14B-088_20141021_1413960928
 cd ${TMPDIR}/proc
 
 # Copy the pipeline restore file here
-sudo cp ${TMPDIR}/vos/pipeline_shelf.restore .
+sudo cp ${TMPDIR}/vos/pipeline_shelf.restore ${TMPDIR}/proc/
 
 # Update the necessary paths, then copy back over
 sudo python update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos /home/ekoch/pipe_scripts
@@ -42,7 +42,7 @@ Xvfb :1 & export DISPLAY=:1
 
 # Run the code
 echo Run casapy and spw_plots.py
-suod casapy --nogui --nologger -c /home/ekoch/canfar_scripts/spw_plots.py full_path
+sudo casapy --nogui --nologger -c /home/ekoch/canfar_scripts/spw_plots.py full_path
 
 mkdir 'spw_plots'
 mv *.png spw_plots
