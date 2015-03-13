@@ -20,8 +20,11 @@ git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_script
 echo 'Mount VOS in readonly mode'
 
 # Input a directory where the MS is
-directory = ${1}
-msfile = ${2}
+# directory = ${1}
+# msfile = ${2}
+
+echo ${1}
+echo ${2}
 
 mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
