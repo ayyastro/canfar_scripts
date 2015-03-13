@@ -7,6 +7,7 @@ Requires that the pipeline namespace be populated.
 '''
 
 import os
+import numpy as np
 
 # Repopulate namespace
 execfile("/home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/EVLA_pipe_restore.py")
@@ -73,7 +74,7 @@ for rrow in rowlist:
             maxmaxamp = maxamp
     tmparr = np.abs(phases[good])
     if (len(tmparr) > 0):
-        maxphase = np.max(np.abs(phases[good])) * 180. / pi
+        maxphase = np.max(np.abs(phases[good])) * 180. / np.pi
         if (maxphase > maxmaxphase):
             maxmaxphase = maxphase
 ampplotmax = maxmaxamp
