@@ -11,21 +11,21 @@ from taskinit import *
 import casac
 
 
-vis_path = 'VLA/archival/'
+# vis_path = 'VLA/archival/'
 vis = "M33_b_c.ms"
 out_root = 'M33_206_b_c'
 
 
-mod_path = 'Arecibo/'
+# mod_path = 'Arecibo/'
 model = 'M33_model.image'
 mask = 'M33_mask.image'
 
 combine_configs = False
 do_cvel = False
-do_dirtyimage = True
+do_dirtyimage = False
 do_clean_1chan = False
-do_clean = False
-do_export = False
+do_clean = True
+do_export = True
 
 if combine_configs:
     print("Combining the reduced B and C configuration data.")
@@ -97,7 +97,7 @@ if do_clean:
           mode='channel', width=1, nchan=205, start=10,
           cell='1.5arcsec', multiscale=[0, 3, 9, 27, 200],
           threshold='2.2mJy/beam', imagermode='mosaic',
-          imsize=[4096, 4096], weighting='natural', robust=0.0, niter=5000,
+          imsize=[4096, 4096], weighting='natural', robust=0.0, niter=10000,
           pbcor=True, interpolation='linear', usescratch=True,
           phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
           outframe='LSRK', modelimage=model, mask=mask)
