@@ -48,7 +48,7 @@ Xvfb :1 & export DISPLAY=:1
 echo Run casapy and spw_plots.py
 casapy --nogui --nologger -c /home/ekoch/canfar_scripts/spw_plots.py  # full_path
 
-mkdir spw_plots
+mkdir -m 777 spw_plots
 mv *.png spw_plots
 
 # Unmount VOSpace and copy output back over.
