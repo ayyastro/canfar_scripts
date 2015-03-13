@@ -10,7 +10,8 @@ transfer_output_files = /dev/null
 
 Executable = code_repos/canfar_scripts/split/casanfar_split_batch.bash
 
-Log = output_files/logs/casanfar_split.log
-Output = output_files/output/casanfar_split.out
-Error = output_files/error/casanfar_split.err
+Arguments = 14B-088_20141116_1416220528659, 14B-088.sb29812125.eb29989958.56978.238293993054
+Log = output_files/logs/split_20141116_1416220528659.log
+Output = output_files/output/split_20141116_1416220528659.out
+Error = output_files/error/split_20141116_1416220528659.err
 Queue
