@@ -12,6 +12,7 @@ getCert
 
 mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
 
+rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
 mountvofs --vospace vos:MWSynthesis/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
@@ -30,6 +31,7 @@ mkdir -m 777 ${TMPDIR}/proc/M33_b_c.ms/
 cp -R ${TMPDIR}/vos/VLA/archival/M33_b_c.ms/* ${TMPDIR}/proc/M33_b_c.ms/
 echo "Done MS Set"
 ls -al ${TMPDIR}/proc/
+ls -al ${TMPDIR}/proc/M33_b_c.ms/
 
 # Unmount
 fusermount -u ${TMPDIR}/vos
@@ -37,8 +39,10 @@ fusermount -u ${TMPDIR}/vos
 cd ${TMPDIR}/proc
 
 # Unzip the model and mask
-unzip M33_mask.image.zip -d ${TMPDIR}/proc
-unzip M33_model.image.zip -d ${TMPDIR}/proc
+unzip M33_mask.image.zip #-d ${TMPDIR}/proc
+unzip M33_model.image.zip #-d ${TMPDIR}/proc
+
+ls -al ${TMPDIR}/proc
 
 # Delete zip files
 rm M33_mask.image.zip
