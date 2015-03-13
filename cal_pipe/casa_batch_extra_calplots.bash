@@ -35,7 +35,7 @@ cd ${TMPDIR}/proc
 cp ${TMPDIR}/vos/pipeline_shelf.restore ${TMPDIR}/proc/
 
 # Update the necessary paths, then copy back over
-python /home/ekoch/canfar_scripts/cal_pipe/update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
+casapy --nogui --nologger -c /home/ekoch/canfar_scripts/cal_pipe/update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
 # cp pipeline_shelf.restore ${TMPDIR}/vos/
 
 # Specify MSfile
@@ -46,7 +46,7 @@ Xvfb :1 & export DISPLAY=:1
 
 # Run the code
 echo Run casapy and spw_plots.py
-casapy --nogui --nologger -c /home/ekoch/canfar_scripts/spw_plots.py  # full_path
+casapy --nogui -c /home/ekoch/canfar_scripts/spw_plots.py  # full_path
 
 mkdir -m 777 spw_plots
 mv *.png spw_plots
