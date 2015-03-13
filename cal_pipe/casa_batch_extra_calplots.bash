@@ -11,50 +11,48 @@ export USER='ekoch'
 getCert
 
 echo 'Making dirs'
-chmod 777 ${TMPDIR}
-mkdir -p -m 777 ${TMPDIR}/{vos,vos_cache,proc,vos_link}
-chown -R ${USER} ${TMPDIR}/{vos,vos_cache,proc,vos_link}
-echo 'Mount VOS in readonly mode'
+mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
 
 # Clone CANFAR repo
 rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
-sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/14B-088_20141021_1413960928386/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache --readonly
+echo 'Mount VOS in readonly mode'
 
-sudo ls -la ${TMPDIR}/vos
+# Input a directory where the MS is
+directory = ${1}
+msfile = ${2}
+
+mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
 # Move to processing directory
 cd ${TMPDIR}/proc
 
 # Copy the pipeline restore file here
-sudo cp ${TMPDIR}/vos/pipeline_shelf.restore ${TMPDIR}/proc/
+cp ${TMPDIR}/vos/pipeline_shelf.restore ${TMPDIR}/proc/
 
 # Update the necessary paths, then copy back over
-sudo python update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos /home/ekoch/pipe_scripts
-sudo cp pipeline_shelf.restore ${TMPDIR}/vos/
+python update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
+cp pipeline_shelf.restore ${TMPDIR}/vos/
 
 # Specify MSfile
-ms_folder='14B-088_20141021_1413960928386/'
-ms_file='14B-088.sb29701604.eb29882607.56952.08797296297.ms'
-
-full_path=$ms_folder'products/'$ms_file
+full_path=${1}'products/'${2}
 
 # Start up the fake display for CASA
 Xvfb :1 & export DISPLAY=:1
 
 # Run the code
 echo Run casapy and spw_plots.py
-sudo casapy --nogui --nologger -c /home/ekoch/canfar_scripts/spw_plots.py full_path
+casapy --nogui --nologger -c /home/ekoch/canfar_scripts/spw_plots.py  # full_path
 
-mkdir 'spw_plots'
+mkdir spw_plots
 mv *.png spw_plots
 
 # Unmount VOSpace and copy output back over.
 echo 'Unmount VOS'
 sudo fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
-sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/14B-088_20141021_1413960928386/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
+sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
 sudo cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
 echo 'Unmount VOS'
