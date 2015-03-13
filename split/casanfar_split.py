@@ -15,7 +15,7 @@ splitms = SDM_name + '.hi.src.split.ms'
 pathname = os.environ.get('CASAPATH').split()[0]
 pipepath = '/home/ekoch/pipe_scripts/'
 
-source = 'M33'
+source = 'M33*'
 
 # VOS stuff
 vos_dir = '../vos/'
