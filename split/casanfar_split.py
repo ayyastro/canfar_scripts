@@ -83,7 +83,7 @@ print "Starting source split..."
 default('split')
 vis = vos_dir+msfile
 outputvis = vos_proc+hisplitms
-field = source
+field = 'M33*'  # source
 spw = hispw
 datacolumn = 'corrected'
 keepflags = False
