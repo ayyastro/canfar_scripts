@@ -17,11 +17,11 @@ if __name__ == '__main__':
 
     import sys
 
-    pipe_var_file = str(sys.argv[1])
+    pipe_var_file = str(sys.argv[5])
 
-    ms_path = str(sys.argv[2])
+    ms_path = str(sys.argv[6])
 
-    pipepath = str(sys.argv[3])
+    pipepath = str(sys.argv[7])
 
     import shelve
 
