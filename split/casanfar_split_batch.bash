@@ -27,6 +27,10 @@ mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TM
 
 cd ${TMPDIR}/proc
 
+echo "Make sure inputted MS is correct"
+ls -al ${TMPDIR}/vos
+echo ${2}
+
 echo 'Run casapy'
 casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py ${2}
 

@@ -3,6 +3,8 @@ import numpy as np
 import sys
 
 SDM_name = str(sys.argv[4])
+
+print "Inputted MS: "+SDM_name
 # SDM_name = '14B-088.sb30023144.eb30070731.57002.919034293984'
 
 # Set up some useful variables (these will be altered later on)
@@ -79,8 +81,8 @@ print "Starting source split..."
 # os.system('rm -rf '+vos_proc+splitms)
 
 default('split')
-vis = vos_dir+hisplitms
-outputvis = vos_proc+splitms
+vis = vos_dir+msfile
+outputvis = vos_proc+hisplitms
 field = source
 spw = hispw
 datacolumn = 'corrected'
@@ -93,4 +95,4 @@ print spw
 
 split()
 
-print "Created splitted-source .ms "+splitms
+print "Created splitted-source .ms "+hisplitms
