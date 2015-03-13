@@ -2,11 +2,8 @@ import os
 import numpy as np
 import sys
 
-try:
-    SDM_name = str(sys.argv[5])
-except IndexError:
-    # The prefix to use for all output files
-    SDM_name = '14B-088.sb30023144.eb30070731.57002.919034293984'
+SDM_name = str(sys.argv[4])
+# SDM_name = '14B-088.sb30023144.eb30070731.57002.919034293984'
 
 # Set up some useful variables (these will be altered later on)
 msfile = SDM_name + '.ms'

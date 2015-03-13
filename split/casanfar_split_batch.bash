@@ -28,7 +28,7 @@ mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TM
 cd ${TMPDIR}/proc
 
 echo 'Run casapy'
-casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py {2}
+casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py ${2}
 
 
 echo 'Unmount VOS'
