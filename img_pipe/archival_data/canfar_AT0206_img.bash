@@ -43,6 +43,7 @@ casapy --nogui -c /home/ekoch/canfar_scripts/img_pipe/archival_data/m33_arch_206
 
 
 # Now remount VOS, and copy over the relevant infos
+echo "Remount"
 mountvofs --vospace:MWSynthesis/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
 cp -a ${TMPDIR}/proc/casa*.log ${TMPDIR}/vos/VLA/archival/
@@ -51,4 +52,5 @@ cp -a ${TMPDIR}/proc/M33_206_b_c.clean* ${TMPDIR}/vos/VLA/archival/
 
 cp -a ${TMPDIR}/proc/*.fits ${TMPDIR}/vos/VLA/archival/
 
+echo "Unmount"
 fusermount -u ${TMPDIR}/vos

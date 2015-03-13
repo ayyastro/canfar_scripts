@@ -1,0 +1,16 @@
+Universe   = vanilla
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT_OR_EVICT
+environment = "HOME=/home/ekoch"
+RunAsOwner = True
+notify_user = koch.eric.w@gmail.com
+notification = Always
+
+transfer_output_files = /dev/null
+
+Executable = code_repos/canfar_scripts/img_pipe/archival_data/canfar_AT0206_img.bash
+
+Log = output_files/logs/canfar_AT0206_img.log
+Output = output_files/output/canfar_AT0206_img.out
+Error = output_files/error/canfar_AT0206_img.err
+Queue
