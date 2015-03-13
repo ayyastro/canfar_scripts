@@ -53,10 +53,10 @@ mv *.png spw_plots
 
 # Unmount VOSpace and copy output back over.
 echo 'Unmount VOS'
-sudo fusermount -u ${TMPDIR}/vos
+fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
-sudo mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
+mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
-sudo cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
+cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
 echo 'Unmount VOS'
-sudo fusermount -u ${TMPDIR}/vos
+fusermount -u ${TMPDIR}/vos
