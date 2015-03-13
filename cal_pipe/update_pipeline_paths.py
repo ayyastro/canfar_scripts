@@ -29,6 +29,6 @@ if __name__ == '__main__':
 
     pipe_dict = update_paths(pipe_dict, ms_path, pipepath)
 
-    pipe_dict.flush()
+    pipe_dict.sync()
 
     pipe_dict.close()
