@@ -33,7 +33,7 @@ cp ${TMPDIR}/vos/pipeline_shelf.restore ${TMPDIR}/proc/
 
 # Update the necessary paths, then copy back over
 python update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
-cp pipeline_shelf.restore ${TMPDIR}/vos/
+# cp pipeline_shelf.restore ${TMPDIR}/vos/
 
 # Specify MSfile
 full_path=${1}'products/'${2}
