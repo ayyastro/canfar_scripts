@@ -32,10 +32,10 @@ casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py {2}
 
 
 echo 'Unmount VOS'
-sudo fusermount -u ${TMPDIR}/vos
+fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
 mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
-sudo cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
+cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
 echo 'Unmount VOS'
-sudo fusermount -u ${TMPDIR}/vos
+fusermount -u ${TMPDIR}/vos
