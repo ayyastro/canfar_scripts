@@ -12,6 +12,9 @@ import numpy as np
 # Repopulate namespace
 execfile("/home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/EVLA_pipe_restore.py")
 
+print ms_active
+print pipepath
+
 # UV plots per SPW
 for ii in field_ids:
     for jj in field_spws[ii]:
