@@ -40,7 +40,7 @@ cd ${TMPDIR}/proc
 
 # Unzip the model and mask
 unzip M33_mask.image.zip
-tar -zxf M33_model.image.zip
+tar -zxf M33_model.image.tar.gz
 
 ls -al ${TMPDIR}/proc
 
