@@ -39,14 +39,14 @@ fusermount -u ${TMPDIR}/vos
 cd ${TMPDIR}/proc
 
 # Unzip the model and mask
-unzip M33_mask.image.zip #-d ${TMPDIR}/proc
-unzip M33_model.image.zip #-d ${TMPDIR}/proc
+unzip M33_mask.image.zip
+tar -zxf M33_model.image.zip
 
 ls -al ${TMPDIR}/proc
 
 # Delete zip files
 rm M33_mask.image.zip
-rm M33_model.image.zip
+rm M33_model.image.tar.gz
 
 echo "Running CASA"
 
@@ -56,13 +56,22 @@ ls -al ${TMPDIR}/proc
 casapy --nogui -c /home/ekoch/canfar_scripts/img_pipe/archival_data/m33_arch_206_all_img.py
 
 
+# Compress the clean output to upload to VOS
+
+# tar -zcf M33_206_b_c.clean.flux.tar.gz M33_206_b_c.clean.flux*
+tar -zcf M33_206_b_c.clean.image.tar.gz M33_206_b_c.clean.image
+# tar -zcf M33_206_b_c.clean.mask.tar.gz M33_206_b_c.clean.mask
+# tar -zcf M33_206_b_c.clean.model.tar.gz M33_206_b_c.clean.model
+# tar -zcf M33_206_b_c.clean.psf.tar.gz M33_206_b_c.clean.psf
+tar -zcf M33_206_b_c.clean.residual.tar.gz M33_206_b_c.clean.residual
+
 # Now remount VOS, and copy over the relevant infos
 echo "Remount"
 mountvofs --vospace vos:MWSynthesis/VLA/archival/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
 cp -a ${TMPDIR}/proc/casa*.log ${TMPDIR}/vos/
 
-cp -a ${TMPDIR}/proc/M33_206_b_c.clean* ${TMPDIR}/vos/
+cp -a ${TMPDIR}/proc/M33_206_b_c.clean*.tar.gz ${TMPDIR}/vos/
 
 cp -a ${TMPDIR}/proc/*.fits ${TMPDIR}/vos/
 
