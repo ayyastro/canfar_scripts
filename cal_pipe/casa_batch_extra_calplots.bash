@@ -34,9 +34,8 @@ cd ${TMPDIR}/proc
 # Copy the pipeline restore file here
 cp ${TMPDIR}/vos/pipeline_shelf.restore ${TMPDIR}/proc/
 
-# Update the necessary paths, then copy back over
+# Update the necessary paths
 casapy --nogui --nologger -c /home/ekoch/canfar_scripts/cal_pipe/update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
-# cp pipeline_shelf.restore ${TMPDIR}/vos/
 
 # Specify MSfile
 full_path=${1}'products/'${2}
@@ -48,8 +47,14 @@ Xvfb :1 & export DISPLAY=:1
 echo Run casapy and spw_plots.py
 casapy --nogui -c /home/ekoch/canfar_scripts/spw_plots.py  # full_path
 
+echo "Print contents"
+ls -al
+
 mkdir -m 777 spw_plots
 mv *.png spw_plots
+
+# Don't overwrite pipeline restore file to VOS, just in case
+rm pipeline_shelf.restore
 
 # Unmount VOSpace and copy output back over.
 echo 'Unmount VOS'
