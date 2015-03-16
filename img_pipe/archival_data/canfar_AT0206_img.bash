@@ -23,7 +23,7 @@ cp ${TMPDIR}/vos/Arecibo/M33_mask.image.zip ${TMPDIR}/proc
 echo "Done M33_mask"
 ls -al ${TMPDIR}/proc/
 
-cp ${TMPDIR}/vos/Arecibo/M33_model.image.zip ${TMPDIR}/proc
+cp ${TMPDIR}/vos/Arecibo/M33_model.image.tar.gz ${TMPDIR}/proc
 echo "Done M33_model"
 ls -al ${TMPDIR}/proc/
 
