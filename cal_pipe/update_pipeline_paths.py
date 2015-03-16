@@ -6,8 +6,8 @@ Update EVLA pipeline variables to the current system.
 
 def update_paths(pipe_dict, ms_path, pipepath):
 
-    pipe_dict['ms_active'] = ms_path+".ms"
-    pipe_dict['SDM_name'] = ms_path
+    pipe_dict['ms_active'] = ms_path
+    pipe_dict['SDM_name'] = ms_path[:-3] # Cutoff '.ms'
     pipe_dict['pipepath'] = pipepath
 
     return pipe_dict
