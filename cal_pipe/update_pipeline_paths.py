@@ -31,4 +31,9 @@ if __name__ == '__main__':
 
     pipe_dict.sync()
 
+    print "Checking!"
+    print pipe_dict['ms_active']
+    print pipe_dict['SDM_name']
+    print pipe_dict['pipepath']
+
     pipe_dict.close()
