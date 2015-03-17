@@ -12,6 +12,7 @@ import numpy as np
 # Repopulate namespace
 execfile("/home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/EVLA_pipe_restore.py")
 
+print 'Now plotting SPW plots...'
 print ms_active
 print pipepath
 
