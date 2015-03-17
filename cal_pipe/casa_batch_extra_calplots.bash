@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 # Source bash profile
 source /home/ekoch/.bash_profile
@@ -45,7 +45,7 @@ Xvfb :1 & export DISPLAY=:1
 
 # Run the code
 echo Run casapy and spw_plots.py
-casapy --nogui -c /home/ekoch/canfar_scripts/spw_plots.py  # full_path
+casapy --nogui -c /home/ekoch/canfar_scripts/cal_pipe/spw_plots.py  # full_path
 
 echo "Print contents"
 ls -al
