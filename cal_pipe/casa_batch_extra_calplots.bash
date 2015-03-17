@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 # Source bash profile
 source /home/ekoch/.bash_profile
