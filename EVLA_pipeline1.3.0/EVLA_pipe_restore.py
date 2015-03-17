@@ -113,4 +113,5 @@ try:
 
 
 except Exception, e:
+    print 'ERROR!!' + str(e)
     logprint ("Exiting script: "+str(e))
