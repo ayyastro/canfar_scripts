@@ -36,7 +36,7 @@ for ii in field_ids:
         transform = False
         extendflag = False
         iteraxis = ''
-        # coloraxis = 'spw'
+        coloraxis = 'ant1'
         plotrange = []
         title = 'Field ' + field + ', ' + field_names[ii] + " SPW " + spw
         xlabel = ''
