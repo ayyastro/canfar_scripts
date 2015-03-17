@@ -26,8 +26,8 @@ for ii in field_ids:
         yaxis = 'amp'
         ydatacolumn = 'corrected'
         selectdata = True
-        field = str(field_ids[ii])
-        spw = str(field_spws[jj])
+        field = str(ii)
+        spw = str(jj)
         correlation = corrstring
         averagedata = True
         avgchannel = str(max(channels))
