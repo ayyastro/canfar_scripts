@@ -43,7 +43,7 @@ for ii in field_ids:
         ylabel = ''
         showmajorgrid = False
         showminorgrid = False
-        plotfile = 'field' + field + '_amp_uvdist.png'
+        plotfile = 'field' + field + '_SPW_' + spw + '_amp_uvdist.png'
         overwrite = True
         showgui = False
         async = False
