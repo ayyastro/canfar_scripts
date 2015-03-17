@@ -103,10 +103,13 @@ def pipeline_restore(shelf_filename='pipeline_shelf.restore'):
 #Restore all variables to the global namespace and then run 'startup'
 #  to load all functions and modules needed for the pipeline
 try:
-
+    print 'Restoring'
     pipeline_restore()
+    print '1'
     maincasalog = casalogger.func_globals['thelogfile']
+    print '2'
     execfile(pipepath+'EVLA_pipe_startup.py')
+    print 'Ready!'
 
 
 except Exception, e:
