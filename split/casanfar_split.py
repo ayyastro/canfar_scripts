@@ -2,7 +2,8 @@ import os
 import numpy as np
 import sys
 
-SDM_name = str(sys.argv[4])
+SDM_path = str(sys.argv[4])
+SDM_name = str(sys.argv[5])
 
 print "Inputted MS: "+SDM_name
 # SDM_name = '14B-088.sb30023144.eb30070731.57002.919034293984'
@@ -29,7 +30,7 @@ vos_proc = './'
 print "Find HI spw..."
 
 # But first find the spw corresponding to it
-tb.open(vos_dir+msfile+'/SPECTRAL_WINDOW')
+tb.open(vos_dir+SDM_path+msfile+'/SPECTRAL_WINDOW')
 freqs = tb.getcol('REF_FREQUENCY')
 nchans = tb.getcol('NUM_CHAN')
 tb.close()
@@ -51,7 +52,7 @@ print "Starting split the HI line"
 
 # Mosaic or single pointing?
 
-tb.open(vos_dir+msfile+'/FIELD')
+tb.open(vos_dir+SDM_path+msfile+'/FIELD')
 names = tb.getcol('NAME')
 tb.close()
 
@@ -81,7 +82,7 @@ print "Starting source split..."
 # os.system('rm -rf '+vos_proc+splitms)
 
 default('split')
-vis = vos_dir+msfile
+vis = vos_dir+SDM_path+msfile
 outputvis = vos_proc+hisplitms
 field = 'M33*'  # source
 spw = hispw

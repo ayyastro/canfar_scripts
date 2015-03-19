@@ -32,7 +32,7 @@ ls -al ${TMPDIR}/vos
 echo ${2}
 
 echo 'Run casapy'
-casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py ${1}/products/${2}
+casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py ${1}/products/ ${2}
 
 
 echo 'Copy files to mount'
