@@ -7,7 +7,6 @@
 
 # Source bash profile
 source /home/ekoch/.bash_profile
-source /home/ekoch/.bashrc
 
 # Set username. Otherwise CASA crashes.
 export USER='ekoch'
@@ -23,7 +22,6 @@ rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
 echo 'Mount data'
-source /home/ekoch/.bashrc
 mount_data
 
 cd ${TMPDIR}/proc
