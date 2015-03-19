@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Source bash profile
+shopt -s expand_aliases
 source /home/ekoch/.bash_profile
-source /home/ekoch/.bashrc
 
 # Set username. Otherwise CASA crashes.
 export USER='ekoch'
@@ -25,7 +25,6 @@ echo ${1}
 echo ${2}
 
 echo "Mount dataset"
-source /home/ekoch/.bashrc
 mount_data
 
 # Move to processing directory
@@ -63,7 +62,7 @@ rm pipeline_shelf.restore
 
 # Unmount VOSpace and copy output back over.
 echo 'Unmount'
-fusermount -u ${TMPDIR}/vos
+sudo fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
 mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
