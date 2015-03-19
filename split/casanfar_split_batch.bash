@@ -22,9 +22,9 @@ mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
 rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
-
-echo 'Mount VOS in readonly mode'
-mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache --readonly
+echo 'Mount data'
+source /home/ekoch/.bashrc
+mount_data
 
 cd ${TMPDIR}/proc
 
@@ -33,14 +33,10 @@ ls -al ${TMPDIR}/vos
 echo ${2}
 
 echo 'Run casapy'
-casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py ${2}
+casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py ${1}/products/${2}
 
 
-echo 'Unmount VOS'
-fusermount -u ${TMPDIR}/vos
-echo 'Mount VOS'
-mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
-echo 'Copy files to VOS'
-cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
-echo 'Unmount VOS'
+echo 'Copy files to ,ount'
+cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/${1}/products/
+echo 'Unmount'
 fusermount -u ${TMPDIR}/vos
