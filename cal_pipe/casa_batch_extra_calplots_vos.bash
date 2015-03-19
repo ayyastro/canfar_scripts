@@ -17,6 +17,8 @@ mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
 rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
+echo 'Mount VOS in readonly mode'
+
 # Input a directory where the MS is
 # directory = ${1}
 # msfile = ${2}
@@ -24,17 +26,16 @@ git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_script
 echo ${1}
 echo ${2}
 
-echo "Mount dataset"
-mount_data
+mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
 # Move to processing directory
 cd ${TMPDIR}/proc
 
 # Copy the pipeline restore file here
-cp ${TMPDIR}/vos/${1}/products/pipeline_shelf.restore ${TMPDIR}/proc/
+cp ${TMPDIR}/vos/pipeline_shelf.restore ${TMPDIR}/proc/
 
 # Update the necessary paths
-casapy --nogui --nologger -c /home/ekoch/canfar_scripts/cal_pipe/update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos/${1}/products/${2} /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
+casapy --nogui --nologger -c /home/ekoch/canfar_scripts/cal_pipe/update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos/${2} /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
 
 # Specify MSfile
 full_path=${1}'products/'${2}
@@ -43,8 +44,8 @@ full_path=${1}'products/'${2}
 Xvfb :1 & export DISPLAY=:1
 
 # Run the code
-echo "Run casapy and spw_plots.py"
-casapy --nogui -c /home/ekoch/canfar_scripts/cal_pipe/spw_plots.py
+echo Run casapy and spw_plots.py
+casapy --nogui -c /home/ekoch/canfar_scripts/cal_pipe/spw_plots.py  # full_path
 
 echo "Print contents"
 ls -al
@@ -56,7 +57,7 @@ mv *.png spw_plots
 rm pipeline_shelf.restore
 
 # Unmount VOSpace and copy output back over.
-echo 'Unmount'
+echo 'Unmount VOS'
 fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
 mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
