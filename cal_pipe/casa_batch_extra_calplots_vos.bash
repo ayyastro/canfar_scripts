@@ -37,6 +37,11 @@ cp ${TMPDIR}/vos/pipeline_shelf.restore ${TMPDIR}/proc/
 # Update the necessary paths
 casapy --nogui --nologger -c /home/ekoch/canfar_scripts/cal_pipe/update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos/${2} /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
 
+# Also copy and unzip the caltables to the working directory
+cp ${TMPDIR}/vos/${1}/products/caltables.tgz ${TMPDIR}/proc
+tar -xzf caltables.tgz
+rm caltables.tgz
+
 # Specify MSfile
 full_path=${1}'products/'${2}
 

@@ -92,7 +92,7 @@ for ii in range(nplots):
     spwPlot = str(ii * 3) + '~' + str(ii * 3 + 2)
 
     default('plotcal')
-    caltable = 'finalBPcal.b'
+    caltable = 'final_caltables/finalBPcal.b'
     xaxis = 'freq'
     yaxis = 'amp'
     poln = ''
@@ -123,7 +123,7 @@ for ii in range(nplots):
     spwPlot = str(ii * 3) + '~' + str(ii * 3 + 2)
 
     default('plotcal')
-    caltable = 'finalBPcal.b'
+    caltable = 'final_caltables/finalBPcal.b'
     xaxis = 'freq'
     yaxis = 'phase'
     poln = ''
