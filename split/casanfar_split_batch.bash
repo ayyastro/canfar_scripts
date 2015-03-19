@@ -35,7 +35,7 @@ echo 'Run casapy'
 casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py ${1}/products/${2}
 
 
-echo 'Copy files to ,ount'
+echo 'Copy files to mount'
 cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/${1}/products/
 echo 'Unmount'
-fusermount -u ${TMPDIR}/vos
+sudo fusermount -u ${TMPDIR}/vos
