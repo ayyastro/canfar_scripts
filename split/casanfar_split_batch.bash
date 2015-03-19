@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 ###########################
 # {1} is path to MS in VOS
