@@ -103,7 +103,7 @@ for ii in range(nplots):
     subplot = 311
     overplot = False
     clearpanel = 'Auto'
-    iteration = 'antenna'
+    iteration = 'spw'
     plotrange = [0, 0, 0, ampplotmax]
     showflags = False
     plotsymbol = 'o'
@@ -134,7 +134,7 @@ for ii in range(nplots):
     subplot = 311
     overplot = False
     clearpanel = 'Auto'
-    iteration = 'antenna'
+    iteration = 'spw'
     plotrange = [0, 0, -phaseplotmax, phaseplotmax]
     showflags = False
     plotsymbol = 'o'
