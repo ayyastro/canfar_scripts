@@ -25,6 +25,7 @@ echo ${1}
 echo ${2}
 
 echo "Mount dataset"
+source /home/ekoch/.bashrc
 mount_data
 
 # Move to processing directory
