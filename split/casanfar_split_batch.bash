@@ -1,4 +1,4 @@
-#!/bin/bash -i
+#!/bin/bash
 
 ###########################
 # {1} is path to MS in VOS
@@ -6,6 +6,7 @@
 ###########################
 
 # Source bash profile
+shopt -s expand_aliases
 source /home/ekoch/.bash_profile
 
 # Set username. Otherwise CASA crashes.
