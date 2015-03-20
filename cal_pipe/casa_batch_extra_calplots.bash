@@ -72,6 +72,7 @@ echo 'Copy files to VOS'
 # Check if spw_plots already exists
 if [ -d "${TMPDIR}/vos/spw_plots" ]
     then
+    echo "Already contains spw_plots"
     cp ${TMPDIR}/proc/spw_plots/* ${TMPDIR}/vos/spw_plots/
 else
     cp -a ${TMPDIR}/proc/spw_plots/ ${TMPDIR}/vos/
