@@ -76,11 +76,13 @@ if bpcal_plots:
         nplots = nplots + 1
 
     # Need to append the correct path to the MS
-    tb.open('final_caltables/finalBPcal.b')
+    tb.open('final_caltables/finalBPcal.b', nomodify=False,
+            lockoptions='user')
 
+    tb.lock()
     tb.removekeyword('MSName')
     tb.putkeyword('MSName', ms_active)
-    tb.flush()
+    tb.unlock()
 
     dataVarCol = tb.getvarcol('CPARAM')
     flagVarCol = tb.getvarcol('FLAG')
