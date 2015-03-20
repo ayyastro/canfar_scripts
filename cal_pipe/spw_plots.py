@@ -76,8 +76,8 @@ if bpcal_plots:
         nplots = nplots + 1
 
     # Need to append the correct path to the MS
-    tb.open('final_caltables/finalBPcal.b', nomodify=False,
-            lockoptions='user')
+    tb.open('final_caltables/finalBPcal.b/', nomodify=False,
+            lockoptions={'option': 'user'})
 
     tb.lock()
     tb.removekeyword('MSName')
