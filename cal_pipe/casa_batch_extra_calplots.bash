@@ -54,6 +54,9 @@ casapy --nogui -c /home/ekoch/canfar_scripts/cal_pipe/spw_plots.py
 echo "Print contents"
 ls -al
 
+# Delete expanded caltables
+rm -rf final_caltables
+
 mkdir -m 777 spw_plots
 mv *.png spw_plots
 
@@ -66,6 +69,16 @@ sudo fusermount -u ${TMPDIR}/vos
 echo 'Mount VOS'
 mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
+# Check if spw_plots already exists
+if [-d "${TMPDIR}/vos/spw_plots"]
+    then
+    cp ${TMPDIR}/proc/spw_plots/* ${TMPDIR}/vos/spw_plots/
+else
+    cp -a ${TMPDIR}/proc/spw_plots/ ${TMPDIR}/vos/
+fi
+# Delete plots on VM
+rm -rf ${TMPDIR}/proc/spw_plots
+
 cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
 echo 'Unmount VOS'
 fusermount -u ${TMPDIR}/vos
