@@ -70,7 +70,7 @@ echo 'Mount VOS'
 mountvofs --vospace vos:MWSynthesis/VLA/14B-088/${1}/products/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 echo 'Copy files to VOS'
 # Check if spw_plots already exists
-if [-d "${TMPDIR}/vos/spw_plots"]
+if [ -d "${TMPDIR}/vos/spw_plots" ]
     then
     cp ${TMPDIR}/proc/spw_plots/* ${TMPDIR}/vos/spw_plots/
 else
