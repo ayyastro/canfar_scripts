@@ -88,6 +88,10 @@ if bpcal_plots:
     flagVarCol = tb.getvarcol('FLAG')
     tb.close()
 
+    tb.open('final_caltables/finalBPcal.b/')
+    print "MSName in caltable changed to:" + str(tb.getkeyword('MSName'))
+    tb.close()
+
     rowlist = dataVarCol.keys()
     nrows = len(rowlist)
     maxmaxamp = 0.0
