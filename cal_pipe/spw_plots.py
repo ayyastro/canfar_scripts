@@ -67,12 +67,21 @@ if uv_plots:
 
 # Final BP plots per SPW
 if bpcal_plots:
+
+    # Somewhere in the cal tables (though not accessible)
+
     nplots = int(numSpws / 3)
 
     if ((numSpws % 3) > 0):
         nplots = nplots + 1
 
+    # Need to append the correct path to the MS
     tb.open('final_caltables/finalBPcal.b')
+
+    tb.removekeyword('MSName')
+    tb.putkeyword('MSName', ms_active)
+    tb.flush()
+
     dataVarCol = tb.getvarcol('CPARAM')
     flagVarCol = tb.getvarcol('FLAG')
     tb.close()
