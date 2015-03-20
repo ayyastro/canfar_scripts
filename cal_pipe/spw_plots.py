@@ -56,7 +56,7 @@ nplots = int(numSpws / 3)
 if ((numSpws % 3) > 0):
     nplots = nplots + 1
 
-tb.open('finalBPcal.b')
+tb.open('final_caltables/finalBPcal.b')
 dataVarCol = tb.getvarcol('CPARAM')
 flagVarCol = tb.getvarcol('FLAG')
 tb.close()
