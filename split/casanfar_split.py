@@ -5,6 +5,9 @@ import sys
 SDM_path = str(sys.argv[4])
 SDM_name = str(sys.argv[5])
 
+if SDM_path == 'None':
+    SDM_path = ""
+
 print "Inputted MS: "+SDM_name
 # SDM_name = '14B-088.sb30023144.eb30070731.57002.919034293984'
 
