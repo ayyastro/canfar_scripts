@@ -52,7 +52,7 @@ if uv_plots:
             transform = False
             extendflag = False
             iteraxis = ''
-            coloraxis = 'ant1'
+            coloraxis = 'ant2'
             plotrange = []
             title = 'Field ' + field + ', ' + field_names[ii] + " SPW " + spw
             xlabel = ''
