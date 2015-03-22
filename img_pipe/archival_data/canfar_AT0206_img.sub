@@ -8,8 +8,8 @@ notification = Always
 
 transfer_output_files = /dev/null
 
-request_memory = 60 G
-request_cpus = 1
+# request_memory = 60 G
+# request_cpus = 1
 
 Executable = code_repos/canfar_scripts/img_pipe/archival_data/canfar_AT0206_img.bash
 
