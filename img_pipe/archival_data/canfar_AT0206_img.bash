@@ -1,21 +1,22 @@
 #!/bin/bash
 
 # Source bash profile
+shopt -s expand_aliases
 source /home/ekoch/.bash_profile
-source /home/ekoch/.bashrc
 
 # Set username. Otherwise CASA crashes.
 export USER='ekoch'
 
 # Get certificate
-getCert
+# getCert
 
-mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
+mkdir -p ${TMPDIR}/{vos,proc}
 
 rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
-mountvofs --vospace vos:MWSynthesis/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
+echo "Mounting data"
+mount_data_write
 
 echo "Copying files onto VM"
 
@@ -34,7 +35,7 @@ ls -al ${TMPDIR}/proc/
 ls -al ${TMPDIR}/proc/M33_b_c.ms/
 
 # Unmount
-fusermount -u ${TMPDIR}/vos
+sudo fusermount -u ${TMPDIR}/vos
 
 cd ${TMPDIR}/proc
 
@@ -67,7 +68,7 @@ tar -zcf M33_206_b_c.clean.residual.tar.gz M33_206_b_c.clean.residual
 
 # Now remount VOS, and copy over the relevant infos
 echo "Remount"
-mountvofs --vospace vos:MWSynthesis/VLA/archival/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
+mount_data_write
 
 cp -a ${TMPDIR}/proc/casa*.log ${TMPDIR}/vos/
 
@@ -76,4 +77,4 @@ cp -a ${TMPDIR}/proc/M33_206_b_c.clean*.tar.gz ${TMPDIR}/vos/
 cp -a ${TMPDIR}/proc/*.fits ${TMPDIR}/vos/
 
 echo "Unmount"
-fusermount -u ${TMPDIR}/vos
+sudo fusermount -u ${TMPDIR}/vos
