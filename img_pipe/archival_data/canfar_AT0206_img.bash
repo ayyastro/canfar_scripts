@@ -20,16 +20,16 @@ mount_data_write
 
 echo "Copying files onto VM"
 
-cp ${TMPDIR}/vos/Arecibo/M33_mask.image.zip ${TMPDIR}/proc
+cp ${TMPDIR}/vos/M33_mask.image.zip ${TMPDIR}/proc
 echo "Done M33_mask"
 ls -al ${TMPDIR}/proc/
 
-cp ${TMPDIR}/vos/Arecibo/M33_model.image.tar.gz ${TMPDIR}/proc
+cp ${TMPDIR}/vos/M33_model.image.tar.gz ${TMPDIR}/proc
 echo "Done M33_model"
 ls -al ${TMPDIR}/proc/
 
 mkdir -m 777 ${TMPDIR}/proc/M33_b_c.ms/
-cp -R ${TMPDIR}/vos/VLA/archival/M33_b_c.ms/* ${TMPDIR}/proc/M33_b_c.ms/
+cp -R ${TMPDIR}/vos/M33_b_c.ms/* ${TMPDIR}/proc/M33_b_c.ms/
 echo "Done MS Set"
 ls -al ${TMPDIR}/proc/
 ls -al ${TMPDIR}/proc/M33_b_c.ms/
