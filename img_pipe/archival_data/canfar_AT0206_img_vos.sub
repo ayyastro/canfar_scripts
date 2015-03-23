@@ -11,9 +11,9 @@ transfer_output_files = /dev/null
 # request_memory = 60 G
 # request_cpus = 1
 
-Executable = code_repos/canfar_scripts/img_pipe/archival_data/canfar_AT0206_img.bash
+Executable = code_repos/canfar_scripts/img_pipe/archival_data/canfar_AT0206_img_vos.bash
 
-Log = output_files/logs/canfar_attempt2_AT0206_img.log
-Output = output_files/output/canfar_attempt2_AT0206_img.out
-Error = output_files/error/canfar_attempt2_AT0206_img.err
+Log = output_files/logs/canfar_vos_AT0206_img.log
+Output = output_files/output/canfar_vos_AT0206_img.out
+Error = output_files/error/canfar_vos_AT0206_img.err
 Queue
