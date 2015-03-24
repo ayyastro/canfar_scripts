@@ -16,17 +16,17 @@ Executable = code_repos/canfar_scripts/split/casanfar_split_batch.bash
 # Error = output_files/error/split_20141116_1416220528659.err
 # Queue
 
-# Arguments = 14B-088_20141211_1418355329562 14B-088.sb30023144.eb30070731.57002.919034293984
-# Log = output_files/logs/split_20141211_1418355329562.log
-# Output = output_files/output/split_20141211_1418355329562.out
-# Error = output_files/error/split_20141211_1418355329562.err
-# Queue
-
-Arguments = 14B-088_20141115_1416131727330 14B-088.sb29812125.eb29989844.56977.223306493055
-Log = output_files/logs/split_20141115_1416131727330.log
-Output = output_files/output/split_20141115_1416131727330.out
-Error = output_files/error/split_20141115_1416131727330.err
+Arguments = 14B-088_20141211_1418355329562 14B-088.sb30023144.eb30070731.57002.919034293984
+Log = output_files/logs/split_20141211_1418355329562.log
+Output = output_files/output/split_20141211_1418355329562.out
+Error = output_files/error/split_20141211_1418355329562.err
 Queue
+
+# Arguments = 14B-088_20141115_1416131727330 14B-088.sb29812125.eb29989844.56977.223306493055
+# Log = output_files/logs/split_20141115_1416131727330.log
+# Output = output_files/output/split_20141115_1416131727330.out
+# Error = output_files/error/split_20141115_1416131727330.err
+# Queue
 
 # Arguments = 14B-088_20141115_1416114929005 14B-088.sb29971045.eb29989840.56977.024377800924
 # Log = output_files/logs/split_20141115_1416114929005.log
