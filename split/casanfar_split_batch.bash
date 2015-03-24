@@ -56,3 +56,4 @@ else
     cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
     echo "Unmounting"
     sudo fusermount -u ${TMPDIR}/vos/
+fi
