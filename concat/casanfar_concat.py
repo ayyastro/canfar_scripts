@@ -3,89 +3,44 @@ import numpy as np
 import sys
 
 try:
-    SDM_names = str(sys.argv[5])
-except IndexError:
+    conc_name = str(sys.argv[4])
+    SDM_names = str(sys.argv[5:])
+except IndexError as e:
     # The prefix to use for all output files
-    SDM_name = '14B-088.sb30023144.eb30070731.57002.919034293984'
+    raise e("No MS sets specified. Or the casapy preamble has more args"
+            "than expected. Script expects 4 cmd line args before paths"
+            "(including 'casapy').")
+
+print("MS Files should contain the complete paths. Do not have trailing '/'."
+      "Do not append '.ms'.")
 
 # Set up some useful variables (these will be altered later on)
-msfile = SDM_name + '.ms'
-hisplitms = SDM_name + '.hi.ms'
-splitms = SDM_name + '.hi.src.split.ms'
+num_ms = len(SDM_names)
+msfiles = [fil_name+".ms" for fil_name in SDM_names]
+concatms = conc_name+".ms"
 
 pathname = os.environ.get('CASAPATH').split()[0]
-pipepath = '/home/ekoch/pipe_scripts/'
+pipepath = '/home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/'
 
-source = 'M33'
+source = 'M33*'
 
 # VOS stuff
 vos_dir = '../vos/'
 vos_proc = './'
 
-# %&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%%&%&%&%&%&%&%%&%
-# Find the 21cm spw and check if the obs
-# is single pointing or mosaic
-# %&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%%&%&%&%&%&%&%%&%
-
-print "Find HI spw..."
-
-# But first find the spw corresponding to it
-tb.open(vos_dir+msfile+'/SPECTRAL_WINDOW')
-freqs = tb.getcol('REF_FREQUENCY')
-nchans = tb.getcol('NUM_CHAN')
-tb.close()
-
-spws = range(0, len(freqs))
-
-
-# Select the 21cm
-
-sel = np.where((freqs > 1.40*10**9) & (freqs < 1.43*10**9))
-hispw = str(spws[sel[0][0]])
-freq = freqs[sel[0][0]]
-nchan = nchans[sel[0][0]]
-
-print "Selected spw "+hispw+"with frequency "+freq+"and "+nchan+" channels"
-print "Starting split the HI line"
-
-# Mosaic or single pointing?
-
-tb.open(vos_dir+msfile+'/FIELD')
-names = tb.getcol('NAME')
-tb.close()
-
-moscount = 0
-
-for name in names:
-    chsrc = name.find(source)
-
-    if chsrc != -1:
-        moscount = moscount+1
-
-if moscount > 1:
-    imagermode = "mosaic"
-else:
-    imagermode = "csclean"
-
-
 # %&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%
-# Split the corrected source data from the rest
+# Concatenate the corrected source data
 # %&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%&%
 
 
-print "Starting source split..."
+print "Starting source concatenating..."
 
-#os.system('md5sum $(find '+vos_dir+hisplitms+') > '+vos_proc+hisplitms+'.md5')
+os.system('rm -rf '+vos_proc+concatms)
 
-os.system('rm -rf '+vos_proc+splitms)
+default('concat')
+vis = msfiles
+concatvis = vos_proc+concatms
+timesort = True
+concat()
 
-default('split')
-vis = vos_dir+hisplitms
-outputvis = vos_proc+splitms
-field = source
-spw = hispw
-datacolumn = 'corrected'
-keepflags = False
-split()
-
-print "Created splitted-source .ms "+splitms
+print "Created splitted-source .ms "+concatms
