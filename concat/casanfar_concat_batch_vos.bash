@@ -1,11 +1,12 @@
 #!/bin/bash
 echo 'Making dirs'
-mkdir -p ${TMPDIR}/{vos, proc}
+mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
 echo 'Mount VOS in readonly mode'
 
 # Source bash profile
-shopt -s expand_aliases
 source /home/ekoch/.bash_profile
+
+getCert
 
 # Set username. Otherwise CASA crashes.
 export USER='ekoch'
@@ -25,16 +26,15 @@ do
     conc_args+=' '${arg}
 done
 
-echo "Mounting data"
-mount_data
+mountvofs --vospace vos:MWSynthesis/VLA/14B-088/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache --readonly
 echo 'Run casapy'
 cd ${TMPDIR}/proc
 casapy --nogui -c /home/ekoch/canfar_scripts/concat/casanfar_concat.py conc_name conc_args
-echo 'Unmount'
-sudo fusermount -u ${TMPDIR}/vos
-echo 'Mount writable area'
-mount_data_write
-echo 'Copy files'
+echo 'Unmount VOS'
+fusermount -u ${TMPDIR}/vos
+echo 'Mount VOS'
+mountvofs --vospace vos:vos:MWSynthesis/VLA/14B-088/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
+echo 'Copy files to VOS'
 cp -a ${TMPDIR}/proc/* ${TMPDIR}/vos/
-echo 'Unmount'
-sudo fusermount -u ${TMPDIR}/vos
+echo 'Unmount VOS'
+fusermount -u ${TMPDIR}/vos
