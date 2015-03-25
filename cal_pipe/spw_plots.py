@@ -29,6 +29,12 @@ if bpcal_plots == 'T':
     bpcal_plots = True
 else:
     bpcal_plots = False
+ampphase_time_plots = sys.argv[6]
+if ampphase_time_plots == 'T':
+    ampphase_time_plots = True
+else:
+    ampphase_time_plots = False
+
 
 # UV plots per SPW
 if uv_plots:
@@ -186,3 +192,69 @@ if bpcal_plots:
         plotcal()
 
     os.chdir(proc_path)
+
+if ampphase_time_plots:
+    print "Creating Amp vs Time per field, color by antenna"
+    for ii in field_ids:
+        print ii
+        default('plotms')
+        vis = ms_active
+        xaxis = 'time'
+        yaxis = 'amp'
+        ydatacolumn = 'corrected'
+        selectdata = True
+        field = str(ii)
+        spw = ''
+        correlation = corrstring
+        averagedata = True
+        avgchannel = str(max(channels))
+        avgtime = '1e8s'
+        avgscan = False
+        transform = False
+        extendflag = False
+        iteraxis = ''
+        coloraxis = 'ant2'
+        plotrange = []
+        title = 'Field ' + field + ', ' + field_names[ii]
+        xlabel = ''
+        ylabel = ''
+        showmajorgrid = False
+        showminorgrid = False
+        plotfile = 'field' + field + '_amp_time.png'
+        overwrite = True
+        showgui = False
+        async = False
+        plotms()
+
+    print "Creating Phase vs Time per field, color by antenna"
+
+    for ii in field_ids:
+        print ii
+        default('plotms')
+        vis = ms_active
+        xaxis = 'time'
+        yaxis = 'phase'
+        ydatacolumn = 'corrected'
+        selectdata = True
+        field = str(ii)
+        spw = ''
+        correlation = corrstring
+        averagedata = True
+        avgchannel = str(max(channels))
+        avgtime = '1e8s'
+        avgscan = False
+        transform = False
+        extendflag = False
+        iteraxis = ''
+        coloraxis = 'ant2'
+        plotrange = []
+        title = 'Field ' + field + ', ' + field_names[ii]
+        xlabel = ''
+        ylabel = ''
+        showmajorgrid = False
+        showminorgrid = False
+        plotfile = 'field' + field + '_phase_time.png'
+        overwrite = True
+        showgui = False
+        async = False
+        plotms()
