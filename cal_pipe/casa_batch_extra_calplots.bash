@@ -37,9 +37,9 @@ cp ${TMPDIR}/vos/${1}/products/pipeline_shelf.restore ${TMPDIR}/proc/
 casapy --nogui --nologger -c /home/ekoch/canfar_scripts/cal_pipe/update_pipeline_paths.py pipeline_shelf.restore ${TMPDIR}/vos/${1}/products/${2} /home/ekoch/canfar_scripts/EVLA_pipeline1.3.0/
 
 # Also copy and unzip the caltables to the working directory
-cp ${TMPDIR}/vos/${1}/products/caltables.tgz ${TMPDIR}/proc
-tar -xzf caltables.tgz
-rm caltables.tgz
+# cp ${TMPDIR}/vos/${1}/products/caltables.tgz ${TMPDIR}/proc
+# tar -xzf caltables.tgz
+# rm caltables.tgz
 
 # Specify MSfile
 full_path=${1}'products/'${2}
@@ -49,7 +49,7 @@ Xvfb :1 & export DISPLAY=:1
 
 # Run the code
 echo "Run casapy and spw_plots.py"
-casapy --nogui -c /home/ekoch/canfar_scripts/cal_pipe/spw_plots.py T F
+casapy --nogui -c /home/ekoch/canfar_scripts/cal_pipe/spw_plots.py F T
 
 echo "Print contents"
 ls -al

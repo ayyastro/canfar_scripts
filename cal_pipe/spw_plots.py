@@ -75,13 +75,21 @@ if bpcal_plots:
     if ((numSpws % 3) > 0):
         nplots = nplots + 1
 
-    # Need to append the correct path to the MS
+    # To plot the cal tables, we need to move to the same directory as the MS
+    ms_path = ms_active.split('/')[:-1]
+    ms_name = ms_active.split('/')[-1]
+
+    proc_path = os.getcwd()
+
+    os.chdir(ms_path)
+
+    # Need to append the correct name to the MS
     tb.open('final_caltables/finalBPcal.b/', nomodify=False,
             lockoptions={'option': 'user'})
 
     tb.lock()
     tb.removekeyword('MSName')
-    tb.putkeyword('MSName', ms_active)
+    tb.putkeyword('MSName', ms_name)
     tb.unlock()
 
     dataVarCol = tb.getvarcol('CPARAM')
@@ -116,7 +124,7 @@ if bpcal_plots:
     phaseplotmax = maxmaxphase
 
     for ii in range(nplots):
-        filename = 'finalBPcal_amp' + str(ii) + '.png'
+        filename = proc_path+'/finalBPcal_amp' + str(ii) + '.png'
         syscommand = 'rm -rf ' + filename
         os.system(syscommand)
 
@@ -147,7 +155,7 @@ if bpcal_plots:
         plotcal()
 
     for ii in range(nplots):
-        filename = 'finalBPcal_phase' + str(ii) + '.png'
+        filename = proc_path+'/finalBPcal_phase' + str(ii) + '.png'
         syscommand = 'rm -rf ' + filename
         os.system(syscommand)
 
@@ -176,3 +184,5 @@ if bpcal_plots:
         figfile = filename
         async = False
         plotcal()
+
+    os.chdir(proc_path)
