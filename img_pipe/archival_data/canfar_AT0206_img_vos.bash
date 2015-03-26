@@ -19,11 +19,13 @@ mountvofs --vospace vos:MWSynthesis/ --mountpoint ${TMPDIR}/vos --cache_dir ${TM
 
 echo "Copying files onto VM"
 
-cp ${TMPDIR}/vos/Arecibo/M33_mask.image.zip ${TMPDIR}/proc
+cp ${TMPDIR}/vos/Arecibo/M33_mask_channel_100.image.zip ${TMPDIR}/proc
+cp ${TMPDIR}/vos/Arecibo/M33_mask_channel_145.image.zip ${TMPDIR}/proc
 echo "Done M33_mask"
 ls -al ${TMPDIR}/proc/
 
-cp ${TMPDIR}/vos/Arecibo/M33_model.image.tar.gz ${TMPDIR}/proc
+cp ${TMPDIR}/vos/Arecibo/M33_model_channel_100.image.tar.gz ${TMPDIR}/proc
+cp ${TMPDIR}/vos/Arecibo/M33_model_channel_145.image.tar.gz ${TMPDIR}/proc
 echo "Done M33_model"
 ls -al ${TMPDIR}/proc/
 
@@ -39,14 +41,25 @@ fusermount -u ${TMPDIR}/vos
 cd ${TMPDIR}/proc
 
 # Unzip the model and mask
-unzip M33_mask.image.zip
-tar -zxf M33_model.image.tar.gz
+# unzip M33_mask.image.zip
+# tar -zxf M33_model.image.tar.gz
+
+tar -zxf M33_model_channel_100.tar.gz
+tar -zxf M33_mask_channel_145.tar.gz
+tar -zxf M33_model_channel_100.tar.gz
+tar -zxf M33_mask_channel_145.tar.gz
 
 ls -al ${TMPDIR}/proc
 
 # Delete zip files
-rm M33_mask.image.zip
-rm M33_model.image.tar.gz
+# rm M33_mask.image.zip
+# rm M33_model.image.tar.gz
+
+rm M33_model_channel_100.image.tar.gz
+rm M33_mask_channel_145.image.tar.gz
+rm M33_model_channel_100.image.tar.gz
+rm M33_mask_channel_145.image.tar.gz
+
 
 echo "Running CASA"
 
@@ -58,12 +71,21 @@ casapy --nogui -c /home/ekoch/canfar_scripts/img_pipe/archival_data/m33_arch_206
 
 # Compress the clean output to upload to VOS
 
-# tar -zcf M33_206_b_c.clean.flux.tar.gz M33_206_b_c.clean.flux*
-tar -zcf M33_206_b_c.clean.image.tar.gz M33_206_b_c.clean.image
-# tar -zcf M33_206_b_c.clean.mask.tar.gz M33_206_b_c.clean.mask
-# tar -zcf M33_206_b_c.clean.model.tar.gz M33_206_b_c.clean.model
-# tar -zcf M33_206_b_c.clean.psf.tar.gz M33_206_b_c.clean.psf
-tar -zcf M33_206_b_c.clean.residual.tar.gz M33_206_b_c.clean.residual
+# # tar -zcf M33_206_b_c.clean.flux.tar.gz M33_206_b_c.clean.flux*
+# tar -zcf M33_206_b_c.clean.image.tar.gz M33_206_b_c.clean.image
+# # tar -zcf M33_206_b_c.clean.mask.tar.gz M33_206_b_c.clean.mask
+# # tar -zcf M33_206_b_c.clean.model.tar.gz M33_206_b_c.clean.model
+# # tar -zcf M33_206_b_c.clean.psf.tar.gz M33_206_b_c.clean.psf
+# tar -zcf M33_206_b_c.clean.residual.tar.gz M33_206_b_c.clean.residual
+
+
+tar -zcf M33_206_b_c.chan_100.image.tar.gz M33_206_b_c.chan_100.image
+tar -zcf M33_206_b_c.chan_100.residual.tar.gz M33_206_b_c.chan_100.residual
+tar -zcf M33_206_b_c.chan_100.psf.tar.gz M33_206_b_c.chan_100.psf
+
+tar -zcf M33_206_b_c.chan_145.image.tar.gz M33_206_b_c.chan_145.image
+tar -zcf M33_206_b_c.chan_145.residual.tar.gz M33_206_b_c.chan_145.residual
+tar -zcf M33_206_b_c.chan_145.psf.tar.gz M33_206_b_c.chan_145.psf
 
 # Now remount VOS, and copy over the relevant infos
 echo "Remount"
@@ -71,7 +93,8 @@ mountvofs --vospace vos:MWSynthesis/VLA/archival/ --mountpoint ${TMPDIR}/vos --c
 
 cp -a ${TMPDIR}/proc/casa*.log ${TMPDIR}/vos/
 
-cp -a ${TMPDIR}/proc/M33_206_b_c.clean*.tar.gz ${TMPDIR}/vos/
+# cp -a ${TMPDIR}/proc/M33_206_b_c.clean*.tar.gz ${TMPDIR}/vos/
+cp -a ${TMPDIR}/proc/M33_206_b_c.chan*.tar.gz ${TMPDIR}/vos/
 
 cp -a ${TMPDIR}/proc/*.fits ${TMPDIR}/vos/
 
