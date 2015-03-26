@@ -55,7 +55,7 @@ echo "Print contents"
 ls -al
 
 # Delete expanded caltables
-rm -rf final_caltables
+# rm -rf final_caltables
 
 mkdir -m 777 spw_plots
 mv *.png spw_plots
