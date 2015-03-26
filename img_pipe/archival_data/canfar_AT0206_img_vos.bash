@@ -19,8 +19,8 @@ mountvofs --vospace vos:MWSynthesis/ --mountpoint ${TMPDIR}/vos --cache_dir ${TM
 
 echo "Copying files onto VM"
 
-cp ${TMPDIR}/vos/Arecibo/M33_mask_channel_100.image.zip ${TMPDIR}/proc
-cp ${TMPDIR}/vos/Arecibo/M33_mask_channel_145.image.zip ${TMPDIR}/proc
+cp ${TMPDIR}/vos/Arecibo/M33_mask_channel_100.image.tar.gz ${TMPDIR}/proc
+cp ${TMPDIR}/vos/Arecibo/M33_mask_channel_145.image.tar.gz ${TMPDIR}/proc
 echo "Done M33_mask"
 ls -al ${TMPDIR}/proc/
 
@@ -44,10 +44,10 @@ cd ${TMPDIR}/proc
 # unzip M33_mask.image.zip
 # tar -zxf M33_model.image.tar.gz
 
-tar -zxf M33_model_channel_100.tar.gz
-tar -zxf M33_mask_channel_145.tar.gz
-tar -zxf M33_model_channel_100.tar.gz
-tar -zxf M33_mask_channel_145.tar.gz
+tar -zxf M33_model_channel_100.image.tar.gz
+tar -zxf M33_mask_channel_145.image.tar.gz
+tar -zxf M33_model_channel_100.image.tar.gz
+tar -zxf M33_mask_channel_145.image.tar.gz
 
 ls -al ${TMPDIR}/proc
 
