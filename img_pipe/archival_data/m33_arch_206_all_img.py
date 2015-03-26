@@ -23,9 +23,9 @@ mask = 'M33_mask.image'
 combine_configs = False
 do_cvel = False
 do_dirtyimage = False
-do_clean_1chan = False
-do_clean = True
-do_export = True
+do_clean_1chan = True
+do_clean = False
+do_export = False
 
 if combine_configs:
     print("Combining the reduced B and C configuration data.")
@@ -66,15 +66,31 @@ if do_clean_1chan:
 
     # For multiscale, 1 pixel = 3 arcsec
 
-    clean(vis=vis, imagename=out_root+'.cent_chan', field='M33*',
+    model_100 = "M33_model_channel_100.image"
+    mask_100 = "M33_mask_channel_100.image"
+
+    clean(vis=vis, imagename=out_root+'.chan_100', field='M33*',
           restfreq='1420.40575177MHz', mode='velocity', nterms=1,
-          width='1.288km/s', nchan=1, start='-200km/s', cell='1.5arcsec',
-          imsize=[4096, 4096], weighting='natural', niter=0,
+          width=1, nchan=1, start=100, cell='1.5arcsec',
+          imsize=[4096, 4096], weighting='natural', niter=50000,
           threshold='2.2mJy/beam', imagermode='mosaic',
           multiscale=[0, 3, 9, 27, 200], interactive=False,
-          pbcor=False, interpolation='linear', usescratch=True,
+          pbcor=True, interpolation='linear', usescratch=True,
           phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
-          outframe='LSRK', modelimage=model, mask=mask)
+          outframe='LSRK', modelimage=model_100, mask=mask_100)
+
+    model_145 = "M33_model_channel_145.image"
+    mask_145 = "M33_mask_channel_145.image"
+
+    clean(vis=vis, imagename=out_root+'.chan_145', field='M33*',
+          restfreq='1420.40575177MHz', mode='velocity', nterms=1,
+          width=1, nchan=1, start=145, cell='1.5arcsec',
+          imsize=[4096, 4096], weighting='natural', niter=50000,
+          threshold='2.2mJy/beam', imagermode='mosaic',
+          multiscale=[0, 3, 9, 27, 200], interactive=False,
+          pbcor=True, interpolation='linear', usescratch=True,
+          phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
+          outframe='LSRK', modelimage=model_145, mask=mask_145)
 
 if do_clean:
 
