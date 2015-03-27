@@ -56,8 +56,8 @@ ls -al ${TMPDIR}/proc
 # rm M33_model.image.tar.gz
 
 rm M33_model_channel_100.image.tar.gz
-rm M33_mask_channel_145.image.tar.gz
-rm M33_model_channel_100.image.tar.gz
+rm M33_model_channel_145.image.tar.gz
+rm M33_mask_channel_100.image.tar.gz
 rm M33_mask_channel_145.image.tar.gz
 
 
