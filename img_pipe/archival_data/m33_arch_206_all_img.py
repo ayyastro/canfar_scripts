@@ -77,20 +77,20 @@ if do_clean_1chan:
           multiscale=[0, 3, 9, 27, 200], interactive=False,
           pbcor=True, interpolation='linear', usescratch=True,
           phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
-          outframe='LSRK', modelimage=model_100, mask=mask_100)
+          outframe='LSRK')#, modelimage=model_100, mask=mask_100)
 
-    model_145 = "M33_model_channel_145.image"
-    mask_145 = "M33_mask_channel_145.image"
+    # model_145 = "M33_model_channel_145.image"
+    # mask_145 = "M33_mask_channel_145.image"
 
-    clean(vis=vis, imagename=out_root+'.chan_145', field='M33*',
-          restfreq='1420.40575177MHz', mode='velocity', nterms=1,
-          width=1, nchan=1, start=145, cell='1.5arcsec',
-          imsize=[8192, 8192], weighting='natural', niter=50000,
-          threshold='2.2mJy/beam', imagermode='mosaic',
-          multiscale=[0, 3, 9, 27, 200], interactive=False,
-          pbcor=True, interpolation='linear', usescratch=True,
-          phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
-          outframe='LSRK', modelimage=model_145, mask=mask_145)
+    # clean(vis=vis, imagename=out_root+'.chan_145', field='M33*',
+    #       restfreq='1420.40575177MHz', mode='velocity', nterms=1,
+    #       width=1, nchan=1, start=145, cell='1.5arcsec',
+    #       imsize=[8192, 8192], weighting='natural', niter=50000,
+    #       threshold='2.2mJy/beam', imagermode='mosaic',
+    #       multiscale=[0, 3, 9, 27, 200], interactive=False,
+    #       pbcor=True, interpolation='linear', usescratch=True,
+    #       phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
+    #       outframe='LSRK', modelimage=model_145, mask=mask_145)
 
 if do_clean:
 
