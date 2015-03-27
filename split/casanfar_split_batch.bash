@@ -35,9 +35,9 @@ casapy --nogui -c /home/ekoch/canfar_scripts/split/casanfar_split.py ${1}/produc
 sudo fusermount -u ${TMPDIR}/vos
 
 # Where to send the split file
-to_vos=0
+to_vos=true
 
-if [ $to_vos ]
+if [ $to_vos == true ]
     then
 
     # Get certificate
