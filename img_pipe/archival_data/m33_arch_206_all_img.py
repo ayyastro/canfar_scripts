@@ -72,7 +72,7 @@ if do_clean_1chan:
     clean(vis=vis, imagename=out_root+'.chan_100', field='M33*',
           restfreq='1420.40575177MHz', mode='velocity', nterms=1,
           width=1, nchan=1, start=100, cell='1.5arcsec',
-          imsize=[8192, 8192], weighting='natural', niter=50000,
+          imsize=[4096, 4096], weighting='natural', niter=50000,
           threshold='2.2mJy/beam', imagermode='mosaic',
           multiscale=[0, 3, 9, 27, 200], interactive=False,
           pbcor=True, interpolation='linear', usescratch=True,
