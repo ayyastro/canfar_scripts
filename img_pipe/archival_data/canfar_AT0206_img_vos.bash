@@ -96,7 +96,7 @@ cp -a ${TMPDIR}/proc/casa*.log ${TMPDIR}/vos/
 # cp -a ${TMPDIR}/proc/M33_206_b_c.clean*.tar.gz ${TMPDIR}/vos/
 cp -a ${TMPDIR}/proc/M33_206_b_c.chan*.tar.gz ${TMPDIR}/vos/
 
-cp -a ${TMPDIR}/proc/*.fits ${TMPDIR}/vos/
+# cp -a ${TMPDIR}/proc/*.fits ${TMPDIR}/vos/
 
 echo "Unmount"
 fusermount -u ${TMPDIR}/vos
