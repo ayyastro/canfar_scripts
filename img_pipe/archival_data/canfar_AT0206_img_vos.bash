@@ -45,8 +45,8 @@ cd ${TMPDIR}/proc
 # tar -zxf M33_model.image.tar.gz
 
 tar -zxf M33_model_channel_100.image.tar.gz
-tar -zxf M33_mask_channel_145.image.tar.gz
-tar -zxf M33_model_channel_100.image.tar.gz
+tar -zxf M33_model_channel_145.image.tar.gz
+tar -zxf M33_mask_channel_100.image.tar.gz
 tar -zxf M33_mask_channel_145.image.tar.gz
 
 ls -al ${TMPDIR}/proc
