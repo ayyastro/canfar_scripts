@@ -23,9 +23,9 @@ mask = 'M33_mask.image'
 combine_configs = False
 do_cvel = False
 do_dirtyimage = False
-do_clean_1chan = True
-do_clean = False
-do_export = False
+do_clean_1chan = False
+do_clean = True
+do_export = True
 
 if combine_configs:
     print("Combining the reduced B and C configuration data.")
@@ -105,7 +105,7 @@ if do_clean:
               restfreq='1420.40575177MHz',
               mode='channel', width=1, nchan=205, start=10,
               cell='1.5arcsec', multiscale=[0, 3, 9, 27, 200],
-              threshold='2.2mJy/beam', imagermode='mosaic',
+              threshold='2.2mJy/beam', imagermode='mosaic', gain=1.0,
               imsize=[4096, 4096], weighting='natural', robust=0.0, niter=10000,
               pbcor=True, interpolation='linear', usescratch=True,
               phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
@@ -115,7 +115,7 @@ if do_clean:
                restfreq='1420.40575177MHz',
                mode='channel', width=1, nchan=205, start=10,
                cell='1.5arcsec', alg='multiscale', scales=[0, 3, 9, 27, 200],
-               threshold='2.2mJy/beam', ftmachine='mosaic',
+               threshold='2.2mJy/beam', ftmachine='mosaic', gain=1.0,
                imsize=[4096, 4096], weighting='natural', robust=0.0, niter=10000,
                pbcor=True, interpolation='linear', usescratch=True,
                phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
