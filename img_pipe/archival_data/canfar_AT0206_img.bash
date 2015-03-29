@@ -8,7 +8,7 @@ source /home/ekoch/.bash_profile
 export USER='ekoch'
 
 # Get certificate
-# getCert
+getCert
 
 mkdir -p ${TMPDIR}/{vos,proc}
 
@@ -68,7 +68,8 @@ tar -zcf M33_206_b_c.clean.residual.tar.gz M33_206_b_c.clean.residual
 
 # Now remount VOS, and copy over the relevant infos
 echo "Remount"
-mount_data_write
+# mount_data_write
+mountvofs --vospace vos:MWSynthesis/VLA/archival/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
 cp -a ${TMPDIR}/proc/casa*.log ${TMPDIR}/vos/
 
@@ -77,4 +78,5 @@ cp -a ${TMPDIR}/proc/M33_206_b_c.clean*.tar.gz ${TMPDIR}/vos/
 cp -a ${TMPDIR}/proc/*.fits ${TMPDIR}/vos/
 
 echo "Unmount"
-sudo fusermount -u ${TMPDIR}/vos
+# sudo fusermount -u ${TMPDIR}/vos
+fusermount -u ${TMPDIR}/vos
