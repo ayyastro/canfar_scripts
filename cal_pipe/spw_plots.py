@@ -156,7 +156,7 @@ if bpcal_plots:
     os.chdir(ms_path)
 
     # Need to append the correct name to the MS
-    tb.open('final_caltables/finalBPcal.b/', nomodify=False,
+    tb.open('finalBPcal.b/', nomodify=False,
             lockoptions={'option': 'user'})
 
     tb.lock()
@@ -168,7 +168,7 @@ if bpcal_plots:
     flagVarCol = tb.getvarcol('FLAG')
     tb.close()
 
-    tb.open('final_caltables/finalBPcal.b/')
+    tb.open('finalBPcal.b/')
     print "MSName in caltable changed to:" + str(tb.getkeyword('MSName'))
     tb.close()
 
@@ -203,7 +203,7 @@ if bpcal_plots:
         spwPlot = str(ii * 3) + '~' + str(ii * 3 + 2)
 
         default('plotcal')
-        caltable = 'final_caltables/finalBPcal.b'
+        caltable = 'finalBPcal.b'
         xaxis = 'freq'
         yaxis = 'amp'
         poln = ''
@@ -234,7 +234,7 @@ if bpcal_plots:
         spwPlot = str(ii * 3) + '~' + str(ii * 3 + 2)
 
         default('plotcal')
-        caltable = 'final_caltables/finalBPcal.b'
+        caltable = 'finalBPcal.b'
         xaxis = 'freq'
         yaxis = 'phase'
         poln = ''
