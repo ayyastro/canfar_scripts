@@ -148,7 +148,7 @@ if bpcal_plots:
         nplots = nplots + 1
 
     # To plot the cal tables, we need to move to the same directory as the MS
-    ms_path = ms_active.split('/')[:-1]
+    ms_path = "/".join(ms_active.split('/')[:-1])
     ms_name = ms_active.split('/')[-1]
 
     proc_path = os.getcwd()
