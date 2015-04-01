@@ -50,7 +50,7 @@ Xvfb :1 & export DISPLAY=:1
 
 # Run the code
 echo Run casapy and spw_plots.py
-casapy --nogui -c /home/ekoch/canfar_scripts/cal_pipe/spw_plots.py  T T
+casapy --nogui -c /home/ekoch/canfar_scripts/cal_pipe/spw_plots.py  T T F
 
 echo "Print contents"
 ls -al
