@@ -142,10 +142,12 @@ if bpcal_plots:
 
     # Somewhere in the cal tables (though not accessible)
 
-    nplots = int(numSpws / 3)
+    numSpws = len(field_spws[0])
 
-    if ((numSpws % 3) > 0):
-        nplots = nplots + 1
+    nplots = int(numSpw)
+
+    # if ((numSpws % 3) > 0):
+    #     nplots = nplots + 1
 
     # To plot the cal tables, we need to move to the same directory as the MS
     ms_path = "/".join(ms_active.split('/')[:-1])
@@ -200,7 +202,7 @@ if bpcal_plots:
         syscommand = 'rm -rf ' + filename
         os.system(syscommand)
 
-        spwPlot = str(ii * 3) + '~' + str(ii * 3 + 2)
+        spwPlot = str(ii * 3) # + '~' + str(ii * 3 + 2)
 
         default('plotcal')
         caltable = 'finalBPcal.b'
@@ -211,7 +213,7 @@ if bpcal_plots:
         antenna = ''
         spw = spwPlot
         timerange = ''
-        subplot = 311
+        subplot = 111
         overplot = False
         clearpanel = 'Auto'
         iteration = 'spw'
@@ -231,7 +233,7 @@ if bpcal_plots:
         syscommand = 'rm -rf ' + filename
         os.system(syscommand)
 
-        spwPlot = str(ii * 3) + '~' + str(ii * 3 + 2)
+        spwPlot = str(ii * 3) # + '~' + str(ii * 3 + 2)
 
         default('plotcal')
         caltable = 'finalBPcal.b'
@@ -242,7 +244,7 @@ if bpcal_plots:
         antenna = ''
         spw = spwPlot
         timerange = ''
-        subplot = 311
+        subplot = 111
         overplot = False
         clearpanel = 'Auto'
         iteration = 'spw'
