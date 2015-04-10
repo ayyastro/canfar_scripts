@@ -144,7 +144,7 @@ if bpcal_plots:
 
     numSpws = len(field_spws[0])
 
-    nplots = int(numSpw)
+    nplots = int(numSpws)
 
     # if ((numSpws % 3) > 0):
     #     nplots = nplots + 1
