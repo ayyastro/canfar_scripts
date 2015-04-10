@@ -197,7 +197,7 @@ if bpcal_plots:
     ampplotmax = maxmaxamp
     phaseplotmax = maxmaxphase
 
-    for ii in range(nplots):
+    for ii in range(1, nplots+1):
         filename = proc_path+'/finalBPcal_amp' + str(ii) + '.png'
         syscommand = 'rm -rf ' + filename
         os.system(syscommand)
@@ -228,7 +228,7 @@ if bpcal_plots:
         async = False
         plotcal()
 
-    for ii in range(nplots):
+    for ii in range(1, nplots+1):
         filename = proc_path+'/finalBPcal_phase' + str(ii) + '.png'
         syscommand = 'rm -rf ' + filename
         os.system(syscommand)
