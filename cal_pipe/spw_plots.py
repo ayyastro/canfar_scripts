@@ -202,7 +202,7 @@ if bpcal_plots:
         syscommand = 'rm -rf ' + filename
         os.system(syscommand)
 
-        spwPlot = str(ii * 3) # + '~' + str(ii * 3 + 2)
+        spwPlot = str(ii) # + '~' + str(ii * 3 + 2)
 
         default('plotcal')
         caltable = 'finalBPcal.b'
@@ -233,7 +233,7 @@ if bpcal_plots:
         syscommand = 'rm -rf ' + filename
         os.system(syscommand)
 
-        spwPlot = str(ii * 3) # + '~' + str(ii * 3 + 2)
+        spwPlot = str(ii) # + '~' + str(ii * 3 + 2)
 
         default('plotcal')
         caltable = 'finalBPcal.b'
