@@ -106,7 +106,7 @@ if do_clean:
               mode='channel', width=1, nchan=205, start=10,
               cell='1.5arcsec', multiscale=[0, 8, 20],
               threshold='2.2mJy/beam', imagermode='mosaic', gain=0.5,
-              imsize=[4096, 4096], weighting='natural', robust=0.0, niter=10000,
+              imsize=[4096, 4096], weighting='natural', robust=0.0, niter=50000,
               pbcor=True, interpolation='linear', usescratch=True,
               phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
               outframe='LSRK', modelimage=model, mask=mask)
@@ -116,7 +116,7 @@ if do_clean:
                mode='channel', width=1, nchan=205, start=10,
                cell='1.5arcsec', alg='multiscale', scales=[0, 8, 20],
                threshold='2.2mJy/beam', ftmachine='mosaic', gain=0.5,
-               imsize=[4096, 4096], weighting='natural', robust=0.0, niter=10000,
+               imsize=[4096, 4096], weighting='natural', robust=0.0, niter=50000,
                pbcor=True, interpolation='linear', usescratch=True,
                phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
                outframe='LSRK', modelimage=model, mask=mask,
