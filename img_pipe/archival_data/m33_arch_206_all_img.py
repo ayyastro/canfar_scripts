@@ -62,35 +62,35 @@ if do_dirtyimage:
 
 if do_clean_1chan:
 
-    # os.system('rm -rf '+out_root+'.cent_chan*')
+    # os.system('rm -rf '+out_root+'.chan*')
 
-    # For multiscale, 1 pixel = 3 arcsec
+    For multiscale, 1 pixel = 3 arcsec in C, 1 pix = 1.5 arcsec in B.
 
-    model_100 = "M33_model_channel_100.image"
-    mask_100 = "M33_mask_channel_100.image"
+    model_110 = "../../../Arecibo/M33_model_channel_110.image"
+    mask_110 = "../../../Arecibo/M33_newmask_channel_110.image"
 
-    clean(vis=vis, imagename=out_root+'.chan_100', field='M33*',
+    clean(vis=vis, imagename=out_root+'.chan_110', field='M33*',
           restfreq='1420.40575177MHz', mode='channel', nterms=1,
-          width=1, nchan=1, start=100, cell='1.5arcsec',
-          imsize=[8192, 8192], weighting='natural', niter=50000,
-          threshold='2.2mJy/beam', imagermode='mosaic',
-          multiscale=[0, 3, 9, 27, 200], interactive=False,
+          width=1, nchan=1, start=110, cell='1.5arcsec',
+          imsize=[4096, 4096], weighting='natural', niter=50000,
+          threshold='2.2mJy/beam', imagermode='mosaic', gain=0.5,
+          multiscale=[0, 8, 20], interactive=False,
           pbcor=True, interpolation='linear', usescratch=True,
           phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
-          outframe='LSRK', modelimage=model_100, mask=mask_100)
+          outframe='LSRK', modelimage=model_110, mask=mask_110)
 
-    model_145 = "M33_model_channel_145.image"
-    mask_145 = "M33_mask_channel_145.image"
+    model_65 = "../../../Arecibo/M33_model_channel_65.image"
+    mask_65 = "../../../Arecibo/M33_newmask_channel_65.image"
 
-    clean(vis=vis, imagename=out_root+'.chan_145', field='M33*',
+    clean(vis=vis, imagename=out_root+'.chan_65', field='M33*',
           restfreq='1420.40575177MHz', mode='channel', nterms=1,
-          width=1, nchan=1, start=145, cell='1.5arcsec',
-          imsize=[8192, 8192], weighting='natural', niter=50000,
-          threshold='2.2mJy/beam', imagermode='mosaic',
-          multiscale=[0, 3, 9, 27, 200], interactive=False,
+          width=1, nchan=1, start=65, cell='1.5arcsec',
+          imsize=[4096, 4096], weighting='natural', niter=50000,
+          threshold='2.2mJy/beam', imagermode='mosaic', gain=0.5,
+          multiscale=[0, 8, 20], interactive=False,
           pbcor=True, interpolation='linear', usescratch=True,
           phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
-          outframe='LSRK', modelimage=model_145, mask=mask_145)
+          outframe='LSRK', modelimage=model_65, mask=mask_65)
 
 if do_clean:
 
