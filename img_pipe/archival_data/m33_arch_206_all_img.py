@@ -18,7 +18,7 @@ out_root = 'M33_206_b_c'
 
 # mod_path = 'Arecibo/'
 model = 'M33_model.image'
-mask = 'M33_mask.image'
+mask = 'M33_newmask.image'
 
 combine_configs = False
 do_cvel = False
