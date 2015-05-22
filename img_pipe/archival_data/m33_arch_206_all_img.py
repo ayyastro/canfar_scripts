@@ -64,7 +64,7 @@ if do_clean_1chan:
 
     # os.system('rm -rf '+out_root+'.chan*')
 
-    For multiscale, 1 pixel = 3 arcsec in C, 1 pix = 1.5 arcsec in B.
+    # For multiscale, 1 pixel = 3 arcsec in C, 1 pix = 1.5 arcsec in B.
 
     model_110 = "../../../Arecibo/M33_model_channel_110.image"
     mask_110 = "../../../Arecibo/M33_newmask_channel_110.image"
