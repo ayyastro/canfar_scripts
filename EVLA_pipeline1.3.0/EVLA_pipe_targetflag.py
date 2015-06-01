@@ -84,6 +84,7 @@ for ii in calibrator_field_select_string.split(","):
         ydatacolumn='corrected'
         selectdata=True
         field=str(ii)
+        spw=str(jj)
         correlation=corrstring
         averagedata=True
         avgchannel=str(max(channels))
