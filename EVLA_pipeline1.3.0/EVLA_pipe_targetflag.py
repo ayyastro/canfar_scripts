@@ -74,6 +74,34 @@ logprint ("Flag column saved to "+versionname, logfileout='logs/targetflag.log')
 
 # Make some plots of the calibrated data
 
+default('plotms')
+vis=ms_active
+xaxis='time'
+yaxis='phase'
+ydatacolumn='corrected'
+selectdata=True
+field=calibrator_field_select_string
+correlation=corrstring
+averagedata=True
+avgchannel=str(max(channels))
+avgtime='1e8s'
+avgscan=False
+transform=False
+extendflag=False
+iteraxis=''
+coloraxis='antenna2'
+plotrange=[]
+title='Calibrated phase vs. time, calibrator' + str(ii)
+xlabel=''
+ylabel=''
+showmajorgrid=False
+showminorgrid=False
+plotfile='all_calibrators_phase_time.png'
+overwrite=True
+showgui=False
+async=False
+plotms()
+
 for ii in calibrator_field_select_string.split(","):
     for jj in field_spws[0]:
 
@@ -101,6 +129,35 @@ for ii in calibrator_field_select_string.split(","):
         showmajorgrid=False
         showminorgrid=False
         plotfile='calibrator_'+str(ii)+'_spw_'+str(jj)+'_phase_time.png'
+        overwrite=True
+        showgui=False
+        async=False
+        plotms()
+
+        default('plotms')
+        vis=ms_active
+        xaxis='time'
+        yaxis='amp'
+        ydatacolumn='corrected'
+        selectdata=True
+        field=str(ii)
+        spw=str(jj)
+        correlation=corrstring
+        averagedata=True
+        avgchannel=str(max(channels))
+        avgtime='1e8s'
+        avgscan=False
+        transform=False
+        extendflag=False
+        iteraxis=''
+        coloraxis='antenna2'
+        plotrange=[]
+        title='Calibrated amp vs. time, calibrator' + str(ii)
+        xlabel=''
+        ylabel=''
+        showmajorgrid=False
+        showminorgrid=False
+        plotfile='calibrator_'+str(ii)+'_spw_'+str(jj)+'_amp_time.png'
         overwrite=True
         showgui=False
         async=False
@@ -165,37 +222,37 @@ for ii in calibrator_field_select_string.split(","):
 #            print 'Found end of task plotms in logfile at count '+str(countr)
 #    countr+=1
 
-#for ii in range(0,len(calibrator_field_list)):
-# for ii in field_ids:
-#     print ii
-#     default('plotms')
-#     vis=ms_active
-#     xaxis='uvwave'
-#     yaxis='amp'
-#     ydatacolumn='corrected'
-#     selectdata=True
-# #    field=str(calibrator_field_list[ii])
-#     field=str(field_ids[ii])
-#     correlation=corrstring
-#     averagedata=True
-#     avgchannel=str(max(channels))
-#     avgtime='1e8s'
-#     avgscan=False
-#     transform=False
-#     extendflag=False
-#     iteraxis=''
-#     coloraxis='spw'
-#     plotrange=[]
-#     title='Field '+field+', '+field_names[ii]
-#     xlabel=''
-#     ylabel=''
-#     showmajorgrid=False
-#     showminorgrid=False
-#     plotfile='field'+field+'_amp_uvdist.png'
-#     overwrite=True
-#     showgui=False
-#     async=False
-#     plotms()
+for ii in range(0,len(calibrator_field_list)):
+for ii in field_ids:
+    print ii
+    default('plotms')
+    vis=ms_active
+    xaxis='uvwave'
+    yaxis='amp'
+    ydatacolumn='corrected'
+    selectdata=True
+#    field=str(calibrator_field_list[ii])
+    field=str(field_ids[ii])
+    correlation=corrstring
+    averagedata=True
+    avgchannel=str(max(channels))
+    avgtime='1e8s'
+    avgscan=False
+    transform=False
+    extendflag=False
+    iteraxis=''
+    coloraxis='spw'
+    plotrange=[]
+    title='Field '+field+', '+field_names[ii]
+    xlabel=''
+    ylabel=''
+    showmajorgrid=False
+    showminorgrid=False
+    plotfile='field'+field+'_amp_uvdist.png'
+    overwrite=True
+    showgui=False
+    async=False
+    plotms()
 
 for ii in field_ids:
     for jj in field_spws[ii]:
