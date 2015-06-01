@@ -216,7 +216,7 @@ for ii in field_ids:
         transform = False
         extendflag = False
         iteraxis = ''
-        coloraxis = 'ant2'
+        coloraxis = 'antenna2'
         plotrange = []
         title = 'Field ' + field + ', ' + field_names[ii] + " SPW " + spw
         xlabel = ''
