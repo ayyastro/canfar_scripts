@@ -3,7 +3,7 @@
 Produces the plots made with plotms during the pipeline without recomputing.
 '''
 
-execfile("EVLA_pipe_restore.py")
+execfile(pipepath+"EVLA_pipe_restore.py")
 
 print("Plotting all calibrators phase vs. time")
 
