@@ -106,7 +106,7 @@ for ii in calibrator_field_select_string.split(","):
 print("Plotting UVWave vs Amplitude.")
 
 for ii in field_ids:
-    print("On Field: " + ii)
+    print("On Field: " + str(ii))
     default('plotms')
     vis = ms_active
     xaxis = 'uvwave'
@@ -140,7 +140,7 @@ print("Plotting UVWave vs Amp. per SPW.")
 
 for ii in field_ids:
     for jj in field_spws[ii]:
-        print("Field: %s SPW: %s" % (ii, jj))
+        print("Field: %s SPW: %s" % (str(ii), str(jj)))
 
         default('plotms')
         vis = ms_active
