@@ -1,0 +1,5 @@
+Arguments = %ARG%
+Log = output_files/logs/single_channel_clean_%ARG%.log
+Output = output_files/output/single_channel_clean_%ARG%.out
+Error = output_files/error/single_channel_clean_%ARG%.err
+Queue
