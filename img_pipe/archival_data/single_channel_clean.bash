@@ -32,17 +32,17 @@ mountvofs --vospace vos:MWSynthesis/ --mountpoint ${TMPDIR}/vos --cache_dir ${TM
 
 echo "Copying files onto VM"
 
-cp ${TMPDIR}/vos/Arecibo/newmask_channels/${mask_name} ${TMPDIR}/proc
+vcp vos:MWSynthesis/Arecibo/newmask_channels/${mask_name} ${TMPDIR}/proc
 echo "Done M33_mask"
 
-cp ${TMPDIR}/vos/Arecibo/model_channels/${model_name} ${TMPDIR}/proc
+vcp vos:MWSynthesis/Arecibo/model_channels/${model_name} ${TMPDIR}/proc
 echo "Done M33_model"
 
-cp -R ${TMPDIR}/vos/VLA/archival/single_channels/${ms_name} ${TMPDIR}/proc
+vcp vos:MWSynthesis/VLA/archival/single_channels/${ms_name} ${TMPDIR}/proc
 echo "Done MS Set"
 
 # Unmount
-fusermount -u ${TMPDIR}/vos
+# fusermount -u ${TMPDIR}/vos
 
 cd ${TMPDIR}/proc
 
@@ -78,11 +78,15 @@ tar -zcf ${ms_name%.ms}.clean.residual.tar.gz ${ms_name%.ms}.clean.residual
 # Now remount VOS, and copy over the relevant infos
 echo "Remount"
 # mount_data_write
-mountvofs --vospace vos:MWSynthesis/VLA/archival/clean_channels/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
+# mountvofs --vospace vos:MWSynthesis/VLA/archival/clean_channels/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
-cp -a ${TMPDIR}/proc/casa*.log ${TMPDIR}/vos/
+vcp ${TMPDIR}/proc/casa*.log vos:MWSynthesis/VLA/archival/clean_channels/
 
-cp -a ${TMPDIR}/proc/${ms_name%.ms}.clean*.tar.gz ${TMPDIR}/vos/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.image.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.mask.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.model.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.psf.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.residual.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
 
-echo "Unmount"
-fusermount -u ${TMPDIR}/vos
+# echo "Unmount"
+# fusermount -u ${TMPDIR}/vos
