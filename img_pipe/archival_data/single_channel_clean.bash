@@ -9,6 +9,9 @@ channel=${1}
 
 mask_model_channel=$(($channel - 9))
 
+echo $channel
+echo $mask_model_channel
+
 ms_name=M33_b_c_channel_${channel}.ms.tgz
 mask_name=M33_newmask_channel_${mask_model_channel}.image.tgz
 model_name=M33_model_channel_${mask_model_channel}.image.tgz
