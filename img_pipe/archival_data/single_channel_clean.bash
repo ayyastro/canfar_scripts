@@ -80,13 +80,15 @@ echo "Remount"
 # mount_data_write
 # mountvofs --vospace vos:MWSynthesis/VLA/archival/clean_channels/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
-vcp ${TMPDIR}/proc/casa*.log vos:MWSynthesis/VLA/archival/clean_channels/
+vmkdir vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
 
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.image.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.mask.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.model.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.psf.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.residual.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/
+vcp ${TMPDIR}/proc/casa*.log vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
+
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.image.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.mask.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.model.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.psf.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.residual.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
 
 # echo "Unmount"
 # fusermount -u ${TMPDIR}/vos
