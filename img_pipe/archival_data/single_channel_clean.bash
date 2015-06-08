@@ -57,9 +57,9 @@ rm ${model_name}
 rm ${ms_name}
 
 # Rename the files w/o the zipped ends
-ms_name=${ms_name: -4}
-mask_name=${mask_name: -4}
-model_name=${model_name: -4}
+ms_name=${ms_name%.tgz}
+mask_name=${mask_name%.tgz}
+model_name=${model_name%.tgz}
 
 echo "Running CASA"
 
@@ -69,11 +69,11 @@ ls -al ${TMPDIR}/proc
 casapy --nogui -c /home/ekoch/canfar_scripts/img_pipe/archival_data/single_channel_clean.py ${ms_name} ${model_name} ${mask_name}
 
 # Compress the clean output to upload to VOS
-tar -zcf ${ms_name: -3}.clean.image.tar.gz ${ms_name: -3}.clean.image
-tar -zcf ${ms_name: -3}.clean.mask.tar.gz ${ms_name: -3}.clean.mask
-tar -zcf ${ms_name: -3}.clean.model.tar.gz ${ms_name: -3}.clean.model
-tar -zcf ${ms_name: -3}.clean.psf.tar.gz ${ms_name: -3}.clean.psf
-tar -zcf ${ms_name: -3}.clean.residual.tar.gz ${ms_name: -3}.clean.residual
+tar -zcf ${ms_name%.ms}.clean.image.tar.gz ${ms_name%.ms}.clean.image
+tar -zcf ${ms_name%.ms}.clean.mask.tar.gz ${ms_name%.ms}.clean.mask
+tar -zcf ${ms_name%.ms}.clean.model.tar.gz ${ms_name%.ms}.clean.model
+tar -zcf ${ms_name%.ms}.clean.psf.tar.gz ${ms_name%.ms}.clean.psf
+tar -zcf ${ms_name%.ms}.clean.residual.tar.gz ${ms_name%.ms}.clean.residual
 
 # Now remount VOS, and copy over the relevant infos
 echo "Remount"
@@ -82,7 +82,7 @@ mountvofs --vospace vos:MWSynthesis/VLA/archival/clean_channels/ --mountpoint ${
 
 cp -a ${TMPDIR}/proc/casa*.log ${TMPDIR}/vos/
 
-cp -a ${TMPDIR}/proc/${ms_name: -3}.clean*.tar.gz ${TMPDIR}/vos/
+cp -a ${TMPDIR}/proc/${ms_name%.ms}.clean*.tar.gz ${TMPDIR}/vos/
 
 echo "Unmount"
 fusermount -u ${TMPDIR}/vos
