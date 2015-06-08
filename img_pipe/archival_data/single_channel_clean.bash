@@ -22,29 +22,29 @@ export USER='ekoch'
 # Get certificate
 getCert
 
-mkdir -p ${TMPDIR}/{vos,vos_cache,proc,vos_link}
+mkdir -p ${TMPDIR}/{proc_${channel}}
 
 rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
 
-echo "Mounting data"
-mountvofs --vospace vos:MWSynthesis/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
+# echo "Mounting data"
+# mountvofs --vospace vos:MWSynthesis/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
 echo "Copying files onto VM"
 
-vcp vos:MWSynthesis/Arecibo/newmask_channels/${mask_name} ${TMPDIR}/proc
+vcp vos:MWSynthesis/Arecibo/newmask_channels/${mask_name} ${TMPDIR}/proc_${channel}
 echo "Done M33_mask"
 
-vcp vos:MWSynthesis/Arecibo/model_channels/${model_name} ${TMPDIR}/proc
+vcp vos:MWSynthesis/Arecibo/model_channels/${model_name} ${TMPDIR}/proc_${channel}
 echo "Done M33_model"
 
-vcp vos:MWSynthesis/VLA/archival/single_channels/${ms_name} ${TMPDIR}/proc
+vcp vos:MWSynthesis/VLA/archival/single_channels/${ms_name} ${TMPDIR}/proc_${channel}
 echo "Done MS Set"
 
 # Unmount
 # fusermount -u ${TMPDIR}/vos
 
-cd ${TMPDIR}/proc
+cd ${TMPDIR}/proc_${channel}
 
 # Unzip the model and mask
 tar -zxf ${mask_name}
@@ -64,7 +64,7 @@ model_name=${model_name%.tgz}
 echo "Running CASA"
 
 echo "Show contents"
-ls -al ${TMPDIR}/proc
+ls -al ${TMPDIR}/proc_${channel}
 
 casapy --nogui -c /home/ekoch/canfar_scripts/img_pipe/archival_data/single_channel_clean.py ${ms_name} ${model_name} ${mask_name}
 
