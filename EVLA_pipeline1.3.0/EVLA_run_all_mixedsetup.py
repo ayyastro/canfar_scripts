@@ -3,6 +3,7 @@ import sys
 import os
 import numpy as np
 from datetime import datetime
+import copy
 
 '''
 EVLA pipeline running for mixed setups.
@@ -29,7 +30,7 @@ path_to_vis = os.getcwd()
 
 # Chop off the .ms
 SDM_name = vis[:-3]
-SDM_name_orig = SDM_name.copy()
+SDM_name_orig = copy.copy(SDM_name)
 
 # Set Hanning smoothing
 myHanning = 'y'
