@@ -16,9 +16,12 @@ do not have rflag run on them.
 
 # Give the name of the ms. The folder containing the ms will be used for the
 # splits
-
-vis = sys.argv[1]
-path_to_pipeline = sys.argv[2]
+try:
+    vis = sys.argv[1]
+    path_to_pipeline = sys.argv[2]
+except IndexError:
+    vis = raw_input("MS File?")
+    path_to_pipeline = raw_input("Path to pipeline?")
 
 if vis[-1] == "/":
     vis = vis[:-1]
