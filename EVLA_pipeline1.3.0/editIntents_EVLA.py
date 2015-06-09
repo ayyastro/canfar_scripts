@@ -16,8 +16,9 @@ def editIntents(msName='', field='', scan='', newintents='', help=False,
     see http://casaguides.nrao.edu/index.php?title=EditIntents
     - T. Hunter
     """
-    validIntents = ['AMPLITUDE', 'ATMOSPHERE', 'BANDPASS', 'DELAY', 'FLUX', 'PHASE',
-                    'SIDEBAND_RATIO', 'TARGET', 'WVR', 'CALIBRATE_AMPLI',
+    validIntents = ['AMPLITUDE', 'ATMOSPHERE', 'BANDPASS', 'DELAY', 'FLUX',
+                    'PHASE', 'SIDEBAND_RATIO', 'TARGET', 'WVR', 'POL_ANGLE',
+                    'POL_LEAKAGE', 'CALIBRATE_AMPLI',
                     'CALIBRATE_ATMOSPHERE', 'CALIBRATE_BANDPASS',
                     'CALIBRATE_DELAY', 'CALIBRATE_FLUX', 'CALIBRATE_PHASE',
                     'CALIBRATE_SIDEBAND_RATIO', 'OBSERVE_TARGET',
@@ -130,6 +131,10 @@ def editIntents(msName='', field='', scan='', newintents='', help=False,
                 states.append('CALIBRATE_SIDEBAND_RATIO#UNSPECIFIED')
             elif desiredintent.find('DELAY') >= 0:
                 states.append('CALIBRATE_DELAY#UNSPECIFIED')
+            elif desiredintent.find('POL_ANGLE') >= 0:
+                states.append('CALIBRATE_POL_ANGLE#UNSPECIFIED')
+            elif desiredintent.find('POL_LEAKAGE') >= 0:
+                states.append('CALIBRATE_POL_LEAKAGE#UNSPECIFIED')
             else:
                 print "Unrecognized intent = %s" % desiredintent
                 continue
