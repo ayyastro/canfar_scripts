@@ -29,8 +29,6 @@ if vis[-1] == "/":
 if not path_to_pipeline[-1] == "/":
     path_to_pipeline += "/"
 
-path_to_vis = os.getcwd()
-
 # Chop off the .ms
 SDM_name = vis[:-3]
 SDM_name_orig = copy.copy(SDM_name)
@@ -58,7 +56,7 @@ print("Coninuum SPWs: " + str(cont_spws))
 
 print("Running initial pipeline.")
 
-execfile(path_to_vis + "EVLA_pipeline_initial_mixed.py")
+execfile(path_to_pipeline + "EVLA_pipeline_initial_mixed.py")
 
 print("Splitting by SPW.")
 print("Starting at: " + str(datetime.now()))
