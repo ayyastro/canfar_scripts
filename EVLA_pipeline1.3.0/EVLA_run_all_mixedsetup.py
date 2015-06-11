@@ -42,7 +42,7 @@ bandwidths = tb.getcol('TOTAL_BANDWIDTH')
 tb.close()
 
 tb.open(vis + '/FIELD')
-fields = tb.getcol('NAMES')
+fields = tb.getcol('NAME')
 tb.close()
 
 # Drop the pol cal.
