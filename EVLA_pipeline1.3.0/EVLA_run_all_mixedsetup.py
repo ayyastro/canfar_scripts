@@ -2,7 +2,6 @@
 import sys
 import os
 import numpy as np
-from datetime import datetime
 import copy
 
 '''
@@ -20,8 +19,8 @@ try:
     vis = sys.argv[1]
     path_to_pipeline = sys.argv[2]
 except IndexError:
-    vis = raw_input("MS File? : ")
-    path_to_pipeline = raw_input("Path to pipeline? : ")
+    vis = raw_input("MS File?")
+    path_to_pipeline = raw_input("Path to pipeline?")
 
 if vis[-1] == "/":
     vis = vis[:-1]
@@ -42,6 +41,13 @@ tb.open(vis + '/SPECTRAL_WINDOW')
 bandwidths = tb.getcol('TOTAL_BANDWIDTH')
 tb.close()
 
+tb.open(vis + '/FIELD')
+fields = tb.getcol('NAMES')
+tb.close()
+
+# Drop the pol cal.
+fields = fields[np.where(fields != '0521+166=3C138')]
+
 # Define a threshold between expected bandwidths
 # Going with 10 MHz
 thresh_bw = 1.0e7
@@ -59,38 +65,32 @@ print("Running initial pipeline.")
 execfile(path_to_pipeline + "EVLA_pipeline_initial_mixed.py")
 
 print("Splitting by SPW.")
-print("Starting at: " + str(datetime.now()))
 os.mkdir('speclines')
 
 split(vis=vis, outputvis="speclines/"+SDM_name+".speclines.ms",
-      spw=",".join(line_spws))
+      spw=",".join(line_spws), datacolumn='DATA', field=",".join(fields))
 
 os.mkdir('continuum')
 
 split(vis=vis, outputvis="continuum/"+SDM_name+".continuum.ms",
-      spw=",".join(line_spws))
+      spw=",".join(line_spws), datacolumn='DATA', field=",".join(fields))
 
-print("Ending at: " + str(datetime.now()))
 print("Running full pipeline on the spectral lines.")
-print("Starting at: " + str(datetime.now()))
 
 os.chdir("speclines")
 
-SDM_name = SDM_name+".speclines.ms"
+SDM_name = SDM_name_orig+".speclines"
 myHanning = 'n'
 
 execfile(path_to_pipeline + "EVLA_pipeline.py")
 
-print("Ending at: " + str(datetime.now()))
 print("Running full pipeline on the spectral lines.")
-print("Starting at: " + str(datetime.now()))
 
-os.chdir("continuum")
+os.chdir("../continuum")
 
-SDM_name = SDM_name+".continuum.ms"
+SDM_name = SDM_name_orig+".continuum"
 myHanning = 'n'
 
 execfile(path_to_pipeline + "EVLA_pipeline_continuum.py")
 
-print("Ending at: " + str(datetime.now()))
 print("All done!")
