@@ -317,7 +317,7 @@ AllCalTables.append('finalBPcal.b')
 
 #Derive an average phase solution for the bandpass calibrator to apply
 #to all data to make QA plots easier to interpret.
-    
+
 default('gaincal')
 vis=ms_active
 caltable='averagephasegain.g'
@@ -453,112 +453,118 @@ try:
 except IOError as err:
     logprint (fluxscale_output+" doesn't exist, error: "+err.filename, logfileout='logs/finalcals.log')
 
-# looking for lines like:
-#2012-03-09 21:30:23     INFO    fluxscale::::    Flux density for J1717-3342 in SpW=3 is: 1.94158 +/- 0.0123058 (SNR = 157.777, N= 34)
-# sometimes they look like:
-#2012-03-09 21:30:23     INFO    fluxscale::::    Flux density for J1717-3342 in SpW=0 is:  INSUFFICIENT DATA
-# so watch for that.
 
-sources = []
-flux_densities = []
-spws = []
+if calibrator_field_select_string == flux_field_select_string:
+    logprint("No other calibrators found. No need to apply power-law fit to model column.",
+             logfileout='logs/finalcals.log')
 
-#Find the field_ids in the dictionary returned from the CASA task fluxscale
-dictkeys = fluxscale_result.keys()
-keys_to_remove = ['freq', 'spwName', 'spwID']
-dictkeys = [field_id for field_id in dictkeys if field_id not in keys_to_remove]
+else:
+    # looking for lines like:
+    #2012-03-09 21:30:23     INFO    fluxscale::::    Flux density for J1717-3342 in SpW=3 is: 1.94158 +/- 0.0123058 (SNR = 157.777, N= 34)
+    # sometimes they look like:
+    #2012-03-09 21:30:23     INFO    fluxscale::::    Flux density for J1717-3342 in SpW=0 is:  INSUFFICIENT DATA
+    # so watch for that.
 
-for field_id in dictkeys:
-    sourcename = fluxscale_result[field_id]['fieldName']
-    secondary_keys = fluxscale_result[field_id].keys()
-    secondary_keys_to_remove=['fitRefFreq', 'spidxerr', 'spidx', 'fitFluxd', 'fieldName', 'fitFluxdErr']
-    spwkeys = [spw_id for spw_id in secondary_keys if spw_id not in secondary_keys_to_remove]
+    sources = []
+    flux_densities = []
+    spws = []
 
-    for spw_id in spwkeys:
-        flux_d = list(fluxscale_result[field_id][spw_id]['fluxd'])
-        flux_d_err = list(fluxscale_result[field_id][spw_id]['fluxdErr'])
-        #spwslist  = list(int(spw_id))
+    #Find the field_ids in the dictionary returned from the CASA task fluxscale
+    dictkeys = fluxscale_result.keys()
+    keys_to_remove = ['freq', 'spwName', 'spwID']
+    dictkeys = [field_id for field_id in dictkeys if field_id not in keys_to_remove]
 
-        #flux_d = list(fluxscale_result[field_id]['fluxd'])
-        #flux_d_err = list(fluxscale_result[field_id]['fluxdErr'])
-        #spwslist  = list(fluxscale_result['spwID'])
+    for field_id in dictkeys:
+        sourcename = fluxscale_result[field_id]['fieldName']
+        secondary_keys = fluxscale_result[field_id].keys()
+        secondary_keys_to_remove=['fitRefFreq', 'spidxerr', 'spidx', 'fitFluxd', 'fieldName', 'fitFluxdErr']
+        spwkeys = [spw_id for spw_id in secondary_keys if spw_id not in secondary_keys_to_remove]
 
-        for i in range(0,len(flux_d)):
-            if (flux_d[i] != -1.0 and flux_d[i] != 0.0):
-                sources.append(sourcename)
-                flux_densities.append([float(flux_d[i]), float(flux_d_err[i])])
-                spws.append(int(spw_id))
+        for spw_id in spwkeys:
+            flux_d = list(fluxscale_result[field_id][spw_id]['fluxd'])
+            flux_d_err = list(fluxscale_result[field_id][spw_id]['fluxdErr'])
+            #spwslist  = list(int(spw_id))
 
-ii = 0
-unique_sources = list(np.unique(sources))
-results = []
-for source in unique_sources:
-    indices = []
-    for ii in range(len(sources)):
-        if (sources[ii] == source):
-            indices.append(ii)
-    bands = []
-    for ii in range(len(indices)):
-        bands.append(find_EVLA_band(center_frequencies[spws[indices[ii]]]))
-    unique_bands = list(np.unique(bands))
-    for band in unique_bands:
-        lfreqs = []
-        lfds = []
-        lerrs = []
-        uspws = []
+            #flux_d = list(fluxscale_result[field_id]['fluxd'])
+            #flux_d_err = list(fluxscale_result[field_id]['fluxdErr'])
+            #spwslist  = list(fluxscale_result['spwID'])
+
+            for i in range(0,len(flux_d)):
+                if (flux_d[i] != -1.0 and flux_d[i] != 0.0):
+                    sources.append(sourcename)
+                    flux_densities.append([float(flux_d[i]), float(flux_d_err[i])])
+                    spws.append(int(spw_id))
+
+    ii = 0
+    unique_sources = list(np.unique(sources))
+    results = []
+    for source in unique_sources:
+        indices = []
+        for ii in range(len(sources)):
+            if (sources[ii] == source):
+                indices.append(ii)
+        bands = []
         for ii in range(len(indices)):
-            if find_EVLA_band(center_frequencies[spws[indices[ii]]]) == band:
-                lfreqs.append(log10(center_frequencies[spws[indices[ii]]]))
-                lfds.append(log10(flux_densities[indices[ii]][0]))
-                lerrs.append((flux_densities[indices[ii]][1])/(flux_densities[indices[ii]][0])/2.303)
-                uspws.append(spws[indices[ii]])
+            bands.append(find_EVLA_band(center_frequencies[spws[indices[ii]]]))
+        unique_bands = list(np.unique(bands))
+        for band in unique_bands:
+            lfreqs = []
+            lfds = []
+            lerrs = []
+            uspws = []
+            for ii in range(len(indices)):
+                if find_EVLA_band(center_frequencies[spws[indices[ii]]]) == band:
+                    lfreqs.append(log10(center_frequencies[spws[indices[ii]]]))
+                    lfds.append(log10(flux_densities[indices[ii]][0]))
+                    lerrs.append((flux_densities[indices[ii]][1])/(flux_densities[indices[ii]][0])/2.303)
+                    uspws.append(spws[indices[ii]])
 
-        if len(lfds) < 2:
-           pfinal = [lfds[0], 0.0]
-           covar = [0.0,0.0]
-        else:
-           alfds = scp.array(lfds)
-           alerrs = scp.array(lerrs)
-           alfreqs = scp.array(lfreqs)
-           pinit = [0.0, 0.0]
-           fit_out = scpo.leastsq(errfunc, pinit, args=(alfreqs, alfds, alerrs), full_output=1)
-           pfinal = fit_out[0]
-           covar = fit_out[1]
-        aa = pfinal[0]
-        bb = pfinal[1]
-        reffreq = 10.0**lfreqs[0]/1.0e9
-        fluxdensity = 10.0**(aa + bb*lfreqs[0])
-        spix = bb
-        results.append([ source, uspws, fluxdensity, spix, reffreq ])
-        logprint(source + ' ' + band + ' fitted spectral index = ' + str(spix), logfileout='logs/finalcals.log')
-        logprint("Frequency, data, and fitted data:", logfileout='logs/finalcals.log')
-        for ii in range(len(lfreqs)):
-            SS = fluxdensity * (10.0**lfreqs[ii]/reffreq/1.0e9)**spix
-            logprint('    '+str(10.0**lfreqs[ii]/1.0e9)+'  '+ str(10.0**lfds[ii])+'  '+str(SS), logfileout='logs/finalcals.log')
+            if len(lfds) < 2:
+               pfinal = [lfds[0], 0.0]
+               covar = [0.0,0.0]
+            else:
+               alfds = scp.array(lfds)
+               alerrs = scp.array(lerrs)
+               alfreqs = scp.array(lfreqs)
+               pinit = [0.0, 0.0]
+               fit_out = scpo.leastsq(errfunc, pinit, args=(alfreqs, alfds, alerrs), full_output=1)
+               pfinal = fit_out[0]
+               covar = fit_out[1]
+            aa = pfinal[0]
+            bb = pfinal[1]
+            reffreq = 10.0**lfreqs[0]/1.0e9
+            fluxdensity = 10.0**(aa + bb*lfreqs[0])
+            spix = bb
+            results.append([ source, uspws, fluxdensity, spix, reffreq ])
+            logprint(source + ' ' + band + ' fitted spectral index = ' + str(spix), logfileout='logs/finalcals.log')
+            logprint("Frequency, data, and fitted data:", logfileout='logs/finalcals.log')
+            for ii in range(len(lfreqs)):
+                SS = fluxdensity * (10.0**lfreqs[ii]/reffreq/1.0e9)**spix
+                logprint('    '+str(10.0**lfreqs[ii]/1.0e9)+'  '+ str(10.0**lfds[ii])+'  '+str(SS), logfileout='logs/finalcals.log')
 
 
-logprint ("Setting power-law fit in the model column", logfileout='logs/finalcals.log')
+    logprint ("Setting power-law fit in the model column", logfileout='logs/finalcals.log')
 
 
-for result in results:
-    for spw_i in result[1]:
-        logprint('Running setjy on spw '+str(spw_i), logfileout='logs/finalcals.log')
-        default('setjy')
-        vis='calibrators.ms'
-        field = str(result[0])
-        #spw = ','.join(["%s" % ii for ii in result[1]])
-        spw = str(spw_i)
-        selectdata=False
-        scalebychan=True
-        standard='manual'
-        fluxdensity = [ result[2], 0, 0, 0 ]
-        spix = result[3]
-        reffreq = str(result[4])+'GHz'
-        usescratch=False
-        async=False
-        setjy()
+    for result in results:
+        for spw_i in result[1]:
+            logprint('Running setjy on spw '+str(spw_i), logfileout='logs/finalcals.log')
+            default('setjy')
+            vis='calibrators.ms'
+            field = str(result[0])
+            #spw = ','.join(["%s" % ii for ii in result[1]])
+            spw = str(spw_i)
+            selectdata=False
+            scalebychan=True
+            standard='manual'
+            fluxdensity = [ result[2], 0, 0, 0 ]
+            spix = result[3]
+            reffreq = str(result[4])+'GHz'
+            usescratch=False
+            async=False
+            setjy()
 
-# Derive gain tables.  Note that gaincurves, opacity corrections and 
+# Derive gain tables.  Note that gaincurves, opacity corrections and
 # antenna position corrections have already been applied during applycal
 # and split in above.
 
@@ -594,7 +600,7 @@ gaincal()
 
 default('gaincal')
 vis='calibrators.ms'
-caltable='finalampgaincal.g' 
+caltable='finalampgaincal.g'
 field=''
 spw=''
 intent=''
@@ -965,7 +971,7 @@ if (flaggedDelaySolns['all']['total'] > 0):
 else:
     QA2_delay='Fail'
 
-if (flaggedBPSolns['all']['total'] > 0): 
+if (flaggedBPSolns['all']['total'] > 0):
     if (flaggedBPSolns['antmedian']['fraction'] > 0.2):
         QA2_BP='Partial'
     else:
