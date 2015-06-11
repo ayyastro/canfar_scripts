@@ -22,7 +22,7 @@ export USER='ekoch'
 # Get certificate
 getCert
 
-mkdir -m 777 ${TMPDIR}/proc_${channel}
+mkdir -m 777  ${TMPDIR}/proc_${channel}
 
 rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
@@ -82,13 +82,13 @@ echo "Remount"
 
 vmkdir vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
 
-vcp ${TMPDIR}/proc/casa*.log vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
+vcp ${TMPDIR}/proc_${channel}/casa*.log vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
 
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.image.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.mask.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.model.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.psf.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
-vcp ${TMPDIR}/proc/${ms_name%.ms}.clean.residual.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.image.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.mask.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.model.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.psf.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.residual.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
 
 # echo "Unmount"
 # fusermount -u ${TMPDIR}/vos
