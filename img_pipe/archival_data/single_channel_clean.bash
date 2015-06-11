@@ -22,7 +22,7 @@ export USER='ekoch'
 # Get certificate
 getCert
 
-mkdir -p ${TMPDIR}/{proc_${channel}}
+mkdir ${TMPDIR}/proc_${channel}
 
 rm -rf /home/ekoch/canfar_scripts
 git clone https://github.com/e-koch/canfar_scripts.git /home/ekoch/canfar_scripts
