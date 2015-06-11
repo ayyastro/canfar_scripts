@@ -39,25 +39,25 @@ logprint("Checking RFI flagging of all targets",
 
 # Run on all targets/scans
 
-# default('flagdata')
-# vis = ms_active
-# mode = 'rflag'
-# field = ''
-# correlation = 'ABS_' + corrstring
-# scan = ''
-# ntime = 'scan'
-# combinescans = False
-# datacolumn = 'corrected'
-# winsize = 3
-# timedevscale = 4.0
-# freqdevscale = 4.0
-# extendflags = False
-# action = 'apply'
-# display = ''
-# flagbackup = True
-# savepars = True
-# async = False
-# flagdata()
+default('flagdata')
+vis = ms_active
+mode = 'rflag'
+field = ''
+correlation = 'ABS_' + corrstring
+scan = ''
+ntime = 'scan'
+combinescans = False
+datacolumn = 'corrected'
+winsize = 3
+timedevscale = 4.0
+freqdevscale = 4.0
+extendflags = False
+action = 'apply'
+display = ''
+flagbackup = True
+savepars = True
+async = False
+flagdata()
 
 
 # clearstat()

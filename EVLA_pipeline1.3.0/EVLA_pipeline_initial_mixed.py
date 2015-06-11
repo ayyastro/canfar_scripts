@@ -47,16 +47,6 @@ date = "2014Sep23"
 print "Pipeline version "+version+" for use with CASA 4.2.2"
 import sys
 
-# Optional script exit for mixed set-ups
-try:
-    mixed_early_exit = sys.argv[1]
-    if mixed_early_exit == "True":
-        mixed_early_exit = True
-    else:
-        mixed_early_exit = False
-except IndexError:
-    mixed_early_exit = False
-
 [major,minor,revision] = casadef.casa_version.split('.')
 casa_version = 100*int(major)+10*int(minor)+int(revision)
 if casa_version < 422:
@@ -157,16 +147,12 @@ try:
 
     execfile(pipepath+'EVLA_pipe_flagall.py')
 
-# Optional early exit
-    if mixed_early_exit:
-        sys.exit()
-
 ######################################################################
 
 # PREPARE FOR CALIBRATIONS
 # Fill model columns for primary calibrators
 
-    execfile(pipepath+'EVLA_pipe_calprep.py')
+#    execfile(pipepath+'EVLA_pipe_calprep.py')
 
 ######################################################################
 
@@ -175,39 +161,39 @@ try:
 # requantizer gains (NB: requires CASA 4.1 or later!).  Also plots switched
 # power tables, but these are not currently used in the calibration
 
-    execfile(pipepath+'EVLA_pipe_priorcals.py')
+#    execfile(pipepath+'EVLA_pipe_priorcals.py')
 
 #*********************************************************************
 
 # INITIAL TEST CALIBRATIONS USING BANDPASS AND DELAY CALIBRATORS
 
-    execfile(pipepath+'EVLA_pipe_testBPdcals.py')
+#    execfile(pipepath+'EVLA_pipe_testBPdcals.py')
 
 #*********************************************************************
 
 # IDENTIFY AND FLAG BASEBANDS WITH BAD DEFORMATTERS OR RFI BASED ON
 # BP TABLE AMPS
 
-    execfile(pipepath+'EVLA_pipe_flag_baddeformatters.py')
+#    execfile(pipepath+'EVLA_pipe_flag_baddeformatters.py')
 
 #*********************************************************************
 
 # IDENTIFY AND FLAG BASEBANDS WITH BAD DEFORMATTERS OR RFI BASED ON
 # BP TABLE PHASES
 
-    execfile(pipepath+'EVLA_pipe_flag_baddeformattersphase.py')
+#    execfile(pipepath+'EVLA_pipe_flag_baddeformattersphase.py')
 
 ######################################################################
 
 # Flag spws that have no calibration at this point
 
-    execfile(pipepath+'EVLA_pipe_flag_uncalspws1.py')
+#    execfile(pipepath+'EVLA_pipe_flag_uncalspws1.py')
 
 #*********************************************************************
 
 # FLAG POSSIBLE RFI ON BP CALIBRATOR USING RFLAG
 
-    execfile(pipepath+'EVLA_pipe_checkflag.py')
+#    execfile(pipepath+'EVLA_pipe_checkflag.py')
 
 ######################################################################
 
@@ -215,37 +201,37 @@ try:
 # (semi-final because we have not yet determined the spectral index
 # of the bandpass calibrator)
 
-    execfile(pipepath+'EVLA_pipe_semiFinalBPdcals1.py')
+#    execfile(pipepath+'EVLA_pipe_semiFinalBPdcals1.py')
 
 ######################################################################
 
 # Use flagdata again on calibrators
 
-    execfile(pipepath+'EVLA_pipe_checkflag_semiFinal.py')
+#    execfile(pipepath+'EVLA_pipe_checkflag_semiFinal.py')
 
 ######################################################################
 
 # RE-RUN semiFinalBPdcals.py FOLLOWING rflag
 
-    execfile(pipepath+'EVLA_pipe_semiFinalBPdcals2.py')
+#    execfile(pipepath+'EVLA_pipe_semiFinalBPdcals2.py')
 
 ######################################################################
 
 # Flag spws that have no calibration at this point
 
-    execfile(pipepath+'EVLA_pipe_flag_uncalspws1b.py')
+#    execfile(pipepath+'EVLA_pipe_flag_uncalspws1b.py')
 
 ######################################################################
 
 # DETERMINE SOLINT FOR SCAN-AVERAGE EQUIVALENT
 
-    execfile(pipepath+'EVLA_pipe_solint.py')
+#    execfile(pipepath+'EVLA_pipe_solint.py')
 
 ######################################################################
 
 # DO TEST GAIN CALIBRATIONS TO ESTABLISH SHORT SOLINT
 
-    execfile(pipepath+'EVLA_pipe_testgains.py')
+#    execfile(pipepath+'EVLA_pipe_testgains.py')
 
 #*********************************************************************
 
@@ -253,7 +239,7 @@ try:
 # Make a gain table that includes gain and opacity corrections for final
 # amp cal, for flux density bootstrapping
 
-    execfile(pipepath+'EVLA_pipe_fluxgains.py')
+#    execfile(pipepath+'EVLA_pipe_fluxgains.py')
 
 ######################################################################
 
@@ -268,49 +254,49 @@ try:
 # DO THE FLUX DENSITY BOOTSTRAPPING -- fits spectral index of
 # calibrators with a power-law and puts fit in model column
 
-    execfile(pipepath+'EVLA_pipe_fluxboot.py')
+#    execfile(pipepath+'EVLA_pipe_fluxboot.py')
 
 ######################################################################
 
 # MAKE FINAL CALIBRATION TABLES
 
-    execfile(pipepath+'EVLA_pipe_finalcals.py')
+#    execfile(pipepath+'EVLA_pipe_finalcals.py')
 
 ######################################################################
 
 # APPLY ALL CALIBRATIONS AND CHECK CALIBRATED DATA
 
-    execfile(pipepath+'EVLA_pipe_applycals.py')
+#    execfile(pipepath+'EVLA_pipe_applycals.py')
 
 ######################################################################
 
 # Flag spws that have no calibration at this point
 
-    execfile(pipepath+'EVLA_pipe_flag_uncalspws2.py')
+#    execfile(pipepath+'EVLA_pipe_flag_uncalspws2.py')
 
 ######################################################################
 
 # NOW RUN ALL CALIBRATED DATA (INCLUDING TARGET) THROUGH rflag
 
-    execfile(pipepath+'EVLA_pipe_targetflag.py')
+#    execfile(pipepath+'EVLA_pipe_targetflag.py')
 
 ######################################################################
 
 # CALCULATE DATA WEIGHTS BASED ON ST. DEV. WITHIN EACH SPW
 
-    execfile(pipepath+'EVLA_pipe_statwt.py')
+#    execfile(pipepath+'EVLA_pipe_statwt.py')
 
 ######################################################################
 
 # COLLECT RELEVANT PLOTS AND TABLES
 
-    execfile(pipepath+'EVLA_pipe_filecollect.py')
+#    execfile(pipepath+'EVLA_pipe_filecollect.py')
 
 ######################################################################
 
 # WRITE WEBLOG
 
-    execfile(pipepath+'EVLA_pipe_weblog.py')
+#    execfile(pipepath+'EVLA_pipe_weblog.py')
 
 ######################################################################
 

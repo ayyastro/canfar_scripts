@@ -47,16 +47,6 @@ date = "2014Sep23"
 print "Pipeline version "+version+" for use with CASA 4.2.2"
 import sys
 
-# Optional script exit for mixed set-ups
-try:
-    mixed_early_exit = sys.argv[1]
-    if mixed_early_exit == "True":
-        mixed_early_exit = True
-    else:
-        mixed_early_exit = False
-except IndexError:
-    mixed_early_exit = False
-
 [major,minor,revision] = casadef.casa_version.split('.')
 casa_version = 100*int(major)+10*int(minor)+int(revision)
 if casa_version < 422:
@@ -156,10 +146,6 @@ try:
 # edges of basebands
 
     execfile(pipepath+'EVLA_pipe_flagall.py')
-
-# Optional early exit
-    if mixed_early_exit:
-        sys.exit()
 
 ######################################################################
 
@@ -292,7 +278,7 @@ try:
 
 # NOW RUN ALL CALIBRATED DATA (INCLUDING TARGET) THROUGH rflag
 
-    execfile(pipepath+'EVLA_pipe_targetflag.py')
+    execfile(pipepath+'EVLA_pipe_targetflag_continuum.py')
 
 ######################################################################
 

@@ -3,6 +3,8 @@
 Produces the plots made with plotms during the pipeline without recomputing.
 '''
 
+pipepath = '/lustre/aoc/observers/nm-7669/canfar_scripts/EVLA_pipeline1.3.0/'
+
 execfile(pipepath+"EVLA_pipe_restore.py")
 
 print("Plotting all calibrators phase vs. time")
