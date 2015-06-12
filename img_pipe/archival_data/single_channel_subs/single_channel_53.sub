@@ -1,0 +1,14 @@
+Universe   = vanilla
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT_OR_EVICT
+environment = "HOME=/home/ekoch"
+RunAsOwner = True
+
+transfer_output_files = /dev/null
+
+Executable = code_repos/canfar_scripts/img_pipe/archival_data/single_channel_clean.bash
+Arguments = 53
+Log = output_files/logs/single_channel_clean_53.log
+Output = output_files/output/single_channel_clean_53.out
+Error = output_files/error/single_channel_clean_53.err
+Queue
