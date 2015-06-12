@@ -28,12 +28,10 @@ for spw in spws:
     print "On " + str(spw+1) + " of " + str(len(freqs))
 
     default('plotms')
-    vis = vis
     xaxis = 'channel'
     yaxis = 'amp'
     ydatacolumn = 'corrected'
     selectdata = True
-    field = field
     spw = str(spw)
     correlation = corrstring
     averagedata = True
@@ -53,12 +51,10 @@ for spw in spws:
     raw_input("Continue?")
 
     default('plotms')
-    vis = vis
     xaxis = 'channel'
     yaxis = 'phase'
     ydatacolumn = 'corrected'
     selectdata = True
-    field = field
     spw = str(spw)
     correlation = corrstring
     averagedata = True
@@ -78,12 +74,10 @@ for spw in spws:
     raw_input("Continue?")
 
     default('plotms')
-    vis = vis
     xaxis = 'time'
     yaxis = 'amp'
     ydatacolumn = 'corrected'
     selectdata = True
-    field = field
     spw = str(spw)
     correlation = corrstring
     averagedata = True
@@ -103,12 +97,10 @@ for spw in spws:
     raw_input("Continue?")
 
     default('plotms')
-    vis = vis
     xaxis = 'time'
     yaxis = 'phase'
     ydatacolumn = 'corrected'
     selectdata = True
-    field = field
     spw = str(spw)
     correlation = corrstring
     averagedata = True
@@ -128,12 +120,10 @@ for spw in spws:
     raw_input("Continue?")
 
     default('plotms')
-    vis = vis
     xaxis = 'uvwave'
     yaxis = 'amp'
     ydatacolumn = 'corrected'
     selectdata = True
-    field = field
     spw = str(spw)
     correlation = corrstring
     averagedata = True
