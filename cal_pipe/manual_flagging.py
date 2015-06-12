@@ -38,7 +38,7 @@ for spw_num in spws:
     correlation = corrstring
     averagedata = True
     avgtime = '1e8s'
-    avgscan = False
+    avgscan = True
     transform = False
     extendflag = False
     iteraxis = ''
@@ -63,7 +63,7 @@ for spw_num in spws:
     correlation = corrstring
     averagedata = True
     avgtime = '1e8s'
-    avgscan = False
+    avgscan = True
     transform = False
     extendflag = False
     iteraxis = ''
