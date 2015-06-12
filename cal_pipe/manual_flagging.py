@@ -5,9 +5,14 @@ import sys
 Plot visibility data for each spw to allow for easy manual flags
 '''
 
-vis = sys.argv[1]
-field = sys.argv[2]
-corrstring = sys.argv[3]
+try:
+    vis = sys.argv[1]
+    field = sys.argv[2]
+    corrstring = sys.argv[3]
+except IndexError:
+    vis = raw_input("MS Name? : ")
+    field = raw_input("Field Name/Number? : ")
+    corrstring = raw_input("Corrstring? : ")
 
 tb.open(vis + '/SPECTRAL_WINDOW')
 freqs = tb.getcol('REF_FREQUENCY')
