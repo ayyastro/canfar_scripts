@@ -23,9 +23,9 @@ spws = range(0, len(freqs))
 
 
 for spw_num in spws:
-    nchan = nchans[spw]
+    nchan = nchans[spw_num]
 
-    print "On " + str(spw+1) + " of " + str(len(freqs))
+    print "On " + str(spw_num+1) + " of " + str(len(freqs))
 
     default('plotms')
     vis = vis_name
