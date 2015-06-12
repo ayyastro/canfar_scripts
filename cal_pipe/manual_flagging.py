@@ -14,7 +14,7 @@ except IndexError:
     field_name = raw_input("Field Name/Number? : ")
     corrstring = raw_input("Corrstring? : ")
 
-tb.open(vis + '/SPECTRAL_WINDOW')
+tb.open(vis+name + '/SPECTRAL_WINDOW')
 freqs = tb.getcol('REF_FREQUENCY')
 nchans = tb.getcol('NUM_CHAN')
 tb.close()
