@@ -74,11 +74,12 @@ tar -zcf ${ms_name%.ms}.clean.mask.tar.gz ${ms_name%.ms}.clean.mask
 tar -zcf ${ms_name%.ms}.clean.model.tar.gz ${ms_name%.ms}.clean.model
 tar -zcf ${ms_name%.ms}.clean.psf.tar.gz ${ms_name%.ms}.clean.psf
 tar -zcf ${ms_name%.ms}.clean.residual.tar.gz ${ms_name%.ms}.clean.residual
+tar -zcf ${ms_name%.ms}.clean.flux.tar.gz ${ms_name%.ms}.clean.flux
+tar -zcf ${ms_name%.ms}.clean.flux.pbcoverage.tar.gz ${ms_name%.ms}.clean.flux.pbcoverage
 
-# Now remount VOS, and copy over the relevant infos
-echo "Remount"
-# mount_data_write
-# mountvofs --vospace vos:MWSynthesis/VLA/archival/clean_channels/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
+# Now copy over the relevant infos
+
+vos:MWSynthesis/VLA/archival/clean_channels/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
 
 vmkdir vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
 
@@ -90,5 +91,6 @@ vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.model.tar.gz vos:MWSynthesis/
 vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.psf.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
 vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.residual.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
 
-# echo "Unmount"
-# fusermount -u ${TMPDIR}/vos
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.flux.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.flux.pbcoverage.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
