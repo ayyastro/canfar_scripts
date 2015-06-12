@@ -6,12 +6,12 @@ Plot visibility data for each spw to allow for easy manual flags
 '''
 
 try:
-    vis = sys.argv[1]
-    field = sys.argv[2]
+    vis_name = sys.argv[1]
+    field_name = sys.argv[2]
     corrstring = sys.argv[3]
 except IndexError:
-    vis = raw_input("MS Name? : ")
-    field = raw_input("Field Name/Number? : ")
+    vis_name = raw_input("MS Name? : ")
+    field_name = raw_input("Field Name/Number? : ")
     corrstring = raw_input("Corrstring? : ")
 
 tb.open(vis + '/SPECTRAL_WINDOW')
@@ -22,17 +22,19 @@ tb.close()
 spws = range(0, len(freqs))
 
 
-for spw in spws:
+for spw_num in spws:
     nchan = nchans[spw]
 
     print "On " + str(spw+1) + " of " + str(len(freqs))
 
     default('plotms')
+    vis = vis_name
     xaxis = 'channel'
     yaxis = 'amp'
     ydatacolumn = 'corrected'
     selectdata = True
-    spw = str(spw)
+    field = field_name
+    spw = str(spw_num)
     correlation = corrstring
     averagedata = True
     avgtime = '1e8s'
@@ -51,11 +53,13 @@ for spw in spws:
     raw_input("Continue?")
 
     default('plotms')
+    vis = vis_name
     xaxis = 'channel'
     yaxis = 'phase'
     ydatacolumn = 'corrected'
     selectdata = True
-    spw = str(spw)
+    field = field_name
+    spw = str(spw_num)
     correlation = corrstring
     averagedata = True
     avgtime = '1e8s'
@@ -74,11 +78,13 @@ for spw in spws:
     raw_input("Continue?")
 
     default('plotms')
+    vis = vis_name
     xaxis = 'time'
     yaxis = 'amp'
     ydatacolumn = 'corrected'
     selectdata = True
-    spw = str(spw)
+    field = field_name
+    spw = str(spw_num)
     correlation = corrstring
     averagedata = True
     avgchannel = str(nchan)
@@ -97,11 +103,13 @@ for spw in spws:
     raw_input("Continue?")
 
     default('plotms')
+    vis = vis_name
     xaxis = 'time'
     yaxis = 'phase'
     ydatacolumn = 'corrected'
     selectdata = True
-    spw = str(spw)
+    field = field_name
+    spw = str(spw_num)
     correlation = corrstring
     averagedata = True
     avgchannel = str(nchan)
@@ -120,11 +128,13 @@ for spw in spws:
     raw_input("Continue?")
 
     default('plotms')
+    vis = vis_name
     xaxis = 'uvwave'
     yaxis = 'amp'
     ydatacolumn = 'corrected'
     selectdata = True
-    spw = str(spw)
+    field = field_name
+    spw = str(spw_num)
     correlation = corrstring
     averagedata = True
     avgchannel = str(nchan)
