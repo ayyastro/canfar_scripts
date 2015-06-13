@@ -9,17 +9,19 @@ try:
     vis_name = sys.argv[1]
     field_name = sys.argv[2]
     corrstring = sys.argv[3]
+    starting_spw = int(sys.argv[4])
 except IndexError:
     vis_name = raw_input("MS Name? : ")
     field_name = raw_input("Field Name/Number? : ")
     corrstring = raw_input("Corrstring? : ")
+    starting_spw = int(raw_input("SPW to start at? : "))
 
 tb.open(vis_name + '/SPECTRAL_WINDOW')
 freqs = tb.getcol('REF_FREQUENCY')
 nchans = tb.getcol('NUM_CHAN')
 tb.close()
 
-spws = range(0, len(freqs))
+spws = range(starting_spw, len(freqs))
 
 
 for spw_num in spws:
