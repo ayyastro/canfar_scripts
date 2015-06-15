@@ -6,6 +6,9 @@ RunAsOwner = True
 
 transfer_output_files = /dev/null
 
+request_memory = 8 G
+request_cpus = 2
+
 Executable = code_repos/canfar_scripts/img_pipe/archival_data/single_channel_clean.bash
 Arguments = 28
 Log = output_files/logs/single_channel_clean_28.log
