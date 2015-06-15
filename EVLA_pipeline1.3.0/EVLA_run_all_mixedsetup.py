@@ -3,6 +3,8 @@ import sys
 import os
 import numpy as np
 import copy
+import glob
+import shutil
 
 '''
 EVLA pipeline running for mixed setups.
@@ -73,7 +75,7 @@ split(vis=vis, outputvis="speclines/"+SDM_name+".speclines.ms",
 os.mkdir('continuum')
 
 split(vis=vis, outputvis="continuum/"+SDM_name+".continuum.ms",
-      spw=",".join(line_spws), datacolumn='DATA', field=",".join(fields))
+      spw=",".join(cont_spws), datacolumn='DATA', field=",".join(fields))
 
 print("Running full pipeline on the spectral lines.")
 
@@ -84,6 +86,11 @@ myHanning = 'n'
 
 execfile(path_to_pipeline + "EVLA_pipeline.py")
 
+# It saves a bunch of plots to the parent directory. So, move them to weblog here.
+pngs = glob.glob("../*.png")
+for png in pngs:
+    shutil.move(png, "weblog/")
+
 print("Running full pipeline on the spectral lines.")
 
 os.chdir("../continuum")
@@ -92,5 +99,9 @@ SDM_name = SDM_name_orig+".continuum"
 myHanning = 'n'
 
 execfile(path_to_pipeline + "EVLA_pipeline_continuum.py")
+
+pngs = glob.glob("../*.png")
+for png in pngs:
+    shutil.move(png, "weblog/")
 
 print("All done!")
