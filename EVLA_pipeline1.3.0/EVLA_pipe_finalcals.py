@@ -760,6 +760,8 @@ for rrow in rowlist:
 ampplotmax=maxmaxamp
 phaseplotmax=maxmaxphase
 
+
+
 for ii in range(nplots):
     filename='finalBPcal_amp'+str(ii)+'.png'
     syscommand='rm -rf '+filename
@@ -811,6 +813,72 @@ for ii in range(nplots):
     overplot=False
     clearpanel='Auto'
     iteration='antenna'
+    plotrange=[0,0,-phaseplotmax,phaseplotmax]
+    showflags=False
+    plotsymbol='o'
+    plotcolor='blue'
+    markersize=5.0
+    fontsize=10.0
+    showgui=False
+    figfile=filename
+    async=False
+    plotcal()
+
+# Plot the bandpasses per SPW as well
+
+tb.open(ms_active+"/SPECTRAL_WINDOW")
+nspws = tb.getcol("NAME").shape[0]
+tb.close()
+
+for ii in range(nspws):
+    filename='finalBPcal_amp_spw_'+str(ii)+'.png'
+    syscommand='rm -rf '+filename
+    os.system(syscommand)
+
+    default('plotcal')
+    caltable='finalBPcal.b'
+    xaxis='freq'
+    yaxis='amp'
+    poln=''
+    field=''
+    antenna=''
+    spw=str(ii)
+    timerange=''
+    subplot=111
+    overplot=False
+    clearpanel='Auto'
+    iteration=''
+    plotrange=[0,0,0,ampplotmax]
+    showflags=False
+    plotsymbol='o'
+    plotcolor='blue'
+    markersize=5.0
+    fontsize=10.0
+    showgui=False
+    figfile=filename
+    async=False
+    plotcal()
+
+for ii in range(nspws):
+    filename='finalBPcal_phase_spw_'+str(ii)+'.png'
+    syscommand='rm -rf '+filename
+    os.system(syscommand)
+
+    antPlot=str(ii*3)+'~'+str(ii*3+2)
+
+    default('plotcal')
+    caltable='finalBPcal.b'
+    xaxis='freq'
+    yaxis='phase'
+    poln=''
+    field=''
+    antenna=''
+    spw=str(ii)
+    timerange=''
+    subplot=111
+    overplot=False
+    clearpanel='Auto'
+    iteration=''
     plotrange=[0,0,-phaseplotmax,phaseplotmax]
     showflags=False
     plotsymbol='o'
