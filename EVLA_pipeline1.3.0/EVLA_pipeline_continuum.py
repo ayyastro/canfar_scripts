@@ -145,7 +145,7 @@ try:
 # CHANNEL-BASED: end 5% of channels of each spw, 10 end channels at
 # edges of basebands
 
-    execfile(pipepath+'EVLA_pipe_flagall.py')
+    # execfile(pipepath+'EVLA_pipe_flagall.py')
 
 ######################################################################
 
