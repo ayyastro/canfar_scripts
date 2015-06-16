@@ -34,7 +34,7 @@ cmdreason_list=[]
 
 frac_flagged_on_source1 = 0.0
 
-logprint("Finished EVLA_pipe_flagall.py", logfileout='logs/flagall.log')
+logprint("Finished EVLA_pipe_fake_flagall.py", logfileout='logs/flagall.log')
 logprint("QA2 score: "+QA2_flagall, logfileout='logs/flagall.log')
 time_list = runtiming('flagall', 'end')
 
