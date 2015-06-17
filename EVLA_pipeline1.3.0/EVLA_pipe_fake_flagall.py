@@ -18,12 +18,12 @@ start_flagged = 0.0
 
 init_on_source_vis = 1.0
 
-afterzero_total = 0.0
+afterzero_total = 1.0
 afterzero_flagged = 0.0
 
 zero_flagged = 0.0
 
-aftershadow_total = 0.0
+aftershadow_total = 1.0
 aftershadow_flagged = 0.0
 
 shadow_flagged = 0.0
