@@ -13,7 +13,7 @@ logprint("These value are fake! You should have run the actual flagall script"
          " already in the initial pipeline run! Check those logs for actual"
          " flagging fractions.")
 
-start_total = 0.0
+start_total = 1.0
 start_flagged = 0.0
 
 init_on_source_vis = 1.0
