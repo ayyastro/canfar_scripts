@@ -19,7 +19,7 @@ while [[ $ii -geq 0 ]]; do
     for chan in $running; do
         if [[ -s output_files/output/single_channel_clean_${chan}.out ]]; then
             :
-        else; then
+        else
             next_chan=$($left[0])
             canfar_submit /home/ekoch/code_repos/canfar_scripts/img_pipe/archival_data/single_channel_subs/single_channel_${next_chan}.sub ewk_casa_6_17 126e8ef0-b816-43ed-bd5f-b1d4e16fdda0
             running=( "${running[@]/$chan}" )
