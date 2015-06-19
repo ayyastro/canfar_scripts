@@ -79,8 +79,6 @@ tar -zcf ${ms_name%.ms}.clean.flux.pbcoverage.tar.gz ${ms_name%.ms}.clean.flux.p
 
 # Now copy over the relevant infos
 
-vos:MWSynthesis/VLA/archival/clean_channels/ --mountpoint ${TMPDIR}/vos --cache_dir ${TMPDIR}/vos_cache
-
 vmkdir vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
 
 vcp ${TMPDIR}/proc_${channel}/casa*.log vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
