@@ -37,7 +37,7 @@ left=$(seq 92 96)
 
 ii=4
 
-while [[ $ii -geq 0 ]]; do
+while [[ $ii -ge 0 ]]; do
     for chan in $running; do
         if [[ -s output_files/output/single_channel_clean_${chan}.out ]]; then
             :
