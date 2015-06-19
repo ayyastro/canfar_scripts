@@ -28,9 +28,9 @@
 #     done
 # done
 
-for ((i = 90; i < 92; i++)) do
-    canfar_submit /home/ekoch/code_repos/canfar_scripts/img_pipe/archival_data/single_channel_subs/single_channel_${i}.sub ewk_casa_6_19 126e8ef0-b816-43ed-bd5f-b1d4e16fdda0
-done
+# for ((i = 90; i < 92; i++)) do
+#     canfar_submit /home/ekoch/code_repos/canfar_scripts/img_pipe/archival_data/single_channel_subs/single_channel_${i}.sub ewk_casa_6_19 126e8ef0-b816-43ed-bd5f-b1d4e16fdda0
+# done
 
 running=$(seq 90 92)
 left=$(seq 92 96)
@@ -39,6 +39,7 @@ ii=4
 
 while [[ $ii -ge 0 ]]; do
     for chan in $running; do
+        echo $chan
         if [[ -s output_files/output/single_channel_clean_${chan}.out ]]; then
             :
         else
