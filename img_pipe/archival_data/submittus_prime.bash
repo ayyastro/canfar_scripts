@@ -64,6 +64,7 @@ while [[ $ii -ge 0 ]]; do
             sleep 5
             #canfar_submit /home/ekoch/code_repos/canfar_scripts/img_pipe/archival_data/single_channel_subs/single_channel_${next_chan}.sub ewk_casa_6_19 126e8ef0-b816-43ed-bd5f-b1d4e16fdda0
             ii=$(($ii - 1))
+            chan_ct=$(($chan_ct + 1))
             posn=$(($posn + 1))
 
             running[$chan]=''
