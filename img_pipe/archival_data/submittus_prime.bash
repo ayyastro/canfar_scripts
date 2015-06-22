@@ -48,7 +48,7 @@ while [[ $ii -ge 0 ]]; do
     chan_ct=0
     while [[ ${#running[@]} -ge 0 ]]; do
         chan=${running[$chan_ct]}
-
+        echo "Is "${chan}" done?"
         # Reset counter
         if [[ ${running[$chan_ct]+abc} ]]; then
             chan_ct=0
@@ -60,8 +60,8 @@ while [[ $ii -ge 0 ]]; do
             :
         else
             next_chan=${left[$posn]}
-            echo ${next_chan}
-            sleep 10
+            echo "Yes. Now running "${next_chan}
+            sleep 5
             #canfar_submit /home/ekoch/code_repos/canfar_scripts/img_pipe/archival_data/single_channel_subs/single_channel_${next_chan}.sub ewk_casa_6_19 126e8ef0-b816-43ed-bd5f-b1d4e16fdda0
             ii=$(($ii - 1))
             posn=$(($posn + 1))
@@ -70,7 +70,7 @@ while [[ $ii -ge 0 ]]; do
             running[$next_chan]=${next_chan}
 
             running=( ${running[@]} )
-            echo ${running[@]}
+            echo "These channels remain: "${running[@]}
         fi
 
     done
