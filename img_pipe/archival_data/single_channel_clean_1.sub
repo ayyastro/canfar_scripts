@@ -3,12 +3,62 @@ should_transfer_files = YES
 when_to_transfer_output = ON_EXIT_OR_EVICT
 environment = "HOME=/home/ekoch"
 RunAsOwner = True
+next_job_start_delay=120
 
 transfer_output_files = /dev/null
 
-request_cpus = 2
 
 Executable = code_repos/canfar_scripts/img_pipe/archival_data/single_channel_clean.bash
+Arguments = 80
+Log = output_files/logs/single_channel_clean_80.log
+Output = output_files/output/single_channel_clean_80.out
+Error = output_files/error/single_channel_clean_80.err
+Queue
+Arguments = 81
+Log = output_files/logs/single_channel_clean_81.log
+Output = output_files/output/single_channel_clean_81.out
+Error = output_files/error/single_channel_clean_81.err
+Queue
+Arguments = 82
+Log = output_files/logs/single_channel_clean_82.log
+Output = output_files/output/single_channel_clean_82.out
+Error = output_files/error/single_channel_clean_82.err
+Queue
+Arguments = 83
+Log = output_files/logs/single_channel_clean_83.log
+Output = output_files/output/single_channel_clean_83.out
+Error = output_files/error/single_channel_clean_83.err
+Queue
+Arguments = 84
+Log = output_files/logs/single_channel_clean_84.log
+Output = output_files/output/single_channel_clean_84.out
+Error = output_files/error/single_channel_clean_84.err
+Queue
+Arguments = 85
+Log = output_files/logs/single_channel_clean_85.log
+Output = output_files/output/single_channel_clean_85.out
+Error = output_files/error/single_channel_clean_85.err
+Queue
+Arguments = 86
+Log = output_files/logs/single_channel_clean_86.log
+Output = output_files/output/single_channel_clean_86.out
+Error = output_files/error/single_channel_clean_86.err
+Queue
+Arguments = 87
+Log = output_files/logs/single_channel_clean_87.log
+Output = output_files/output/single_channel_clean_87.out
+Error = output_files/error/single_channel_clean_87.err
+Queue
+Arguments = 88
+Log = output_files/logs/single_channel_clean_88.log
+Output = output_files/output/single_channel_clean_88.out
+Error = output_files/error/single_channel_clean_88.err
+Queue
+Arguments = 89
+Log = output_files/logs/single_channel_clean_89.log
+Output = output_files/output/single_channel_clean_89.out
+Error = output_files/error/single_channel_clean_89.err
+Queue
 Arguments = 90
 Log = output_files/logs/single_channel_clean_90.log
 Output = output_files/output/single_channel_clean_90.out
@@ -58,4 +108,9 @@ Arguments = 99
 Log = output_files/logs/single_channel_clean_99.log
 Output = output_files/output/single_channel_clean_99.out
 Error = output_files/error/single_channel_clean_99.err
+Queue
+Arguments = 100
+Log = output_files/logs/single_channel_clean_100.log
+Output = output_files/output/single_channel_clean_100.out
+Error = output_files/error/single_channel_clean_100.err
 Queue
