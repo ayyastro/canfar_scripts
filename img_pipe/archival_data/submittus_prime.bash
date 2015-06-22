@@ -55,7 +55,6 @@ while [[ $ii -ge 0 ]]; do
             chan=${running[$chan_ct]}
         fi
 
-        echo $chan
         if [[ -s output_files/output/single_channel_clean_${chan}.out ]]; then
             :
         else
@@ -71,7 +70,7 @@ while [[ $ii -ge 0 ]]; do
             running[$next_chan]=${next_chan}
 
             running=( ${running[@]} )
-            echo "These channels remain: "${running[@]}
+            echo "These channels remain running: "${running[@]}
         fi
 
     done
