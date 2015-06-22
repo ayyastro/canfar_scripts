@@ -51,6 +51,7 @@ while [[ $ii -ge 0 ]]; do
         echo "Is "${chan}" done?"
         # Reset counter
         if [[ ${running[$chan_ct]+abc} ]]; then
+            echo "Resesting channel counter."
             chan_ct=0
             chan=${running[$chan_ct]}
         fi
