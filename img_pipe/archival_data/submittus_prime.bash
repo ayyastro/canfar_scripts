@@ -61,6 +61,7 @@ while [[ $ii -ge 0 ]]; do
         else
             next_chan=${left[$posn]}
             echo ${next_chan}
+            sleep 10
             #canfar_submit /home/ekoch/code_repos/canfar_scripts/img_pipe/archival_data/single_channel_subs/single_channel_${next_chan}.sub ewk_casa_6_19 126e8ef0-b816-43ed-bd5f-b1d4e16fdda0
             ii=$(($ii - 1))
             posn=$(($posn + 1))
