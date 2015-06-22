@@ -59,6 +59,7 @@ while [[ $ii -ge 0 ]]; do
             running[$next_chan]=${next_chan}
 
             running=( ${running[@]} )
+            echo ${running[@]}
         fi
     done
 done
