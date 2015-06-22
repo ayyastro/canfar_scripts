@@ -32,15 +32,20 @@
 #     canfar_submit /home/ekoch/code_repos/canfar_scripts/img_pipe/archival_data/single_channel_subs/single_channel_${i}.sub ewk_casa_6_19 126e8ef0-b816-43ed-bd5f-b1d4e16fdda0
 # done
 
-running=$(seq 90 92)
 left=($(seq 93 96))
 
-ii=4
+running=([90]=90)
+
+for (( i = 91; i < 92; i++ )); do
+    running+=([$i]=$i)
+done
+
+ii=3
 
 posn=0
 
 while [[ $ii -ge 0 ]]; do
-    for chan in $running; do
+    for chan in ${running[@]}; do
         echo $chan
         if [[ -s output_files/output/single_channel_clean_${chan}.out ]]; then
             :
@@ -49,6 +54,11 @@ while [[ $ii -ge 0 ]]; do
             canfar_submit /home/ekoch/code_repos/canfar_scripts/img_pipe/archival_data/single_channel_subs/single_channel_${next_chan}.sub ewk_casa_6_19 126e8ef0-b816-43ed-bd5f-b1d4e16fdda0
             ii=$(($ii - 1))
             posn=$(($posn + 1))
+
+            running[$chan]=''
+            running[$next_chan]=${next_chan}
+
+            running=( ${running[@]} )
         fi
     done
 done
