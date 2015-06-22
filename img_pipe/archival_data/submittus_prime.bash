@@ -72,7 +72,7 @@ while [[ $ii -ge 0 ]]; do
 
             running=( ${running[@]} )
             echo "These channels remain running: "${running[@]}
+            echo ${#running[@]}
         fi
-
     done
 done
