@@ -45,7 +45,16 @@ ii=3
 posn=0
 
 while [[ $ii -ge 0 ]]; do
-    for chan in ${running[@]}; do
+    chan_ct=0
+    while [[ ${#running[@]} -ge 0 ]]; do
+        chan=${running[$chan_ct]}
+
+        # Reset counter
+        if [[ ! ${running[$chan_ct]+abc} ]]; then
+            chan_ct=0
+            chan=${running[$chan_ct]}
+        fi
+
         echo $chan
         if [[ -s output_files/output/single_channel_clean_${chan}.out ]]; then
             :
@@ -61,5 +70,6 @@ while [[ $ii -ge 0 ]]; do
             running=( ${running[@]} )
             echo ${running[@]}
         fi
+
     done
 done
