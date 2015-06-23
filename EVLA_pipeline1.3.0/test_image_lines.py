@@ -10,15 +10,15 @@ pipepath = '/lustre/aoc/observers/nm-7669/canfar_scripts/EVLA_pipeline1.3.0/'
 
 execfile(pipepath+"EVLA_pipe_restore.py")
 
+ms_name = ms_active
+
 # Based on C config beam
 myimsize = 2048
 mycell = "3arcsec"
 
 try:
-    ms_name = sys.argv[1]
-    what_to_image = sys.argv[2]
+    what_to_image = sys.argv[1]
 except IndexError:
-    ms_name = raw_input("MS Name? : ")
     what_to_image = str(raw_input("Image cals, sources or both? : "))
 
 if what_to_image != "cals" or what_to_image != "sources" or what_to_image != "both":
