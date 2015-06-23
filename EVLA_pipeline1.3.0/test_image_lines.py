@@ -34,6 +34,9 @@ ref_freqs = tb.getcol('REF_FREQUENCY')
 tb.close()
 
 for i in spws:
+
+    print("On SPW "+str(i)+" of "+str(len(spws)))
+
     if what_to_image == "cals" or what_to_image == "both":
         for cal_field in calibrator_field_list:
             print("Imaging calibrator in SPW "+str(i))
@@ -80,6 +83,9 @@ for i in spws:
 
     # Now image the central channels of the source
     if what_to_image == "sources" or what_to_image == "both":
+
+        print("Imaging source in SPW "+str(i))
+
         try:
             imname = "test_images/source_field" + "_spw" + str(i)
 
