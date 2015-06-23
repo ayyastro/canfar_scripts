@@ -93,7 +93,7 @@ for i in spws:
             mode = 'channel'
             nchan = 1
             width = 1
-            start = nchans[i] / 2
+            start = int(nchans[i] / 2)
             reffreq = ''
             gridmode = ''
             niter = 0
