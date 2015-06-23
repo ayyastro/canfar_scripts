@@ -16,7 +16,7 @@ for i in spws:
         print("Imaging calibrator in SPW "+str(i))
 
         try:
-            imname = "calibrator_field" + str(jj) + "_spw" + str(ii) + ".image"
+            imname = "calibrator_field" + str(cal_field) + "_spw" + str(i) + ".image"
 
             default('clean')
             vis = 'calibrators.ms'
