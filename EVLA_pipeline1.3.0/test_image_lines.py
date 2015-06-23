@@ -19,7 +19,7 @@ try:
     what_to_image = sys.argv[2]
 except IndexError:
     ms_name = raw_input("MS Name? : ")
-    what_to_image = raw_input("Image cals, sources or both? : ")
+    what_to_image = str(raw_input("Image cals, sources or both? : "))
 
 if what_to_image != "cals" or what_to_image != "sources" or what_to_image != "both":
     raise TypeError("what_to_image must be 'cals', 'sources', or 'both'.")
