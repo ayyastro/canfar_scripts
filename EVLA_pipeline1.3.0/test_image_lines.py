@@ -21,6 +21,8 @@ try:
 except IndexError:
     what_to_image = str(raw_input("Image cals, sources or both? : "))
 
+print what_to_image
+
 if what_to_image != "cals" or what_to_image != "sources" or what_to_image != "both":
     raise TypeError("what_to_image must be 'cals', 'sources', or 'both'.")
 
