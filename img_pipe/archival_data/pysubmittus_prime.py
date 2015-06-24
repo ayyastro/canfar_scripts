@@ -72,9 +72,6 @@ while len(left) > 0:
         output_file = \
             "output_files/output/single_channel_clean_"+str(chan_run)+".out"
 
-        print output_file
-        print exists_and_not_empty(output_file)
-
         if exists_and_not_empty(output_file):
             print("Channel " + str(chan_run) + " is finished at " +
                   str(datetime.datetime.now()))
