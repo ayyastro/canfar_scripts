@@ -68,7 +68,7 @@ while len(left) > 0:
 
     new_running = 0
 
-    for posn, chan_run in running:
+    for chan_run in running:
         output_file = \
             "output_files/output/single_channel_clean_"+str(chan_run)+".out"
 
