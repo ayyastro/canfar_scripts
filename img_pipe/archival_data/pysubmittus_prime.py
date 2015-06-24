@@ -66,7 +66,7 @@ left = list(set(chan_nums) - set(running))
 
 while len(left) > 0:
 
-    new_running = 0
+    new_running = []
 
     for chan_run in running:
         output_file = \
