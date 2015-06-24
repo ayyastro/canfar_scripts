@@ -32,7 +32,7 @@ for spw_num in spws:
     default('plotms')
     vis = vis_name
     xaxis = 'channel'
-    yaxis = 'amp'
+    yaxis = 'phase'
     ydatacolumn = 'corrected'
     selectdata = True
     field = field_name
@@ -57,7 +57,7 @@ for spw_num in spws:
     default('plotms')
     vis = vis_name
     xaxis = 'channel'
-    yaxis = 'phase'
+    yaxis = 'amp'
     ydatacolumn = 'corrected'
     selectdata = True
     field = field_name
