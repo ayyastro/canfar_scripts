@@ -8,7 +8,6 @@ import sys
 import subprocess
 import glob
 import warnings
-import numpy as np
 import datetime
 
 
@@ -43,7 +42,7 @@ subs = glob.glob(os.path.join([path_to_repo, "single_channel_subs/*.sub"]))
 # Extract the channel numbers from the sub files.
 chan_nums = [sub.split("_")[-1][:-4] for sub in subs]
 
-submitted = np.empty((len(subs), ))
+submitted = []
 
 running = []
 
@@ -53,8 +52,10 @@ current_posn = 0
 for sub in subs[:max_num]:
     if can_submit(sub):
         print("Submitted : " + str(chan_nums[current_posn]))
-        submitted[current_posn] = True
+        submitted.append(True)
         running.append(chan_nums[current_posn])
+    else:
+        submitted.append(False)
     current_posn += 1
 
 completed = []
@@ -80,8 +81,10 @@ while len(left) > 0:
             # Now start running the next channel
             if can_submit(subs[current_posn]):
                 print("Submitted : " + str(chan_nums[current_posn]))
-                submitted[current_posn] = True
+                submitted.append(True)
                 new_running.append(chan_nums[current_posn])
+            else:
+                submitted.append(False)
 
             # Delete channel from remaining
             left.remove(chan_nums[current_posn])
