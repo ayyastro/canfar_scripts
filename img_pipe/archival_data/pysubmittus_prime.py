@@ -49,7 +49,7 @@ running = []
 current_posn = 0
 
 # Submit the first max_num jobs
-for sub in subs[:max_num]:
+for sub in subs[:max_num-1]:
     if can_submit(sub):
         print("Submitted : " + str(chan_nums[current_posn]))
         submitted.append(True)
