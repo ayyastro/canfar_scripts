@@ -25,7 +25,7 @@ def can_submit(sub_file, vm_name="ewk_casa_6_19",
 
 
 def exists_and_not_empty(filename):
-    if os.path.isfile(filename) and os.path.getsize > 0:
+    if os.path.isfile(filename) and os.path.getsize(filename) > 0:
         return True
     else:
         return False
