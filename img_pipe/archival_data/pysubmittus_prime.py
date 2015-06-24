@@ -33,7 +33,7 @@ def exists_and_not_empty(filename):
 
 print("Starting at " + str(datetime.datetime.now()))
 
-max_num = sys.argv[1]
+max_num = int(sys.argv[1])
 path_to_repo = "code_repos/canfar_scripts/img_pipe/archival_data/"
 
 # Grab the individual sub files.
