@@ -37,7 +37,7 @@ max_num = sys.argv[1]
 path_to_repo = "code_repos/canfar_scripts/img_pipe/archival_data/"
 
 # Grab the individual sub files.
-subs = glob.glob(os.path.join([path_to_repo, "single_channel_subs/*.sub"]))
+subs = glob.glob(os.path.join(path_to_repo, "single_channel_subs/*.sub"))
 
 # Extract the channel numbers from the sub files.
 chan_nums = [sub.split("_")[-1][:-4] for sub in subs]
