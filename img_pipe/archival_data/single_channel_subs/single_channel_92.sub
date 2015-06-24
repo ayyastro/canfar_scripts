@@ -3,11 +3,10 @@ should_transfer_files = YES
 when_to_transfer_output = ON_EXIT_OR_EVICT
 environment = "HOME=/home/ekoch"
 RunAsOwner = True
+next_job_start_delay=120
 
 transfer_output_files = /dev/null
 
-request_memory = 8 G
-request_cpus = 2
 
 Executable = code_repos/canfar_scripts/img_pipe/archival_data/single_channel_clean.bash
 Arguments = 92
