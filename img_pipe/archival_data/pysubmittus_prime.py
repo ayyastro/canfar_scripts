@@ -11,7 +11,7 @@ import warnings
 import datetime
 
 
-def can_submit(sub_file, vm_name="ewk_casa_6_19",
+def can_submit(sub_file, vm_name="ewk_casa4.4_6_24",
                flavor="126e8ef0-b816-43ed-bd5f-b1d4e16fdda0"):
     '''
     Call to submit a job.
