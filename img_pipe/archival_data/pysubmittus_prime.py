@@ -13,7 +13,7 @@ import time
 
 
 def can_submit(sub_file, vm_name="ewk_casa4.3.1_6_25",
-               flavor="126e8ef0-b816-43ed-bd5f-b1d4e16fdda0"):
+               flavor="6164f230-4859-4bf5-8f5b-fc450d8a8fb0"):
     '''
     Call to submit a job.
     '''
