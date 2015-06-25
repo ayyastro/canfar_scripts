@@ -4,6 +4,12 @@ Creates a list of all files within a directory, then copies each over to
 VOS.
 
 Run getCert before this script.
+
+Call sequence:
+ 1 - folder -- str
+ 2 - Root of the vos file -- str
+ 3 - Number of tries before giving up. -- int
+ 4 - Overwrite existing file? -- True or False
 '''
 
 import vos
