@@ -59,7 +59,14 @@ for (root, direc, files) in os.walk(folder):
         if client.isfile(file_path):
             if overwrite:
                 logging.info("Overwriting %s", file_path)
-                client.delete(file_path)
+                if client.delete(file_path):
+                    logging.info("Successfully deleted %s", file_path)
+                else:
+                    logging.warning("Could not delete %s", file_path)
+                    logging.warning("Do you have permission to delete?")
+                    logging.warning("Skipping %s", file_path)
+                    failed_list.append([root, None, f])
+                    continue
             else:
                 logging.info("%s already exists. Skipping.", file_path)
                 continue
