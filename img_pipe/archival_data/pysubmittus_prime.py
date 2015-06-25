@@ -9,6 +9,7 @@ import subprocess
 import glob
 import warnings
 import datetime
+import time
 
 
 def can_submit(sub_file, vm_name="ewk_casa4.3.1_6_25",
@@ -57,6 +58,7 @@ for sub in subs[:max_num]:
     else:
         submitted.append(False)
     current_posn += 1
+    time.sleep(10)
 
 completed = []
 left = list(set(chan_nums) - set(running))
