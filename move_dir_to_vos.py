@@ -21,7 +21,7 @@ overwrite = True if sys.argv[4] == "True" else False
 # Start logging
 logging.basicConfig(
         filename=folder.rstrip("/")+"_"+str(datetime.datetime.now())+".log",
-        level=logging.DEBUG,
+        level=logging.WARNING,
         format='%(asctime)s %(levelname)s:%(message)s')
 
 logging.info("Starting at %s", str(datetime.datetime.now()))
