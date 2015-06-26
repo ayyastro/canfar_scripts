@@ -18,6 +18,20 @@ import sys
 import logging
 import datetime
 
+
+def try_return_bool(func, args):
+    '''
+    Returns a boolean if error is raised.
+    '''
+
+    try:
+        func(*args)
+        return True
+    except IOError, e:
+        logging.warning("Failed with %s", e)
+        return False
+
+
 # Input a directory to copy over
 folder = sys.argv[1]
 vos_root = sys.argv[2]
@@ -45,7 +59,7 @@ for (root, direc, files) in os.walk(folder):
         ntry = 0
         logging.info("%s does not exist yet.", vos_direc)
         while ntry <= ntries:
-            if client.mkdir(vos_direc):
+            if try_return_bool(client.mkdir, [vos_direc]):
                 logging.info("%s created.", vos_direc)
                 break
             ntry += 1
@@ -65,7 +79,7 @@ for (root, direc, files) in os.walk(folder):
         if client.isfile(file_path):
             if overwrite:
                 logging.info("Overwriting %s", file_path)
-                if client.delete(file_path):
+                if try_return_bool(client.delete, [file_path]):
                     logging.info("Successfully deleted %s", file_path)
                 else:
                     logging.warning("Could not delete %s", file_path)
@@ -78,7 +92,7 @@ for (root, direc, files) in os.walk(folder):
                 continue
 
         while ntry <= ntries:
-            if client.copy(file_path, vos_path):
+            if try_return_bool(client.copy, [file_path, vos_path]):
                 logging.info("Successfully copied %s", vos_path)
                 break
             ntry += 1
