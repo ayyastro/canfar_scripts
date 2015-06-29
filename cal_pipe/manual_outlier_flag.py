@@ -33,7 +33,6 @@ for spw_num in spws:
     selectdata = True
     field = ''
     spw = str(spw_num)
-    scan = bp_scan
     correlation = corrstring
     averagedata = False
     avgscan = False
