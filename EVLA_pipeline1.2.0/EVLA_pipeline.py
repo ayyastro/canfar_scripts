@@ -52,7 +52,7 @@ if casa_version < 410:
     sys.exit("Your CASA version is "+casadef.casa_version+", please re-start using CASA 4.1.0")
 
 # Define location of pipeline
-pipepath='/lustre/aoc/cluster/pipeline/script/prod/'
+pipepath='/home/ekoch/canfar_scripts/EVLA_pipeline1.2.0/'
 
 
 #This is the default time-stamped casa log file, in case we
@@ -81,12 +81,12 @@ if not os.path.exists(timing_file):
     timelog=open(timing_file,'w')
 else:
     timelog=open(timing_file,'a')
-    
+
 def runtiming(pipestate, status):
     '''Determine profile for a given state/stage of the pipeline
     '''
     time_list.append({'pipestate':pipestate, 'time':time.time(), 'status':status})
-    
+
     if (status == "end"):
         timelog=open(timing_file,'a')
         timelog.write(pipestate+': '+str(time_list[-1]['time'] - time_list[-2]['time'])+' sec \n')
@@ -97,7 +97,7 @@ def runtiming(pipestate, status):
         #    casalogfile.write(tempfile.read())
         #    tempfile.close()
         #casalogfile.close()
-        
+
     return time_list
 
 ######################################################################
@@ -152,7 +152,7 @@ try:
 ######################################################################
 
 # PRIOR CALIBRATIONS
-# Gain curves, opacities, antenna position corrections, 
+# Gain curves, opacities, antenna position corrections,
 # requantizer gains (NB: requires CASA 4.1!).  Also plots switched
 # power tables, but these are not currently used in the calibration
 
@@ -197,7 +197,7 @@ try:
 # of the bandpass calibrator)
 
     execfile(pipepath+'EVLA_pipe_semiFinalBPdcals1.py')
-    
+
 ######################################################################
 
 # Use flagdata again on calibrators
