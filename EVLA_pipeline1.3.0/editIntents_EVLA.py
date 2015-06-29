@@ -18,7 +18,7 @@ def editIntents(msName='', field='', scan='', newintents='', help=False,
     """
     validIntents = ['AMPLITUDE', 'ATMOSPHERE', 'BANDPASS', 'DELAY', 'FLUX',
                     'PHASE', 'SIDEBAND_RATIO', 'TARGET', 'WVR', 'POL_ANGLE',
-                    'POL_LEAKAGE', 'CALIBRATE_AMPLI', 'SYS_CONFIG'
+                    'POL_LEAKAGE', 'CALIBRATE_AMPLI', 'SYS_CONFIG',
                     'CALIBRATE_ATMOSPHERE', 'CALIBRATE_BANDPASS',
                     'CALIBRATE_DELAY', 'CALIBRATE_FLUX', 'CALIBRATE_PHASE',
                     'CALIBRATE_SIDEBAND_RATIO', 'OBSERVE_TARGET',
