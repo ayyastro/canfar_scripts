@@ -18,7 +18,7 @@ def editIntents(msName='', field='', scan='', newintents='', help=False,
     """
     validIntents = ['AMPLITUDE', 'ATMOSPHERE', 'BANDPASS', 'DELAY', 'FLUX',
                     'PHASE', 'SIDEBAND_RATIO', 'TARGET', 'WVR', 'POL_ANGLE',
-                    'POL_LEAKAGE', 'CALIBRATE_AMPLI',
+                    'POL_LEAKAGE', 'CALIBRATE_AMPLI', 'SYS_CONFIG'
                     'CALIBRATE_ATMOSPHERE', 'CALIBRATE_BANDPASS',
                     'CALIBRATE_DELAY', 'CALIBRATE_FLUX', 'CALIBRATE_PHASE',
                     'CALIBRATE_SIDEBAND_RATIO', 'OBSERVE_TARGET',
@@ -135,6 +135,8 @@ def editIntents(msName='', field='', scan='', newintents='', help=False,
                 states.append('CALIBRATE_POL_ANGLE#UNSPECIFIED')
             elif desiredintent.find('POL_LEAKAGE') >= 0:
                 states.append('CALIBRATE_POL_LEAKAGE#UNSPECIFIED')
+            elif desiredintent.find('SYS_CONFIG') >= 0:
+                states.append('SYSTEM_CONFIGURATION#UNSPECIFIED')
             else:
                 print "Unrecognized intent = %s" % desiredintent
                 continue
