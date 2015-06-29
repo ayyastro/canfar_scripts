@@ -46,3 +46,5 @@ for spw_num in spws:
     showmajorgrid = False
     showminorgrid = False
     plotms()
+
+    raw_input("Continue?")
