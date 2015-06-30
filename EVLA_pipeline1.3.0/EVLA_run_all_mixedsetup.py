@@ -20,9 +20,11 @@ do not have rflag run on them.
 try:
     vis = sys.argv[1]
     path_to_pipeline = sys.argv[2]
+    hanning_smooth = sys.argv[3]
 except IndexError:
-    vis = raw_input("MS File?")
-    path_to_pipeline = raw_input("Path to pipeline?")
+    vis = raw_input("MS File? : ")
+    path_to_pipeline = raw_input("Path to pipeline? : ")
+    hanning_smooth = raw_input("Hanning smooth? : ")
 
 if vis[-1] == "/":
     vis = vis[:-1]
@@ -35,7 +37,10 @@ SDM_name = vis[:-3]
 SDM_name_orig = copy.copy(SDM_name)
 
 # Set Hanning smoothing
-myHanning = 'y'
+if hanning_smooth == 'y':
+    myHanning = 'y'
+else:
+    myHanning = 'n'
 
 # Figure out which are the lines and which are the continuum SPWs.
 
