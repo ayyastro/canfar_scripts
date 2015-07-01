@@ -7,13 +7,16 @@ import sys
 import os
 
 try:
-    pipepath = sys.argv[1]
+    new_pipepath = sys.argv[1]
 except IndexError:
-    pipepath = raw_input("Pipepath? : ")
+    new_pipepath = raw_input("Pipepath? : ")
 
 # pipepath = '/lustre/aoc/observers/nm-7669/canfar_scripts/EVLA_pipeline1.3.0/'
 
-execfile(os.path.join(pipepath, "EVLA_pipe_restore.py"))
+# Optionally update the pipeline.restore file
+# subprocess.call([])
+
+execfile(os.path.join(new_pipepath, "EVLA_pipe_restore.py"))
 
 ms_name = ms_active
 
