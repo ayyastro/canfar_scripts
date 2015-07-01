@@ -24,9 +24,8 @@ for spw in spws:
     print("On spw "+str(spw)+" of "+str(len(nchans)))
     freqdevscale = 4.0
     timedevscale = 4.0
+    print("Starting at freqdevscale = %s and timedevscale = %s" % (freqdevscale, timedevscale))
     while True:
-
-        print("Starting at ")
         flagdata(vis=ms_name, mode='rflag', field='3C48*',
                  spw=str(spw), datacolumn='corrected',
                  action='calculate', display='both',
