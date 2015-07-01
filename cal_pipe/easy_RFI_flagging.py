@@ -7,12 +7,12 @@ Easier searching for good RFI flagging values
 '''
 
 try:
-    vis = sys.argv[1]
+    ms_name = sys.argv[1]
 except IndexError:
-    vis = raw_input("Input vis? : ")
+    ms_name = raw_input("Input vis? : ")
 
 # Just want the number of SPWs
-tb.open(os.path.join(vis, "SPECTRAL_WINDOW"))
+tb.open(os.path.join(ms_name, "SPECTRAL_WINDOW"))
 nchans = tb.getcol('NUM_CHAN')
 tb.close()
 
@@ -27,7 +27,7 @@ for spw in spws:
     while True:
 
         print("Starting at ")
-        flagdata(vis=vis, mode='rflag', field='3C48*',
+        flagdata(vis=ms_name, mode='rflag', field='3C48*',
                  spw=str(spw), datacolumn='corrected',
                  action='calculate', display='both',
                  freqdevscale=freqdevscale, timedevscale=timedevscale,
