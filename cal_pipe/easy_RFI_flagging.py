@@ -13,7 +13,7 @@ try:
 except IndexError:
     ms_name = raw_input("Input vis? : ")
     apply_flagging = True if raw_input("Apply the flagging? : ") == "True" else False
-    extend_pol = True if raw_input("Extend across pols?") == "True" else False
+    extend_pol = True if raw_input("Extend across pols? : ") == "True" else False
 
 # Just want the number of SPWs
 tb.open(os.path.join(ms_name, "SPECTRAL_WINDOW"))
