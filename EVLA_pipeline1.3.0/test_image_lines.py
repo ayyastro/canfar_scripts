@@ -6,9 +6,14 @@ Create test images of the central channels using the calibrator.
 import sys
 import os
 
-pipepath = '/lustre/aoc/observers/nm-7669/canfar_scripts/EVLA_pipeline1.3.0/'
+try:
+    pipepath = sys.argv[1]
+except IndexError:
+    pipepath = raw_input("Pipepath? : ")
 
-execfile(pipepath+"EVLA_pipe_restore.py")
+# pipepath = '/lustre/aoc/observers/nm-7669/canfar_scripts/EVLA_pipeline1.3.0/'
+
+execfile(os.path.join(pipepath, "EVLA_pipe_restore.py"))
 
 ms_name = ms_active
 
@@ -17,7 +22,7 @@ myimsize = 2048
 mycell = "3arcsec"
 
 try:
-    what_to_image = sys.argv[1]
+    what_to_image = sys.argv[2]
 except IndexError:
     what_to_image = str(raw_input("Image cals, sources or both? : "))
 
