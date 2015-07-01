@@ -21,14 +21,14 @@ spws = range(len(nchans))
 default('flagdata')
 
 for spw in spws:
-    print("On spw "+spw+" of "+len(nchans))
+    print("On spw "+str(spw)+" of "+len(nchans))
     freqdevscale = 4.0
     timedevscale = 4.0
     while True:
 
         print("Starting at ")
         flagdata(vis=vis, mode='rflag', field='3C48*',
-                 spw='0', datacolumn='corrected',
+                 spw=str(spw), datacolumn='corrected',
                  action='calculate', display='both',
                  freqdevscale=freqdevscale, timedevscale=timedevscale,
                  flagbackup=False)
