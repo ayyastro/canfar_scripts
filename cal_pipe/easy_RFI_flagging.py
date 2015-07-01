@@ -20,7 +20,7 @@ spws = range(len(nchans))
 
 default('flagdata')
 
-for spw in range(spws):
+for spw in spws:
     print("On spw "+spw+" of "+len(nchans))
     freqdevscale = 4.0
     timedevscale = 4.0
