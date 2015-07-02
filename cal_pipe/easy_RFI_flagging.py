@@ -6,14 +6,24 @@ import os
 Easier searching for good RFI flagging values
 '''
 
+
+def if_empty_return_old(string, old_val):
+    if string == "":
+        return old_val
+    else:
+        return float(string)
+
+
 try:
     ms_name = sys.argv[1]
     apply_flagging = True if sys.argv[2] == "True" else False
     extend_pol = True if sys.argv[3] == "True" else False
 except IndexError:
     ms_name = raw_input("Input vis? : ")
-    apply_flagging = True if raw_input("Apply the flagging? : ") == "True" else False
-    extend_pol = True if raw_input("Extend across pols? : ") == "True" else False
+    apply_flagging = \
+        True if raw_input("Apply the flagging? : ") == "True" else False
+    extend_pol = \
+        True if raw_input("Extend across pols? : ") == "True" else False
 
 # Just want the number of SPWs
 tb.open(os.path.join(ms_name, "SPECTRAL_WINDOW"))
@@ -28,9 +38,10 @@ for spw in spws:
     print("On spw "+str(spw)+" of "+str(len(nchans)))
     freqdevscale = 4.0
     timedevscale = 4.0
-    growtime=99.0
-    growfreq=99.0
-    print("Starting at freqdevscale = %s and timedevscale = %s" % (freqdevscale, timedevscale))
+    growtime = 99.0
+    growfreq = 99.0
+    print("Starting at freqdevscale = %s and timedevscale = %s" %
+          (freqdevscale, timedevscale))
     print("Starting at growfreq = %s and growtime = %s" % (growfreq, growtime))
     while True:
         flagdata(vis=ms_name, mode='rflag', field='3C48*',
@@ -43,11 +54,18 @@ for spw in spws:
         adjust = True if raw_input("New thresholds? : ") == "True" else False
 
         if adjust:
-            print("Current freqdevscale and timedevscale: %s %s" % (freqdevscale, timedevscale))
-            freqdevscale = float(raw_input("New freqdevscale : "))
-            timedevscale = float(raw_input("New timedevscale : "))
-            growfreq = float(raw_input("New growfreq : "))
-            growtime = float(raw_input("New growtime : "))
+            print("Current freqdevscale and timedevscale: %s %s" %
+                  (freqdevscale, timedevscale))
+            freqdevscale = \
+                if_empty_return_old(raw_input("New freqdevscale : "),
+                                    freqdevscale)
+            timedevscale = \
+                if_empty_return_old(raw_input("New timedevscale : "),
+                                    timedevscale)
+            growfreq = if_empty_return_old(raw_input("New growfreq : "),
+                                           growfreq)
+            growtime = if_empty_return_old(raw_input("New growtime : "),
+                                           growtime)
         else:
             break
 
@@ -61,7 +79,8 @@ for spw in spws:
             flagdata(vis=vos, spw=str(spw),
                      action='apply', display='')
 
-        obliterate = True if raw_input("Flag whole SPW? : ") == "True" else False
+        obliterate = \
+            True if raw_input("Flag whole SPW? : ") == "True" else False
 
         if obliterate:
             flagdata(vis=vis, spw=str(spw))
