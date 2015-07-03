@@ -72,18 +72,18 @@ for spw in spws:
     # Now apply the flagging
     if apply_flagging:
         if extend_pol:
-            flagdata(vis=vis, mode='extend',
+            flagdata(vis=ms_name, mode='extend',
                      spw=str(spw), extendpols=True,
                      action='apply', display='')
         else:
-            flagdata(vis=vos, spw=str(spw),
+            flagdata(vis=ms_name, spw=str(spw),
                      action='apply', display='')
 
         obliterate = \
             True if raw_input("Flag whole SPW? : ") == "True" else False
 
         if obliterate:
-            flagdata(vis=vis, spw=str(spw))
+            flagdata(vis=ms_name, spw=str(spw))
             print("Flagged all of SPW " + str(spw))
     else:
         print("Applying not enabled.")
