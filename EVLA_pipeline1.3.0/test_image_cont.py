@@ -106,7 +106,7 @@ for i in spws:
             imsize = [myimsize, myimsize]
             cell = [mycell, mycell]
             phasecenter = 'J2000 01h33m50.904 +30d39m35.79'
-            restfreq = str(restfreq)+"Hz"
+            restfreq = str(ref_freqs[i])+"Hz"
             stokes = 'I'
             weighting = 'natural'
             uvtaper = False
