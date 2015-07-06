@@ -44,7 +44,7 @@ for spw in spws:
           (freqdevscale, timedevscale))
     print("Starting at growfreq = %s and growtime = %s" % (growfreq, growtime))
     while True:
-        flagdata(vis=ms_name, mode='rflag', field='3C48*',
+        flagdata(vis=ms_name, mode='rflag', field='*3C48*',
                  spw=str(spw), datacolumn='corrected',
                  action='calculate', display='both',
                  freqdevscale=freqdevscale, timedevscale=timedevscale,
