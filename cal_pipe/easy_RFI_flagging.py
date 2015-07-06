@@ -84,7 +84,7 @@ for spw in spws:
                          spw=str(spw), extendpols=True,
                          action='apply', display='')
             else:
-                flagdata(vis=ms_name, spw=str(spw), extendpols=False
+                flagdata(vis=ms_name, spw=str(spw), extendpols=False,
                          action='apply', display='')
 
             params_used[spw, :] = \
