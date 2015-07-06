@@ -71,13 +71,18 @@ for spw in spws:
 
     # Now apply the flagging
     if apply_flagging:
-        if extend_pol:
-            flagdata(vis=ms_name, mode='extend',
-                     spw=str(spw), extendpols=True,
-                     action='apply', display='')
-        else:
-            flagdata(vis=ms_name, spw=str(spw),
-                     action='apply', display='')
+
+        apply_rfi = True if raw_input("Apply RFI flagging? : ") == "True" else False
+
+        if apply_rfi:
+
+            if extend_pol:
+                flagdata(vis=ms_name, mode='extend',
+                         spw=str(spw), extendpols=True,
+                         action='apply', display='')
+            else:
+                flagdata(vis=ms_name, spw=str(spw),
+                         action='apply', display='')
 
         obliterate = \
             True if raw_input("Flag whole SPW? : ") == "True" else False
