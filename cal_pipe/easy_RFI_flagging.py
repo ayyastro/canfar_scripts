@@ -1,6 +1,7 @@
 
 import sys
 import os
+import numpy as np
 
 '''
 Easier searching for good RFI flagging values
@@ -31,6 +32,8 @@ nchans = tb.getcol('NUM_CHAN')
 tb.close()
 
 spws = range(len(nchans))
+
+params_used = np.empty((4, len(nchans)))
 
 default('flagdata')
 
@@ -84,12 +87,24 @@ for spw in spws:
                 flagdata(vis=ms_name, spw=str(spw),
                          action='apply', display='')
 
+            params_used[:, spw] = \
+                [freqdevscale, timedevscale, growfreq, growtime]
+
+        else:
+            params_used[:, spw] = \
+                [np.NaN, np.NaN, np.NaN, np.NaN]
+
+
         obliterate = \
             True if raw_input("Flag whole SPW? : ") == "True" else False
 
         if obliterate:
             flagdata(vis=ms_name, spw=str(spw))
             print("Flagged all of SPW " + str(spw))
+            params_used[:, spw] = [0.0, 0.0, 0.0, 0.0]
+
+        np.savetxt(ms_name[:-3]+"_RFI_params.txt", params_used,
+                   header="freqdevscale, timedevscale, growfreq, growtime")
+
     else:
         print("Applying not enabled.")
-
