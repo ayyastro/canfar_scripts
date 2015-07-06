@@ -33,7 +33,7 @@ tb.close()
 
 spws = range(len(nchans))
 
-params_used = np.empty((4, len(nchans)))
+params_used = np.empty((len(nchans), 4))
 
 default('flagdata')
 
@@ -87,11 +87,11 @@ for spw in spws:
                 flagdata(vis=ms_name, spw=str(spw),
                          action='apply', display='')
 
-            params_used[:, spw] = \
+            params_used[spw, :] = \
                 [freqdevscale, timedevscale, growfreq, growtime]
 
         else:
-            params_used[:, spw] = \
+            params_used[spw, :] = \
                 [np.NaN, np.NaN, np.NaN, np.NaN]
 
 
@@ -101,10 +101,12 @@ for spw in spws:
         if obliterate:
             flagdata(vis=ms_name, spw=str(spw))
             print("Flagged all of SPW " + str(spw))
-            params_used[:, spw] = [0.0, 0.0, 0.0, 0.0]
-
-        np.savetxt(ms_name[:-3]+"_RFI_params.txt", params_used,
-                   header="freqdevscale, timedevscale, growfreq, growtime")
+            params_used[spw, :] = [0.0, 0.0, 0.0, 0.0]
 
     else:
         print("Applying not enabled.")
+
+if apply_flagging:
+    np.savetxt(ms_name[:-3]+"_RFI_params.txt", params_used,
+               header="freqdevscale, timedevscale, growfreq, growtime")
+
