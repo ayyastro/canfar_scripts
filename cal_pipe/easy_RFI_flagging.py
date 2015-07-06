@@ -84,8 +84,8 @@ for spw in spws:
                          spw=str(spw), extendpols=True,
                          action='apply', display='')
             else:
-                flagdata(vis=ms_name, spw=str(spw), extendpols=False,
-                         action='apply', display='')
+                flagdata(vis=ms_name, spw=str(spw), mode='extend',
+                         extendpols=False, action='apply', display='')
 
             params_used[spw, :] = \
                 [freqdevscale, timedevscale, growfreq, growtime]
