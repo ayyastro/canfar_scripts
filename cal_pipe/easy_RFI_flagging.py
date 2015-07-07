@@ -83,14 +83,17 @@ for spw in spws:
                 flagdata(vis=ms_name, mode='rflag', spw=str(spw),
                          freqdevscale=freqdevscale, timedevscale=timedevscale,
                          growfreq=growfreq, growtime=growtime,
+                         datacolumn='corrected',
                          action='apply', display='report', flagbackup=False)
                 flagdata(vis=ms_name, mode='extend', extendpols=True,
                          spw=str(spw), action='apply', display='report',
+                         datacolumn='corrected',
                          flagbackup=False)
             else:
                 flagdata(vis=ms_name, spw=str(spw), mode='rflag',
                          freqdevscale=freqdevscale, timedevscale=timedevscale,
                          growfreq=growfreq, growtime=growtime,
+                         datacolumn='corrected',
                          extendpols=False, action='apply', display='report',
                          flagbackup=False)
 
