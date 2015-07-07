@@ -80,12 +80,19 @@ for spw in spws:
         if apply_rfi:
 
             if extend_pol:
-                flagdata(vis=ms_name, mode='extend',
-                         spw=str(spw), extendpols=True,
-                         action='apply', display='')
+                flagdata(vis=ms_name, mode='rflag', spw=str(spw),
+                         freqdevscale=freqdevscale, timedevscale=timedevscale,
+                         growfreq=growfreq, growtime=growtime,
+                         action='apply', display='report', flagbackup=False)
+                flagdata(vis=ms_name, mode='extend', extendpols=True,
+                         spw=str(spw), action='apply', display='report',
+                         flagbackup=False)
             else:
-                flagdata(vis=ms_name, spw=str(spw), mode='extend',
-                         extendpols=False, action='apply', display='')
+                flagdata(vis=ms_name, spw=str(spw), mode='rflag',
+                         freqdevscale=freqdevscale, timedevscale=timedevscale,
+                         growfreq=growfreq, growtime=growtime,
+                         extendpols=False, action='apply', display='report',
+                         flagbackup=False)
 
             params_used[spw, :] = \
                 [freqdevscale, timedevscale, growfreq, growtime]
@@ -94,12 +101,11 @@ for spw in spws:
             params_used[spw, :] = \
                 [np.NaN, np.NaN, np.NaN, np.NaN]
 
-
         obliterate = \
             True if raw_input("Flag whole SPW? : ") == "True" else False
 
         if obliterate:
-            flagdata(vis=ms_name, spw=str(spw))
+            flagdata(vis=ms_name, spw=str(spw), mode='apply')
             print("Flagged all of SPW " + str(spw))
             params_used[spw, :] = [0.0, 0.0, 0.0, 0.0]
 
@@ -109,4 +115,7 @@ for spw in spws:
 if apply_flagging:
     np.savetxt(ms_name[:-3]+"_RFI_params.txt", params_used,
                header="freqdevscale, timedevscale, growfreq, growtime")
+
+    flagmanager(vis=ms_name, mode='save',
+                versionname='after_manual_rflagging_1')
 
