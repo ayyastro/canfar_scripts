@@ -14,9 +14,9 @@ out_root = vis[:-3]
 clean(vis=vis, imagename=out_root+'.clean', field='M33*',
       restfreq='1420.40575177MHz',
       mode='channel', width=1, nchan=1, start=1,
-      cell='1.5arcsec', multiscale=[0, 4, 8, 20, 40, 80],
+      cell='1.5arcsec', multiscale=[0, 4, 8, 20, 40],
       threshold='2.2mJy/beam', imagermode='mosaic', gain=0.5,
       imsize=[4096, 4096], weighting='natural', robust=0.0, niter=50000,
-      pbcor=True, interpolation='linear', usescratch=True,
+      pbcor=True, minpb=0.7, interpolation='linear', usescratch=True,
       phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
       outframe='LSRK', modelimage=model, mask=mask)
