@@ -18,5 +18,6 @@ clean(vis=vis, imagename=out_root+'.clean', field='M33*',
       threshold='2.2mJy/beam', imagermode='mosaic', gain=0.5,
       imsize=[4096, 4096], weighting='natural', robust=0.0, niter=50000,
       pbcor=True, minpb=0.7, interpolation='linear', usescratch=True,
+      cyclefactor=4,
       phasecenter='J2000 01h33m50.904 +30d39m35.79', veltype='radio',
       outframe='LSRK', modelimage=model, mask=mask)
