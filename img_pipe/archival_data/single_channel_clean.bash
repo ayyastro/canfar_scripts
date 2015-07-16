@@ -79,16 +79,16 @@ tar -zcf ${ms_name%.ms}.clean.flux.pbcoverage.tar.gz ${ms_name%.ms}.clean.flux.p
 
 # Now copy over the relevant infos
 
-vmkdir vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}
+vmkdir vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
 
-vcp ${TMPDIR}/proc_${channel}/casa*.log vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}
+vcp ${TMPDIR}/proc_${channel}/casa*.log vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}
 
-vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.image.tar.gz vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}/
-vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.mask.tar.gz vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}/
-vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.model.tar.gz vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}/
-vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.psf.tar.gz vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}/
-vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.residual.tar.gz vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.image.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.mask.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.model.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.psf.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.residual.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
 
-vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.flux.tar.gz vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.flux.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
 
-vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.flux.pbcoverage.tar.gz vos:MWSynthesis/VLA/archival/test_bad_cleans/channel_${channel}/
+vcp ${TMPDIR}/proc_${channel}/${ms_name%.ms}.clean.flux.pbcoverage.tar.gz vos:MWSynthesis/VLA/archival/clean_channels/channel_${channel}/
