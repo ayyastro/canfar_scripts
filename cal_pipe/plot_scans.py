@@ -1,6 +1,7 @@
 
 import numpy as np
 import re
+import os
 
 
 ms_active = raw_input("MS? : ")
@@ -28,6 +29,11 @@ tb.close()
 
 field_scans = [scans for i, scans in enumerate(field_scans) if i in posn_matches]
 
+try:
+    os.mkdir("scan_plots")
+except OSError:
+    pass
+
 for ii in range(len(field_scans)):
     print("On field "+matches[ii])
     for jj in field_scans[ii]:
@@ -53,7 +59,7 @@ for ii in range(len(field_scans)):
         ylabel = ''
         showmajorgrid = False
         showminorgrid = False
-        plotfile = 'field_'+matches[ii]+'_scan_'+str(jj)+'.png'
+        plotfile = 'scan_plots/field_'+matches[ii]+'_scan_'+str(jj)+'.png'
         overwrite = True
         showgui = False
         async = False
