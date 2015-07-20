@@ -30,7 +30,7 @@ field_scans = [scans for i, scans in enumerate(field_scans) if i in posn_matches
 
 for ii in range(len(field_scans)):
     print("On field "+matches[ii])
-    for jj in range(len(field_scans[ii])):
+    for jj in field_scans[ii]:
 
         print("On scan "+str(jj))
 
