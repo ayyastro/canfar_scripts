@@ -40,7 +40,7 @@ for ii in range(len(field_scans)):
         yaxis = 'amp'
         ydatacolumn = 'corrected'
         selectdata = True
-        field = ii
+        field = matches[ii]
         scan = str(jj)
         correlation = "RR,LL"
         averagedata = True
