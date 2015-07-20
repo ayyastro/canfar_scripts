@@ -26,7 +26,7 @@ for ii in range(numFields):
     field_scans.append(list(np.unique(subtable.getcol('SCAN_NUMBER'))))
 tb.close()
 
-field_scans = [scans for i, scans in field_scans if i in posn_matches]
+field_scans = [scans for i, scans in enumerate(field_scans) if i in posn_matches]
 
 for ii in range(len(field_scans)):
     for jj in range(len(field_scans[ii])):
