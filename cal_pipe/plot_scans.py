@@ -7,7 +7,7 @@ ms_active = raw_input("MS? : ")
 field_str = raw_input("Field? : ")
 
 
-tb.open(vis+"/FIELD")
+tb.open(ms_active+"/FIELD")
 names = tb.getcol('NAME')
 matches = [string for string in names if re.match(field_str, string)]
 posn_matches = \
