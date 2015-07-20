@@ -12,6 +12,8 @@ names = tb.getcol('NAME')
 matches = [string for string in names if re.match(field_str, string)]
 posn_matches = \
     [i for i, string in enumerate(names) if re.match(field_str, string)]
+numFields = tb.nrows()
+tb.close()
 
 if len(matches) == 0:
     raise TypeError("No matches found for the given field string")
