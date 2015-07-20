@@ -6,6 +6,7 @@ import os
 
 ms_active = raw_input("MS? : ")
 field_str = raw_input("Field? : ")
+spw_str = raw_input("SPW? : ")
 
 
 tb.open(ms_active+"/FIELD")
@@ -48,13 +49,14 @@ for ii in range(len(field_scans)):
         selectdata = True
         field = matches[ii]
         scan = str(jj)
+        spw = spw_str
         correlation = "RR,LL"
         averagedata = True
         avgbaseline = True
         transform = False
         extendflag = False
         plotrange = []
-        title = 'Amp vs Time: Field'+matches[ii]+' Scan'+str(jj)
+        title = 'Amp vs Time: Field '+matches[ii]+' Scan'+str(jj)
         xlabel = ''
         ylabel = ''
         showmajorgrid = False
