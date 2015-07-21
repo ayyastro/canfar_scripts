@@ -181,7 +181,7 @@ try:
 
 # INITIAL TEST CALIBRATIONS USING BANDPASS AND DELAY CALIBRATORS
 
-    execfile(pipepath+'EVLA_pipe_testBPdcals.py')
+    execfile(pipepath+'EVLA_pipe_testBPdcals_lines.py')
 
 #*********************************************************************
 
@@ -215,7 +215,7 @@ try:
 # (semi-final because we have not yet determined the spectral index
 # of the bandpass calibrator)
 
-    execfile(pipepath+'EVLA_pipe_semiFinalBPdcals1.py')
+    execfile(pipepath+'EVLA_pipe_semiFinalBPdcals1_lines.py')
 
 ######################################################################
 
@@ -227,7 +227,7 @@ try:
 
 # RE-RUN semiFinalBPdcals.py FOLLOWING rflag
 
-    execfile(pipepath+'EVLA_pipe_semiFinalBPdcals2.py')
+    execfile(pipepath+'EVLA_pipe_semiFinalBPdcals2_lines.py')
 
 ######################################################################
 
@@ -274,7 +274,7 @@ try:
 
 # MAKE FINAL CALIBRATION TABLES
 
-    execfile(pipepath+'EVLA_pipe_finalcals.py')
+    execfile(pipepath+'EVLA_pipe_finalcals_lines.py')
 
 ######################################################################
 
