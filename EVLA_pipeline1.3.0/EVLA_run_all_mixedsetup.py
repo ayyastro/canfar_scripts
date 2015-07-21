@@ -89,7 +89,7 @@ os.chdir("speclines")
 SDM_name = SDM_name_orig+".speclines"
 myHanning = 'n'
 
-execfile(path_to_pipeline + "EVLA_pipeline.py")
+execfile(path_to_pipeline + "EVLA_pipeline_lines.py")
 
 # It saves a bunch of plots to the parent directory. So, move them to weblog here.
 pngs = glob.glob("../*.png")
