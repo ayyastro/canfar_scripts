@@ -334,7 +334,7 @@ if (cal3C84_bp == True):
     minsnr=5.0
     solnorm=False
     bandtype='B'
-    fillgaps=30
+    fillgaps=325
     smodel=[]
     append=False
     docallib=False
@@ -361,7 +361,7 @@ else:
     minsnr=5.0
     solnorm=False
     bandtype='B'
-    fillgaps=30
+    fillgaps=325
     smodel=[]
     append=False
     docallib=False
