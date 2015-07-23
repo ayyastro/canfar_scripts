@@ -268,7 +268,10 @@ if (cal3C84_bp == True):
     minblperant=minBL_for_cal
     minsnr=5.0
     solnorm=False
-    bandtype='B'
+    bandtype='BPOLY'
+    degamp=1
+    degphase=1
+    maskedge=20
     fillgaps=325
     smodel=[]
     append=False
@@ -295,7 +298,10 @@ else:
     minblperant=minBL_for_cal
     minsnr=5.0
     solnorm=False
-    bandtype='B'
+    bandtype='BPOLY'
+    degamp=1
+    degphase=1
+    maskedge=20
     fillgaps=325
     smodel=[]
     append=False
