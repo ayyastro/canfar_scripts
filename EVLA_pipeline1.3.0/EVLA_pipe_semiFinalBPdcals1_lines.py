@@ -380,10 +380,12 @@ else:
     bandpass()
 
 logprint ("Bandpass calibration complete", logfileout='logs/semiFinalBPdcals1.log')
-flaggedSolnResult=getCalFlaggedSoln('BPcal.b')
+logprint("Cannot get flag statistics when using BPOLY.")
 
-logprint("Fraction of flagged solutions = "+str(flaggedSolnResult['all']['fraction']), logfileout='logs/semiFinalBPdcals1.log')
-logprint("Median fraction of flagged solutions per antenna = "+str(flaggedSolnResult['antmedian']['fraction']), logfileout='logs/semiFinalBPdcals1.log')
+# flaggedSolnResult=getCalFlaggedSoln('BPcal.b')
+
+# logprint("Fraction of flagged solutions = "+str(flaggedSolnResult['all']['fraction']), logfileout='logs/semiFinalBPdcals1.log')
+# logprint("Median fraction of flagged solutions per antenna = "+str(flaggedSolnResult['antmedian']['fraction']), logfileout='logs/semiFinalBPdcals1.log')
 
 
 # Plot BP solutions
@@ -548,7 +550,7 @@ plotms()
 # Calculate fractions of flagged solutions for final QA2
 
 flaggedDelaySolns=getCalFlaggedSoln('delay.k')
-flaggedBPSolns=getCalFlaggedSoln('BPcal.b')
+# flaggedBPSolns=getCalFlaggedSoln('BPcal.b')
 
 if (flaggedDelaySolns['all']['total'] > 0):
     if (flaggedDelaySolns['antmedian']['fraction'] > critfrac):
@@ -560,13 +562,14 @@ else:
 
 logprint ("QA2_delay: "+QA2_delay, logfileout='logs/semiFinalBPdcals1.log')
 
-if (flaggedBPSolns['all']['total'] > 0):
-    if (flaggedBPSolns['antmedian']['fraction'] > 0.2):
-        QA2_BP='Partial'
-    else:
-        QA2_BP='Pass'
-else:
-    QA2_BP='Fail'
+# if (flaggedBPSolns['all']['total'] > 0):
+#     if (flaggedBPSolns['antmedian']['fraction'] > 0.2):
+#         QA2_BP='Partial'
+#     else:
+#         QA2_BP='Pass'
+# else:
+#     QA2_BP='Fail'
+QA2_BP = 'Pass'
 
 logprint ("QA2_BP: "+QA2_BP, logfileout='logs/semiFinalBPdcals1.log')
 

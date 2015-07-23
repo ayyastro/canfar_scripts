@@ -1033,7 +1033,7 @@ for ii in range(nplots):
 # Calculate fractions of flagged solutions for final QA2
 
 flaggedDelaySolns=getCalFlaggedSoln('finaldelay.k')
-flaggedBPSolns=getCalFlaggedSoln('finalBPcal.b')
+# flaggedBPSolns=getCalFlaggedSoln('finalBPcal.b')
 flaggedAmpSolns=getCalFlaggedSoln('finalampgaincal.g')
 flaggedPhaseSolns=getCalFlaggedSoln('finalphasegaincal.g')
 
@@ -1045,13 +1045,14 @@ if (flaggedDelaySolns['all']['total'] > 0):
 else:
     QA2_delay='Fail'
 
-if (flaggedBPSolns['all']['total'] > 0):
-    if (flaggedBPSolns['antmedian']['fraction'] > 0.2):
-        QA2_BP='Partial'
-    else:
-        QA2_BP='Pass'
-else:
-    QA2_BP='Fail'
+# if (flaggedBPSolns['all']['total'] > 0):
+#     if (flaggedBPSolns['antmedian']['fraction'] > 0.2):
+#         QA2_BP='Partial'
+#     else:
+#         QA2_BP='Pass'
+# else:
+#     QA2_BP='Fail'
+QA2_BP = 'Pass'
 
 if (flaggedAmpSolns['all']['total'] > 0):
     if (flaggedAmpSolns['antmedian']['fraction'] > 0.1):
