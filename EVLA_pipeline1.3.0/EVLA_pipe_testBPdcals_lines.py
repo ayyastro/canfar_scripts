@@ -482,18 +482,19 @@ flagVarCol = tb.getvarcol('FLAG')
 tb.close()
 
 rowlist = ampVarCol.keys()
+# We need to sort rowlist properly
+rowlist = ["r"+str(i+1) for i in range(len(rowlist))]
 maxmaxamp = 0.0
 maxmaxphase = 0.0
-nspw = 0
+nspw = 1
 for i, rrow in enumerate(rowlist):
-    if i == (nspw+1)*numAntenna:
+    if i == nspw*numAntenna:
         nspw += 1
     # Check if it's flagged
     if not flagVarCol[rrow]:
         continue
-    maxamp = np.max(bpoly_model(freqs[nspw], ampVarCol[rrow]))
-    maxphase = np.max(bpoly_model(freqs[nspw], phaseVarCol[rrow])) * 180./np.pi
-
+    maxamp = np.max(bpoly_model(freqs["r"+str(nspw)], ampVarCol[rrow]))
+    maxphase = np.max(bpoly_model(freqs["r"+str(nspw)], phaseVarCol[rrow])) * 180./np.pi
     if maxamp > maxmaxamp:
         maxmaxamp = maxamp
     if maxphase > maxmaxphase:
