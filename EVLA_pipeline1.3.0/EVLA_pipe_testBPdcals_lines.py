@@ -458,31 +458,47 @@ logprint("Cannot get flag statistics when using BPOLY.")
 # logprint("Median fraction of flagged solutions per antenna = "+str(flaggedSolnResult['antmedian']['fraction']), logfileout='logs/testBPdcals.log')
 
 # Plot BP solutions and check for missing spws, antennas, etc.
+import numpy as np
+
+def bpoly_model(freqs, params):
+
+
+    split = len(params)/2
+
+    bpoly_curve = np.zeros((2, len(freqs)))
+    for i in range(split):
+        bpoly_curve[0, :] += params[i] * np.power(freqs, i)
+        bpoly_curve[1, :] += params[split+i] * np.power(freqs, i)
+
+    return bpoly_curve
+
+tb.open(ms_active+"/SPECTRAL_WINDOW")
+freqs = tb.getvarcol("CHAN_FREQ")
+tb.close()
 
 tb.open('testBPcal.b')
-dataVarCol = tb.getvarcol('CPARAM')
+phaseVarCol = tb.getvarcol('POLY_COEFF_PHASE')
+ampVarCol = tb.getvarcol('POLY_COEFF_AMP')
 flagVarCol = tb.getvarcol('FLAG')
 tb.close()
-rowlist = dataVarCol.keys()
-nrows = len(rowlist)
+
+rowlist = ampVarCol.keys()
 maxmaxamp = 0.0
 maxmaxphase = 0.0
-for rrow in rowlist:
-    dataArr = dataVarCol[rrow]
-    flagArr = flagVarCol[rrow]
-    amps=np.abs(dataArr)
-    phases=np.arctan2(np.imag(dataArr),np.real(dataArr))
-    good=np.logical_not(flagArr)
-    tmparr=amps[good]
-    if (len(tmparr)>0):
-        maxamp=np.max(amps[good])
-        if (maxamp>maxmaxamp):
-            maxmaxamp=maxamp
-    tmparr=np.abs(phases[good])
-    if (len(tmparr)>0):
-        maxphase=np.max(np.abs(phases[good]))*180./pi
-        if (maxphase>maxmaxphase):
-            maxmaxphase=maxphase
+nspw = 0
+for i, rrow in enumerate(rowlist):
+    if i == (nspw+1)*numAntenna:
+        nspw += 1
+    # Check if it's flagged
+    if not flagVarCol[rrow]:
+        continue
+    maxamp = np.max(bpoly_model(freqs[nspw], ampVarCol[rrow]))
+    maxphase = np.max(bpoly_model(freqs[nspw], phaseVarCol[rrow])) * 180./np.pi
+
+    if maxamp > maxmaxamp:
+        maxmaxamp = maxamp
+    if maxphase > maxmaxphase:
+        maxmaxphase = maxphase
 ampplotmax=maxmaxamp
 phaseplotmax=maxmaxphase
 
