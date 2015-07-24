@@ -392,48 +392,48 @@ logprint("Cannot get flag statistics when using BPOLY.")
 
 logprint ("Plotting bandpass solutions", logfileout='logs/semiFinalBPdcals1.log')
 
-import numpy as np
+# import numpy as np
 
-def bpoly_model(freqs, params):
+# def bpoly_model(freqs, params):
 
-    split = len(params)/2
+#     split = len(params)/2
 
-    bpoly_curve = np.zeros((2, len(freqs)))
-    for i in range(split):
-        bpoly_curve[0, :] += params[i] * np.power(freqs, i)
-        bpoly_curve[1, :] += params[split+i] * np.power(freqs, i)
+#     bpoly_curve = np.zeros((2, len(freqs)))
+#     for i in range(split):
+#         bpoly_curve[0, :] += params[i] * np.power(freqs, i)
+#         bpoly_curve[1, :] += params[split+i] * np.power(freqs, i)
 
-    return bpoly_curve
+#     return bpoly_curve
 
-tb.open(ms_active+"/SPECTRAL_WINDOW")
-freqs = tb.getvarcol("CHAN_FREQ")
-tb.close()
+# tb.open(ms_active+"/SPECTRAL_WINDOW")
+# freqs = tb.getvarcol("CHAN_FREQ")
+# tb.close()
 
-tb.open('BPcal.b')
-phaseVarCol = tb.getvarcol('POLY_COEFF_PHASE')
-ampVarCol = tb.getvarcol('POLY_COEFF_AMP')
-flagVarCol = tb.getvarcol('FLAG')
-tb.close()
+# tb.open('BPcal.b')
+# phaseVarCol = tb.getvarcol('POLY_COEFF_PHASE')
+# ampVarCol = tb.getvarcol('POLY_COEFF_AMP')
+# flagVarCol = tb.getvarcol('FLAG')
+# tb.close()
 
-rowlist = ampVarCol.keys()
-maxmaxamp = 0.0
-maxmaxphase = 0.0
-nspw = 0
-for i, rrow in enumerate(rowlist):
-    if i == (nspw+1)*numAntenna:
-        nspw += 1
-    # Check if it's flagged
-    if not flagVarCol[rrow]:
-        continue
-    maxamp = np.max(bpoly_model(freqs[nspw], ampVarCol[rrow]))
-    maxphase = np.max(bpoly_model(freqs[nspw], phaseVarCol[rrow])) * 180./np.pi
+# rowlist = ampVarCol.keys()
+# maxmaxamp = 0.0
+# maxmaxphase = 0.0
+# nspw = 0
+# for i, rrow in enumerate(rowlist):
+#     if i == (nspw+1)*numAntenna:
+#         nspw += 1
+#     # Check if it's flagged
+#     if not flagVarCol[rrow]:
+#         continue
+#     maxamp = np.max(bpoly_model(freqs[nspw], ampVarCol[rrow]))
+#     maxphase = np.max(bpoly_model(freqs[nspw], phaseVarCol[rrow])) * 180./np.pi
 
-    if maxamp > maxmaxamp:
-        maxmaxamp = maxamp
-    if maxphase > maxmaxphase:
-        maxmaxphase = maxphase
-ampplotmax = maxmaxamp
-phaseplotmax = maxmaxphase
+#     if maxamp > maxmaxamp:
+#         maxmaxamp = maxamp
+#     if maxphase > maxmaxphase:
+#         maxmaxphase = maxphase
+# ampplotmax = maxmaxamp
+# phaseplotmax = maxmaxphase
 
 for ii in range(nplots):
     filename='BPcal_amp'+str(ii)+'.png'
@@ -455,7 +455,7 @@ for ii in range(nplots):
     overplot=False
     clearpanel='Auto'
     iteration='antenna'
-    plotrange=[0,0,0,ampplotmax]
+    # plotrange=[0,0,0,ampplotmax]
     showflags=False
     plotsymbol='o'
     plotcolor='blue'
@@ -486,7 +486,7 @@ for ii in range(nplots):
     overplot=False
     clearpanel='Auto'
     iteration='antenna'
-    plotrange=[0,0,-phaseplotmax,phaseplotmax]
+    # plotrange=[0,0,-phaseplotmax,phaseplotmax]
     showflags=False
     plotsymbol='o'
     plotcolor='blue'
