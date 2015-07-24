@@ -462,7 +462,6 @@ import numpy as np
 
 def bpoly_model(freqs, params):
 
-
     split = len(params)/2
 
     bpoly_curve = np.zeros((2, len(freqs)))
@@ -499,8 +498,8 @@ for i, rrow in enumerate(rowlist):
         maxmaxamp = maxamp
     if maxphase > maxmaxphase:
         maxmaxphase = maxphase
-ampplotmax=maxmaxamp
-phaseplotmax=maxmaxphase
+ampplotmax = maxmaxamp
+phaseplotmax = maxmaxphase
 
 for ii in range(nplots):
     filename='testBPcal_amp'+str(ii)+'.png'
