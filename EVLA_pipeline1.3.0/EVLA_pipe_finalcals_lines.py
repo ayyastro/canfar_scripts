@@ -868,7 +868,7 @@ for ii in range(nspws):
     overplot=False
     clearpanel='Auto'
     iteration=''
-    plotrange=[0,0,0,ampplotmax]
+    # plotrange=[0,0,0,ampplotmax]
     showflags=False
     plotsymbol='o'
     plotcolor='blue'
