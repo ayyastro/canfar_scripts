@@ -298,7 +298,7 @@ try:
 
 # CALCULATE DATA WEIGHTS BASED ON ST. DEV. WITHIN EACH SPW
 
-    execfile(pipepath+'EVLA_pipe_statwt.py')
+    execfile(pipepath+'EVLA_pipe_statwt_lines.py')
 
 ######################################################################
 
