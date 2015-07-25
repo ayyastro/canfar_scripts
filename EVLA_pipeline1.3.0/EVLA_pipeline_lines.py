@@ -188,20 +188,20 @@ try:
 # IDENTIFY AND FLAG BASEBANDS WITH BAD DEFORMATTERS OR RFI BASED ON
 # BP TABLE AMPS
 
-    execfile(pipepath+'EVLA_pipe_flag_baddeformatters.py')
+    # execfile(pipepath+'EVLA_pipe_flag_baddeformatters.py')
 
 #*********************************************************************
 
 # IDENTIFY AND FLAG BASEBANDS WITH BAD DEFORMATTERS OR RFI BASED ON
 # BP TABLE PHASES
 
-    execfile(pipepath+'EVLA_pipe_flag_baddeformattersphase.py')
+    # execfile(pipepath+'EVLA_pipe_flag_baddeformattersphase.py')
 
 ######################################################################
 
 # Flag spws that have no calibration at this point
 
-    execfile(pipepath+'EVLA_pipe_flag_uncalspws1.py')
+    # execfile(pipepath+'EVLA_pipe_flag_uncalspws1.py')
 
 #*********************************************************************
 
@@ -233,7 +233,7 @@ try:
 
 # Flag spws that have no calibration at this point
 
-    execfile(pipepath+'EVLA_pipe_flag_uncalspws1b.py')
+    # execfile(pipepath+'EVLA_pipe_flag_uncalspws1b.py')
 
 ######################################################################
 
@@ -286,7 +286,7 @@ try:
 
 # Flag spws that have no calibration at this point
 
-    execfile(pipepath+'EVLA_pipe_flag_uncalspws2.py')
+    # execfile(pipepath+'EVLA_pipe_flag_uncalspws2.py')
 
 ######################################################################
 
