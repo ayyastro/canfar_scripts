@@ -899,7 +899,7 @@ for ii in range(nspws):
     overplot=False
     clearpanel='Auto'
     iteration=''
-    plotrange=[0,0,-phaseplotmax,phaseplotmax]
+    # plotrange=[0,0,-phaseplotmax,phaseplotmax]
     showflags=False
     plotsymbol='o'
     plotcolor='blue'
