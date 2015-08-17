@@ -6,8 +6,8 @@ For splitting the HI data from 14B-088 data.
 import glob
 import os
 
-ms_path = input("Path and name of MS?: ")
-output_path = input("Output name and path?: ")
+ms_path = raw_input("Path and name of MS?: ")
+output_path = raw_input("Output name and path?: ")
 
 spw = '1'
 chans = '3000~5000'
