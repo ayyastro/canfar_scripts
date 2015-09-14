@@ -25,7 +25,7 @@ def subtract_outlier(vis, outlier_coord, field='M33*', split_fields=True,
     # Get some info from the image
     tb.open(os.path.join(vis, 'FIELD'))
     all_fields = tb.getcol('NAME')
-    tb.close(os.path.join(vis, 'FIELD'))
+    tb.close()
 
     regex = re.compile(field)
     fields = [f for f in all_fields if re.match(regex, f)]
@@ -45,7 +45,7 @@ def subtract_outlier(vis, outlier_coord, field='M33*', split_fields=True,
 
         # Split the field off
         split(vis=vis, outputvis=fieldvis, field=f,
-              datacolumn='corrected')
+              datacolumn="DATA")
 
         # Now image the data, keeping the phasecenter at the outlier
 
@@ -68,7 +68,7 @@ def subtract_outlier(vis, outlier_coord, field='M33*', split_fields=True,
 
     # Now append the uvsub fields back together
     individ_ms = ", ".join(glob.glob("temp_files/*.ms"))
-    concat(vis=individ_ms, outputvis=vis.rstrip(".ms")+"_outsub.ms",
+    concat(vis=individ_ms, concatvis=vis.rstrip(".ms")+"_outsub.ms",
            respectname=True)
 
     if cleanup:
